@@ -22,4 +22,4 @@ INSERT INTO users_book (user_ref_id, book_ref_i, status, review, date_started, d
   'Great Book',
   '2010-03-08',
   '2010-03-15'
-)
+);

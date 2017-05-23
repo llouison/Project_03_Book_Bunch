@@ -25,5 +25,5 @@ INSERT INTO books (title, author, genre, isbn, description, rating, image_url) V
   'Something unclear about a kid in the glasses',
   5,
   'https://books.google.com/books/content?id=pIs9Em38dAoC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'
-)
+);
 
