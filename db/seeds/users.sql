@@ -13,4 +13,4 @@ INSERT INTO users (username, email, password) VALUES
   'Mishka',
   'mishka@gmail.com',
   '123456'
-)
+);
