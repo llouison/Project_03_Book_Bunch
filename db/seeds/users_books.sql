@@ -1,4 +1,4 @@
-INSERT INTO users_book (user_ref_id, book_ref_i, status, review, date_started, date_finished) VALUES
+INSERT INTO users_books (user_ref_id, book_ref_id, status, review, date_started, date_finished) VALUES
 (
   1,
   1,
