@@ -82,6 +82,7 @@ User's Books Table.
 ## Links and Resources
 
 - https://developers.google.com/books/
+- https://developers.google.com/books/docs/v1/using#PerformingSearch
 - http://developer.nytimes.com/books_api.json#/Documentation/GET/lists.%7Bformat%7D
 - https://developers.google.com/books/docs/preview-wizard
 - https://react-bootstrap.github.io/
