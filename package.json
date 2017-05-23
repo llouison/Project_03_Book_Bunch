@@ -1,0 +1,26 @@
+{
+  "name": "book_bunch",
+  "version": "1.0.0",
+  "description": "a book shelf crud app",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "morgan": "^1.8.1",
+    "pg-promise": "^5.7.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/llouison/Project_03_Book_Bunch.git"
+  },
+  "author": "Ahsan, Lisa, Alaiksei",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/llouison/Project_03_Book_Bunch/issues"
+  },
+  "homepage": "https://github.com/llouison/Project_03_Book_Bunch#readme"
+}
