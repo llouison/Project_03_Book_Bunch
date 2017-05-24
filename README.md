@@ -79,6 +79,17 @@ Users_Books table.
 - Ability to scan isbn barcode on mobile
 - Google Chrome extension for easy access to our app from anywhere the user may be surfing in the internet.
 
+## Coding Wins
+```
+INSERT INTO books (title, author, genre, isbn, description, rating, image_url) 
+        SELECT $1, $2, $3, $4, $5, $6, $7 
+        FROM dual
+        WHERE NOT EXISTS (
+            SELECT * FROM books WHERE books.isbn = $4
+        )
+        RETURNING *
+```
+
 ## Links and Resources
 
 - https://developers.google.com/books/
