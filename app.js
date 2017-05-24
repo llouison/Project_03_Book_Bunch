@@ -28,9 +28,11 @@ app.get('/', function(req, res) {
     res.sendFile(__dirname + '/public/index.html');
 });
 
-// books api
+// importing routes and assigning urls for books api and users api
 const booksRoutes = require('./routes/booksRoutes');
+const usersRoutes = require('./routes/usersRoutes');
 app.use('/api/books', booksRoutes);
+app.use('/api/users', usersRoutes);
 
 // handling 404
 app.get('*', function(req,res) {
