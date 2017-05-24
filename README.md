@@ -58,19 +58,19 @@ Users.
 
 Books.
 
-| id | Title   | Author   | Genre  |   ISBN  |Description   | Rating | Image Url | Preview Link| 
-|--- |:-------:|:--------:|:------:|:-------:|:------------:|:------:|:---------:| -----------:|
-| 1  | 'title' | 'author' | 'genre'|  num    |'description' | num    | 'url'     |  'url'      |
-| 2  | 'title' | 'author' | 'genre'|  num    |'description' | num    | 'url'     |  'url'      |
-| 3  | 'title' | 'author' | 'genre'|  num    |'description' | num    | 'url'     |  'url'      |
+| id | Title   | Author   | Genre  |   ISBN  |Description   | Rating | Image Url |  
+|--- |:-------:|:--------:|:------:|:-------:|:------------:|:------:| ---------:| 
+| 1  | 'title' | 'author' | 'genre'|  num    |'description' | num    | 'url'     |
+| 2  | 'title' | 'author' | 'genre'|  num    |'description' | num    | 'url'     |
+| 3  | 'title' | 'author' | 'genre'|  num    |'description' | num    | 'url'     |
 
-User's Books Table.
+Users_Books table.
 
-| id | User ref. id | Book ref id | Status   | Review     | 
-|--- |-------------:|:-----------:| :-------:| ----------:|
-| 1  |     1        |     1       |'Reading' | 'Loved it' | 
-| 2  |     2        |     1       | 'Read'   | 'Hated it' |
-| 3  |     1        |     2       | 'To-Read'| 'Loved it' |
+| id | user_ref_id | book_ref_id | status   | review      | date_started  | date_finished | 
+|--- |-------------:|:-----------:| :-------:|:----------:|:-------------:| -------------:|
+| 1  |     1        |     1       |'Reading' | 'Loved it' | 'YYYY-MM-DD'  | 'YYYY-MM-DD'  |
+| 2  |     2        |     1       | 'Read'   | 'Hated it' | 'YYYY-MM-DD'  | 'YYYY-MM-DD'  |
+| 3  |     1        |     2       | 'To-Read'| 'Loved it' | 'YYYY-MM-DD'  | 'YYYY-MM-DD'  |
 
 ## Advanced Features
 - notes section on individual book page
