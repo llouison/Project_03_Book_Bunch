@@ -9,16 +9,14 @@ User.findAll = id => {
     return db.query('SELECT * FROM users JOIN users_books ON users.id = users_books.user_ref_id JOIN books ON users_books.book_ref_id = books.id WHERE users.id = $1', [id]);
 };
 
-// creating the create new user method
-User.create = user => {
-    return db.one(
-        `
-        INSERT INTO users
-        (username, email, password)
-        VALUES ($1, $2, $3) RETURNING *
-        `
-        [user.username, user.email, user.password]
-    );
+// creating the findAll method to find all books belonging to user
+User.findAll = id => {
+    return db.query('SELECT * FROM users JOIN users_books ON users.id = users_books.user_ref_id JOIN books ON users_books.book_ref_id = books.id WHERE users.id = $1', [id]);
+};
+
+// creating the find and individual book belonging to a user method
+User.findIndividBook = (id,isbn) => {
+    return db.query('SELECT * FROM users JOIN users_books ON users.id = users_books.user_ref_id JOIN books ON users_books.book_ref_id = books.id WHERE users.id = $1 and books.isbn = $2', [id, isbn]);
 };
 
 // creating the update user's book method
