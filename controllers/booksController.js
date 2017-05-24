@@ -36,23 +36,33 @@ booksController.show = (req, res) => {
 
 // defining the action once the create new book promise is complete
 booksController.create = (req, res) => {
-    Book.create({
-        title: req.body.title, 
-        author: req.body.author,
-        genre: req.body.genre,
-        isbn: req.body.isbn,
-        description: req.body.description, 
-        rating: req.body.rating, 
-        image_url: req.body.image_url,
-    })
+    Book.findByIsbn(req.params.isbn)
     .then(book => {
-        res.json({ message: 'ok', data: { book }});
+        if (book === null) {
+            Book.create({
+                title: req.body.title, 
+                author: req.body.author,
+                genre: req.body.genre,
+                isbn: req.body.isbn,
+                description: req.body.description, 
+                rating: req.body.rating, 
+                image_url: req.body.image_url,
+            })
+            .then(book => {
+                res.json({ message: 'ok', data: { book }});
+            })
+        } else {
+            res.json({
+                message: 'ok',
+                data: { book },
+            });
+        }
     })
     .catch(err => {
         console.log(err);
         res.status(400).json({message: '400, err'});
     });
-};
+};   
 
 // exporting the book controller
 module.exports = booksController;
