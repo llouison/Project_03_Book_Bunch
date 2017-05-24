@@ -14,14 +14,14 @@ Book.findByIsbn = isbn => {
     return db.oneOrNone('SELECT * FROM books WHERE isbn = $1', [isbn]);
 };
 
-// creating the create new book method
+/* creating the create new book method. The SQL query creates a new book only if it doesn't already exist in the dual table which is a dummy table created to compare values */
 Book.create = book => {
     return db.one(
         `
         INSERT INTO books
         (title, author, genre, isbn, description, rating, image_url)
         VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *
-        `
+        `,
         [book.title, book.author, book.genre, book.isbn, book.description, book.rating, book.image_url]
     );
 };
