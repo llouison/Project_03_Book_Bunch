@@ -6,7 +6,7 @@ const userController = {};
 
 // defining the action once the find all books belonging to a user promise is complete
 userController.index = (req, res) => {
-    User.findAll(id)
+    User.findAll(req.params.id)
     .then(usersBooks => {
         res.json({
             message: 'ok',
