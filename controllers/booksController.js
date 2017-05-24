@@ -8,6 +8,7 @@ const booksController = {};
 booksController.index = (req, res) => {
     Book.findAll()
     .then(books => {
+        //console.log(books);
         res.json({
             message: 'ok',
             data: { books },
