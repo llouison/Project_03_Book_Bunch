@@ -6,12 +6,12 @@ const User = {};
 
 // creating the findAll method to find all books belonging to user
 User.findAll = id => {
-    return db.query('SELECT * FROM users JOIN users_books ON users.id = users_books.user_ref_id JOIN books ON users_books.book_ref_id = books.id WHERE users.id = $1', [id]);
+    return db.query('SELECT users.username, books.title, books.author, books.genre, books.isbn, books.description, books.rating, books.image_url, users_books.status, users_books.review, users_books.date_started, users_books.date_finished FROM users JOIN users_books ON users.id = users_books.user_ref_id JOIN books ON users_books.book_ref_id = books.id WHERE users.id = $1', [id]);
 };
 
 // creating the find and individual book belonging to a user method
 User.findIndividBook = (id,isbn) => {
-    return db.query('SELECT * FROM users JOIN users_books ON users.id = users_books.user_ref_id JOIN books ON users_books.book_ref_id = books.id WHERE users.id = $1 and books.isbn = $2', [id, isbn]);
+    return db.query('SELECT users.username, books.title, books.author, books.genre, books.isbn, books.description, books.rating, books.image_url, users_books.status, users_books.review, users_books.date_started, users_books.date_finished FROM users JOIN users_books ON users.id = users_books.user_ref_id JOIN books ON users_books.book_ref_id = books.id WHERE users.id = $1 and books.isbn = $2', [id, isbn]);
 };
 
 // creating the create new user method
