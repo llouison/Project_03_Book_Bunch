@@ -47,8 +47,10 @@ app.get('/', function(req, res) {
 /* importing routes and assigning urls for books api and users api*/
 const booksRoutes = require('./routes/booksRoutes');
 const usersRoutes = require('./routes/usersRoutes');
+const authRoutes = require('./routes/auth');
 app.use('/api/books', booksRoutes);
 app.use('/api/users', usersRoutes);
+app.use('/auth', authRoutes);
 
 /* handling 404*/
 app.get('*', function(req,res) {
