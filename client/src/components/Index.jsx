@@ -16,13 +16,13 @@ class Index extends Component {
       
             <form
         className="index-page-form"
-        onSubmit={/this.props.handleIndexQuestionSubmit/}
+        onSubmit={this.props.handleIndexQuestionSubmit}
       >
       <input
           type="text"
-          value={/this.props.inputIndexQuestionValue/}
+          value={this.props.inputIndexQuestionValue}
           name='content'
-          onChange={/this.props.handleInputContentChange/}
+          onChange={this.props.handleInputContentChange}
       />
         <button>Submit</button>
       </form>
