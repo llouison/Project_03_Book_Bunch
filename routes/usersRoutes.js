@@ -2,6 +2,10 @@ const express = require('express');
 const usersController = require('../controllers/usersController');
 const usersRoutes = express.Router();
 
+usersRoutes.get('/', (req, res) => {
+  res.json({ user: 'user profile page placeholder', userInfo: req.user });
+});
+
 //display all the books on user's page
 usersRoutes.get('/:id', usersController.index);
 
