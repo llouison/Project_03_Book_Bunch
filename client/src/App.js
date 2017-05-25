@@ -33,7 +33,7 @@ class App extends Component {
     this.state = {
       books: [], 
       user: 'lisa', 
-      isLoggedIn: true,
+      isLoggedIn: false,
       // inputTitletValue:'',
       // inputAuthorValue:'',
       // inputIsbnValue:'',
@@ -148,8 +148,13 @@ class App extends Component {
             <Header />
             <Route exact path="/" component={Index} />
             {/*<Route path="/search" component={Search} />*/}
-            <PrivateRoute path="/user" user={this.state.user} isLoggedIn={this.state.isLoggedIn} component={UserDash} />
-            <Route path="/user/:id/:isbn" component={UserBook} />
+          {/*<PrivateRoute path="/user" user={this.state.user} isLoggedIn={this.state.isLoggedIn} component={UserDash} />*/}
+          <Route exact path="/user" render={() => {
+            return (this.state.isLoggedIn)
+            ? <UserDash user={this.state.user} isLoggedIn={this.state.isLoggedIn} />
+            : <Redirect to="/login" />
+          }} />
+            <Route path="/user/:isbn" component={UserBook} />
             <Route path="/login" render={() => {
               return <Login handleLoginSubmit={this.handleLoginSubmit} />
             }} />
