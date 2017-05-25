@@ -34,10 +34,6 @@ class App extends Component {
       books: [], 
       user: 'lisa', 
       isLoggedIn: false,
-      // inputTitletValue:'',
-      // inputAuthorValue:'',
-      // inputIsbnValue:'',
-      // inputGenreValue:'',
     }
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
   }
@@ -60,47 +56,6 @@ class App extends Component {
       // console.log(responseJson.data.books)
   });
 }
-
-// handleInputTitleChange(event) {
-//     this.setState({inputTitleValue: event.target.value});
-//   }
-
-// handleInputAuthorChange(event) {
-//     this.setState({inputAuthorValue: event.target.value});
-//   }
-
-// handleInputIsbnChange(event) {
-//     this.setState({inputIsbnValue: event.target.value});
-//   }
-
-// handleInputGenreChange(event) {
-//     this.setState({inputAuthorValue: event.target.value});
-//   }
-
-// handleFormSubmit(event) {
-//     fetch('https://', { //Does the api we make go here or the NYTimes api?
-//       method: 'POST',
-//       headers: {'Content-Type': 'application/json'},
-//       body: JSON.stringify({
-//         title: event.target.title.value,
-//         author: event.target.author.value,
-//         isbn: event.target.isbn.value,
-//         genre: event.target.genre.value
-//       }),
-//     })
-//     .then((response) => {
-//       return response.json()
-//     })
-    
-//         this.setState((prevState) => {
-//           return {
-//             quotes: prevState.quotes.concat(newQuote),
-//             inputContentValue: '',
-//             inputAuthorValue: '',
-//             inputGenreValue: '',
-//           }
-//         })
-//       } 
 
   getUsers(){
   fetch('/api/users')
