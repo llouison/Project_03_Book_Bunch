@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Header from './components/partials/Header';
+import Footer from './components/partials/Footer';
 import './App.css';
 
 class App extends Component {
@@ -29,14 +30,8 @@ componentDidMount(){
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-
-        
-
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Header />
+        <Footer />
       </div>
     );
   }
