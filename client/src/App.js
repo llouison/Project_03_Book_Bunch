@@ -6,6 +6,7 @@ import RegistrationForm from './components/RegistrationForm';
 import UserDash from './components/UserDash';
 import UserBook from './components/UserBook';
 import Footer from './components/partials/Footer';
+import SearchBookForm from './components/SearchBookForm';
 
 import {
   BrowserRouter as Router,
@@ -104,7 +105,7 @@ handleInputGenreChange(event) {
 //         })
 //       } 
 
-}
+
 
   getUsers(){
   fetch('/api/users')
@@ -125,20 +126,20 @@ handleInputGenreChange(event) {
   componentDidMount(){
     this.getBooks();
     // this.getUsers();
-    fetch('https://www.googleapis.com/books/v1/volumes?q=inauthor:rowling+intitle:chamber&key=AIzaSyBSbTuoPrwQ0PvCFj0uhq2MtGh3MEaoW0Y')
-    .then((response) => {
-    return response.json()
-  })
-  .then((responseJson) => {
-    console.log(responseJson);
-    //setting the state//
-    this.setState((prevState) => {
+  //   fetch('https://www.googleapis.com/books/v1/volumes?q=inauthor:rowling+intitle:chamber&key=AIzaSyBSbTuoPrwQ0PvCFj0uhq2MtGh3MEaoW0Y')
+  //   .then((response) => {
+  //   return response.json()
+  // })
+  // .then((responseJson) => {
+  //   console.log(responseJson);
+  //   //setting the state//
+  //   this.setState((prevState) => {
+  // }
   }
-
   handleLoginSubmit(event){
     event.preventDefault();
     console.log('login submit')
-  }
+  };
 
   render() {
     return (
@@ -152,6 +153,8 @@ handleInputGenreChange(event) {
             <Route path="/user/:id/:isbn" component={UserBook} />
             <Route path="/login" component={Login} handleLoginSubmit={this.handleLoginSubmit}/>
             <Route path="/register" component={RegistrationForm} />
+            <Route path='/search' component={SearchBookForm} />
+           
             <Footer />
           </main>
         </div>
