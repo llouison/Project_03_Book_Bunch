@@ -5,27 +5,37 @@ class Login extends Component {
         super(props);
         this.state = {
         inputUsernameValue: '',
+        inputPasswordValue: '',
         }
-        this.handleInputUserNameChange = this.handleInputChange.bind(this);
+        this.handleInputUserNameChange = this.handleInputUserNameChange.bind(this);
+        this.handleInputPasswordChange = this.handleInputPasswordChange.bind(this);
     }
 
-    handleInputChange(event) {
-    console.log('change');
-    this.setState({
-      inputUsernameValue: event.target.value
-    });
+    handleInputUserNameChange(event) {
+        console.log('change');
+        this.setState({
+        inputUsernameValue: event.target.value
+        });
+    }
+
+    handleInputPasswordChange(event) {
+        console.log('change');
+        this.setState({
+        inputPasswordValue: event.target.value
+        });
+    }
 
 
   render() {
     return (
       <form
         className="login_form"
-        onSubmit={this.state.inputUsernameValue}
+        onSubmit={this.props.handleLoginSubmit}
       >
       <label/>Username:
       <input
           type="text"
-          value={this.props.inputUserNameValue}
+          value={this.state.inputUserNameValue}
           name='username'
           onChange={this.handleInputUserNameChange}
       /><br/>
@@ -33,10 +43,9 @@ class Login extends Component {
         <label/>Password:
         <input
           type="text"
-          value={this.props.inputPasswordValue}
+          value={this.state.inputPasswordValue}
           name='password'
-          placeholder='password'
-          onChange={this.props.handleInputPasswordChange}
+          onChange={this.handleInputPasswordChange}
         /><br/>
         
         <button>Login</button>
