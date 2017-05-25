@@ -5,7 +5,7 @@ class RegistrationForm extends Component {
     return (
       <form
         className="registration-form"
-        onSubmit={this.props.handleQuoteSubmit}
+        onSubmit={this.props.handleRegistrationFormSubmit}
       >
 
       <label/>Username:
