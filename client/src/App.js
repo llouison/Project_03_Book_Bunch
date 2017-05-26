@@ -10,14 +10,14 @@ import Footer from './components/partials/Footer';
 import {
   BrowserRouter as Router,
   Route,
-  Link,
+  // Link,
   Redirect
 } from 'react-router-dom'
 
 import './App.css';
 
 // This is a functional component that protects private routes
-const PrivateRoute = ({ component, ...rest }) => (
+/*const PrivateRoute = ({ component, ...rest }) => (
   <Route {...rest} render={props => (
     props.isLoggedIn ? (
       React.createElement(component, props)
@@ -25,19 +25,24 @@ const PrivateRoute = ({ component, ...rest }) => (
       <Redirect to="/login" />
     )
   )}/>
-)
+) */
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       books: [], 
-      user: 'lisa', 
-      isLoggedIn: false,
+      user: 'Joe Doe', 
+      isLoggedIn: true,
     }
+    this.handleRegistrationSubmit = this.handleRegistrationSubmit.bind(this);
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
+    this.loginUserState = this.loginUserState.bind(this)
   }
 
+  loginUserState(){
+      console.log('user state');
+    }
 
   getBooks(){
   fetch('/api/books')
@@ -45,7 +50,7 @@ class App extends Component {
     return response.json()
   })
   .then((responseJson) => {
-    console.log(responseJson);
+    // console.log(responseJson);
     //setting the state//
     this.setState((prevState) => {
 
@@ -58,19 +63,7 @@ class App extends Component {
 }
 
   getUsers(){
-  fetch('/api/users')
-  .then((response) => {
-    return response.json()
-  })
-  .then((responseJson) => {
-    console.log(responseJson);
-    //setting the state//
-    this.setState((prevState) => {
-      return {
-        users: responseJson.data.users, //from api
-      }
-  });
-  });
+
 }
 
 // getGoogleBooks(){
@@ -86,13 +79,53 @@ class App extends Component {
 
   componentDidMount(){
     this.getBooks();
-    // this.getUsers();
+    this.getUsers();
     // this.getGoogleBooks();
+  }
+
+  handleRegistrationSubmit(event){
+    event.preventDefault();
+    fetch('/auth/register', {
+      method: 'POST',
+      headers: {
+      'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: event.target.username.value,
+        email: event.target.email.value,
+        password: event.target.password.value,
+      })
+    })
+      .then((response) => {
+        return response.json()
+      })
+      .then((responseJson) => {
+        console.log(responseJson);
+      })
   }
 
   handleLoginSubmit(event){
     event.preventDefault();
-    console.log('login submit');
+    fetch('/auth/login', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        username: event.target.username.value,
+        password: event.target.password.value,
+      }),
+    })
+    .then((response) => {
+      return response.json()
+    })
+    .then((responseJson) => {
+      console.log(responseJson);
+    })
+    //setting the state//
+  //   this.setState((prevState) => {
+  //     return {
+  //       user: responseJson.user, //from api
+  //     }
+  // });
   }
 
   render() {
@@ -102,20 +135,22 @@ class App extends Component {
           <main>
             <Header />
             <Route exact path="/" component={Index} />
-            {/*<Route path="/search" component={Search} />*/}
-          {/*<PrivateRoute path="/user" user={this.state.user} isLoggedIn={this.state.isLoggedIn} component={UserDash} />*/}
-          <Route exact path="/user" render={() => {
-            return (this.state.isLoggedIn)
-            ? <UserDash user={this.state.user} isLoggedIn={this.state.isLoggedIn} />
-            : <Redirect to="/login" />
-          }} />
-            <Route path="/user/:isbn" component={UserBook} />
+            {/*<Route path="/search" component={Search} />
+          <PrivateRoute path="/user" user={this.state.user} isLoggedIn={this.state.isLoggedIn} component={UserDash} />
+            <Route exact path="/user:id" render={() => {
+              return (this.state.isLoggedIn)
+              ? <UserDash user={this.state.user} isLoggedIn={this.state.isLoggedIn} />
+              : <Redirect to="/login" />
+            }} />*/}
+            <Route exact path="/user/:id" component={UserDash} />
+            <Route path="/user/:id/:isbn" component={UserBook} />
             <Route path="/login" render={() => {
               return <Login handleLoginSubmit={this.handleLoginSubmit} />
             }} />
-            <Route path="/register" component={RegistrationForm} />
+            <Route path="/register" render={() => {
+              return <RegistrationForm handleRegistrationSubmit={this.handleRegistrationSubmit} />
+            }} />
             <Footer />
-            <Link to="/user">User</Link>
           </main>
         </div>
       </Router>
