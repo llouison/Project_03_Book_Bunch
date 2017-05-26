@@ -6,6 +6,7 @@ import RegistrationForm from './components/RegistrationForm';
 import UserDash from './components/UserDash';
 import UserBook from './components/UserBook';
 import Footer from './components/partials/Footer';
+import SearchBookForm from './components/SearchBookForm';
 
 import {
   BrowserRouter as Router,
@@ -116,7 +117,6 @@ class App extends Component {
           <Header />
             <p>hello {this.state.isLoggedIn}</p>
           <Route exact path="/" component={Index} />
-          {/*<Route path="/search" component={Search} />*/}
           <PrivateRoute 
             exact path="/user" 
             user={this.state.user} 
@@ -144,6 +144,8 @@ class App extends Component {
             <Route path="/register" render={() => {
               return <RegistrationForm handleRegistrationSubmit={this.handleRegistrationSubmit} />
             }} />
+            <Route path='/search' component={SearchBookForm} />
+
             <Footer />
           </main>
         </div>
