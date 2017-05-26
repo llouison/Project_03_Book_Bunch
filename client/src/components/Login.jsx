@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+/* setting the initial state of inputs and binding the methods to the component */
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -9,17 +10,18 @@ class Login extends Component {
         }
         this.handleInputUserNameChange = this.handleInputUserNameChange.bind(this);
         this.handleInputPasswordChange = this.handleInputPasswordChange.bind(this);
-    }
+    }  
 
+    /* the handle change methods change the input value as the user types */
     handleInputUserNameChange(event) {
-        console.log('change');
+        console.log('change username');
         this.setState({
         inputUsernameValue: event.target.value
         });
     }
 
     handleInputPasswordChange(event) {
-        console.log('change');
+        console.log('change password');
         this.setState({
         inputPasswordValue: event.target.value
         });
@@ -32,17 +34,17 @@ class Login extends Component {
         className="login_form"
         onSubmit={this.props.handleLoginSubmit}
       >
-      <label/>Username:
-      <input
+        <label/>Username:
+        <input
           type="text"
           value={this.state.inputUserNameValue}
           name='username'
           onChange={this.handleInputUserNameChange}
-      /><br/>
+        /><br/>
 
         <label/>Password:
         <input
-          type="text"
+          type="password"
           value={this.state.inputPasswordValue}
           name='password'
           onChange={this.handleInputPasswordChange}

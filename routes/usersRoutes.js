@@ -2,8 +2,12 @@ const express = require('express');
 const usersController = require('../controllers/usersController');
 const usersRoutes = express.Router();
 
+const passport = require('../services/auth/passport');
+
 usersRoutes.get('/', (req, res) => {
-  res.json({ user: 'user profile page placeholder', userInfo: req.user });
+    //console.log(req.session);
+    console.log('getting user', req.user);
+    res.json({ user: req.user });
 });
 
 //display all the books on user's page

@@ -17,15 +17,19 @@ passport.use(
     User.findByUserName(username)
       .then(user => {
         if (!user) {
+          console.log('no such user');
           return done(null, false);
         }
         if (!authHelpers.comparePass(password, user.password)) {
+          console.log('wrong password');
           return done(null, false);
         } else {
+          console.log(user);
           return done(null, user);
         }
       })
       .catch(err => {
+        console.log(err);
         return done(err);
       });
   })
