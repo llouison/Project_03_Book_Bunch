@@ -36,6 +36,7 @@ userController.show = (req, res) => {
 
 // defining the action once the create new book promise is complete
 userController.create = (req, res) => {
+    console.log(req.body);
     const salt = bcrypt.genSaltSync();
     const hash = bcrypt.hashSync(req.body.password, salt);
     User.create({
