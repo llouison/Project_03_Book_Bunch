@@ -32,10 +32,14 @@ class App extends Component {
     super(props);
     this.state = {
       books: [], 
-      user: 'lisa', 
+      user: 'lisa',
+      usersBooks: '',
+      //id: 1, 
       isLoggedIn: false,
     }
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
+    this.getBooks = this.getBooks.bind(this);
+    this.getUsersBooks = this.getUsersBooks.bind(this);
   }
 
 
@@ -45,7 +49,7 @@ class App extends Component {
     return response.json()
   })
   .then((responseJson) => {
-    console.log(responseJson);
+    console.log('Books');
     //setting the state//
     this.setState((prevState) => {
 
@@ -73,6 +77,25 @@ class App extends Component {
   });
 }
 
+getUrlId(){
+
+}
+getUsersBooks(){
+  
+   fetch(`/api/users/${this.state.id}`)
+    .then((response) => {
+      return response.json()
+    })
+    .then((responseJson) => {
+      console.log('UsersBooks');
+      this.setState((prevState) => {
+       console.log(responseJson.data)
+        return {
+          usersBooks: responseJson.data,
+        }
+      });
+    });
+  }
 // getGoogleBooks(){
 //   fetch('https://www.googleapis.com/books/v1/volumes?q=inauthor:rowling+intitle:chamber&key=AIzaSyBSbTuoPrwQ0PvCFj0uhq2MtGh3MEaoW0Y')
 //     .then((response) => {
@@ -86,6 +109,7 @@ class App extends Component {
 
   componentDidMount(){
     this.getBooks();
+    this.getUsersBooks();
     // this.getUsers();
     // this.getGoogleBooks();
   }
