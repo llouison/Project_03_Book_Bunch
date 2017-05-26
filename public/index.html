@@ -48,64 +48,47 @@
 </span></code></pre>
 </div>
 <!-- finished here --> 
-<h4 id="apiquotesid"><code class="highlighter-rouge">api/quotes/:id</code></h4>
-
-<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"quote"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello World"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tim Berners-Lee"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"genre_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"philosophical"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-</div>
-
-<h4 id="apicategories"><code class="highlighter-rouge">api/categories</code></h4>
+<h4 id="apibooksisbn"><code class="highlighter-rouge">api/books/:isbn</code></h4>
 
 <div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"categoriesData"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"genre_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"motivational"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"num_quotes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"genre_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"philosophical"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"num_quotes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"genre_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"education"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"num_quotes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="err">/*</span><span class="w"> </span><span class="err">additional</span><span class="w"> </span><span class="err">genres</span><span class="w"> </span><span class="err">*/</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span></span><span class="p">{</span><span class="w">
+    </span><span class="nt">"book"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harry Potter and the Deathly Hallows"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"J. K, Rowling"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"genre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fantasy"</span><span class="w">
+              <span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harry Potter is preparing to leave the Dursleys and Privet Drive for the last time. But the future that awaits him is full of danger, not only for him, but for anyone close to him – and Harry has already lost so much. Only by destroying Voldemort's remaining Horcruxes can Harry free himself and overcome the Dark Lord's forces of evil. In this dramatic conclusion to the Harry Potter series, Harry must leave his most loyal friends behind, and in a final perilous journey find the strength and the will to face his terrifying destiny: a deadly confrontation that is his alone to fight. These adult editions with glorious jacket art by Andrew Davidson are now available in hardback for the first time."</span>
+              <span class="nt">"rating"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.5"</span>
+              <span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2"><a href='#'>"https://books.google.com/books/content?id=N6DeDQAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"</a></span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">}</span><span class="w">  
 </span></code></pre>
 </div>
 
-<h4 id="apicategoriesid"><code class="highlighter-rouge">api/categories/:id</code></h4>
+
+
+<h4 id="apiusersid"><code class="highlighter-rouge">api/users/:id</code></h4>
 
 <div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"category"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Who are we, who is each one of us, if not a combinatoria of experiences, information, books we have read, things imagined?"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Italo Calvino"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"genre_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"literary"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"In search of the difficulty rather than in its clutch. The disquiet of him who lacks an adversary."</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Samuel Beckett"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"genre_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"literary"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span></span><span class="p">{</span><span class="w">
+      </span><span class="nt">"usersBooks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bobby"</span><span class="p">,</span><span class="w">            
+                    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harry Potter and the Deathly Hallows"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"J. K, Rowling"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"genre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fantasy"</span><span class="p">,</span><span class="w">
+                    <span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harry Potter is preparing to leave the Dursleys and Privet Drive for the last time. But the future that awaits him is full of danger, not only for him, but for anyone close to him – and Harry has already lost so much. Only by destroying Voldemort's remaining Horcruxes can Harry free himself and overcome the Dark Lord's forces of evil. In this dramatic conclusion to the Harry Potter series, Harry must leave his most loyal friends behind, and in a final perilous journey find the strength and the will to face his terrifying destiny: a deadly confrontation that is his alone to fight. These adult editions with glorious jacket art by Andrew Davidson are now available in hardback for the first time."</span><span class="p">,</span><span class="w">
+                    <span class="nt">"rating"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.5"</span><span class="p">,</span><span class="w">
+                    <span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2"><a href='#'>"https://books.google.com/books/content?id=N6DeDQAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"</a></span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Read"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"review"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Great Book"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"date_started"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2010-03-08T05:00:00.000Z"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"date_finished"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2010-03-015T04:00:00.000Z"</span>
+                </span><span class="p">}</span><span class="w">
+              </span><span class="p">]</span><span class="w">
+          </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 </div>
