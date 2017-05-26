@@ -14,18 +14,16 @@ class Login extends Component {
 
     /* the handle change methods change the input value as the user types */
     handleInputUserNameChange(event) {
-        console.log('change');
+        console.log('change username');
         this.setState({
         inputUsernameValue: event.target.value
         });
     }
 
     handleInputPasswordChange(event) {
-        console.log('change');
+        console.log('change password');
         this.setState({
         inputPasswordValue: event.target.value
-        }, () => {
-          console.log(this.state)
         });
     }
 
