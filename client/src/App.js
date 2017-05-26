@@ -17,7 +17,7 @@ import {
 import './App.css';
 
 // This is a functional component that protects private routes
-/*const PrivateRoute = ({ component, ...rest }) => (
+const PrivateRoute = ({ component, ...rest }) => (
   <Route {...rest} render={props => (
     rest.isLoggedIn ? (
       React.createElement(component, props)
@@ -25,24 +25,20 @@ import './App.css';
       <Redirect to="/login" />
     )
   )}/>
-) */
+)
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       books: [], 
-      user: 'Joe Doe', 
-      isLoggedIn: true,
+      user: null, 
+      userId: null,
+      isLoggedIn: false,
     }
     this.handleRegistrationSubmit = this.handleRegistrationSubmit.bind(this);
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
-    this.loginUserState = this.loginUserState.bind(this)
   }
-
-  loginUserState(){
-      console.log('user state');
-    }
 
   getBooks(){
   fetch('/api/books')
@@ -50,37 +46,17 @@ class App extends Component {
     return response.json()
   })
   .then((responseJson) => {
-    // console.log(responseJson);
-    //setting the state//
     this.setState((prevState) => {
-
-          return {
-            books: responseJson, //from api
-          }
-         });
-      // console.log(responseJson.data.books)
+      return {
+        books: responseJson,
+      }
+    });
+    // console.log(responseJson.data.books)
   });
 }
 
-  getUsers(){
-
-}
-
-// getGoogleBooks(){
-//   fetch('https://www.googleapis.com/books/v1/volumes?q=inauthor:rowling+intitle:chamber&key=AIzaSyBSbTuoPrwQ0PvCFj0uhq2MtGh3MEaoW0Y')
-//     .then((response) => {
-//     return response.json()
-//   })
-//   .then((responseJson) => {
-//     console.log(responseJson);
-//     //setting the state//
-//     this.setState((prevState) => {
-// }
-
   componentDidMount(){
     this.getBooks();
-    this.getUsers();
-    // this.getGoogleBooks();
   }
 
   handleRegistrationSubmit(event){
@@ -106,9 +82,11 @@ class App extends Component {
 
   handleLoginSubmit(event){
     event.preventDefault();
+    // console.log(this.state);
     fetch('/auth/login', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
+      credentials: "same-origin",
       body: JSON.stringify({
         username: event.target.username.value,
         password: event.target.password.value,
@@ -118,13 +96,16 @@ class App extends Component {
       return response.json()
     })
     .then((responseJson) => {
-      console.log(responseJson);
-      // this.setState((prevState) => {
-      // return {
-      //   user: responseJson.user, 
-      // }
-      // })
+      console.log(responseJson.user.id);
+      this.setState((prevState) => {
+        return {
+          user: responseJson.user.username, 
+          userId: responseJson.user.id,
+          isLoggedIn: true,
+        }
+      })
     })
+    console.log(this.state);
   }
 
   render() {
@@ -132,20 +113,34 @@ class App extends Component {
        <Router>
         <div className="app">
           <main>
-            <Header />
-            <Route exact path="/" component={Index} />
-            {/*<Route path="/search" component={Search} />
-          <PrivateRoute path="/user" user={this.state.user} isLoggedIn={this.state.isLoggedIn} component={UserDash} />
-            <Route exact path="/user:id" render={() => {
+          <Header />
+            <p>hello {this.state.isLoggedIn}</p>
+          <Route exact path="/" component={Index} />
+          {/*<Route path="/search" component={Search} />*/}
+          <PrivateRoute 
+            exact path="/user" 
+            user={this.state.user} 
+            isLoggedIn 
+            component={UserDash} 
+          />
+          {console.log(this.state.user)}
+          <PrivateRoute path="/user/:isbn" user={this.state.books} isLoggedIn={this.state.isLoggedIn} component={UserBook} />
+          {/*<Route exact path="/user:id" render={() => {
               return (this.state.isLoggedIn)
               ? <UserDash user={this.state.user} isLoggedIn={this.state.isLoggedIn} />
               : <Redirect to="/login" />
-            }} />*/}
+            }} />
             <Route exact path="/user/:id" component={UserDash} />
             <Route path="/user/:id/:isbn" component={UserBook} />
             <Route path="/login" render={() => {
               return <Login handleLoginSubmit={this.handleLoginSubmit} />
-            }} />
+            }} />*/}
+            <Route 
+                path='/login' 
+                render={() => ( this.state.isLoggedIn 
+                  ? <Redirect push to='/user' /> 
+                  : <Login handleLoginSubmit={this.handleLoginSubmit}
+            />) } />
             <Route path="/register" render={() => {
               return <RegistrationForm handleRegistrationSubmit={this.handleRegistrationSubmit} />
             }} />
