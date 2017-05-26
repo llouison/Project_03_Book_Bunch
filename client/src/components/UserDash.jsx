@@ -4,10 +4,20 @@ class UserDash extends Component {
   render() {
     return (
       <div>
-        <p>User Id: {this.props.user}.</p>
-        <div className='shelf' id='read_books'>Read</div>
-        <div className='shelf' id='reading_books'>Reading</div>
-        <div className='shelf' id='toread_books'>To Read</div>
+        {/*<p>User Id: {this.props.user}.</p>*/}
+        <p>User: {this.props.match.params.id}</p>
+        <div className='shelf' id='read_books'>
+          <div className='book'></div>
+        </div>
+        <p>Read</p>
+        <div className='shelf' id='reading_books'>
+          <div className='book'></div>
+        </div>
+        <p>Reading</p>
+        <div className='shelf' id='toread_books'>
+          <div className='book'></div>
+        </div>
+        <p>To Read</p>
       </div>
     );
   }
