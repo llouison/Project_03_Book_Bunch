@@ -5,7 +5,7 @@ class UserDash extends Component {
     return (
       <div>
         {/*<p>User Id: {this.props.user}.</p>*/}
-        <p>User: {this.props.match.params.id}</p>
+        <p>User: {this.props.user}</p>
         <div className='shelf' id='read_books'>
           <div className='book'></div>
         </div>
