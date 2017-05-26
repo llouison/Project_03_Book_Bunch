@@ -20,12 +20,14 @@ passport.use(
           return done(null, false);
         }
         if (!authHelpers.comparePass(password, user.password)) {
+          console.log('wrong password');
           return done(null, false);
         } else {
           return done(null, user);
         }
       })
       .catch(err => {
+        console.log(err);
         return done(err);
       });
   })
