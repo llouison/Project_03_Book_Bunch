@@ -1,38 +1,69 @@
 import React, { Component } from 'react';
 
 class RegistrationForm extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+        inputUsernameValue: '',
+        inputEmailValue: '',
+        inputPasswordValue: '',
+        }
+        this.handleInputUserNameChange = this.handleInputUserNameChange.bind(this);
+        this.handleInputEmailChange = this.handleInputEmailChange.bind(this);
+        this.handleInputPasswordChange = this.handleInputPasswordChange.bind(this);
+    }  
+
+    /* the handle change methods change the input value as the user types */
+    handleInputUserNameChange(event) {
+        console.log('change');
+        this.setState({
+        inputUsernameValue: event.target.value
+        });
+    }
+
+     handleInputEmailChange(event) {
+        console.log('change');
+        this.setState({
+        inputEmailValue: event.target.value
+        });
+    }
+
+    handleInputPasswordChange(event) {
+        console.log('change');
+        this.setState({
+        inputPasswordValue: event.target.value
+        });
+    }
+
   render() {
     return (
       <form
-        className="registration-form"
-        onSubmit={this.props.handleQuoteSubmit}
+        className="registration_form"
+        onSubmit={this.props.handleRegistrationSubmit}
       >
 
-      <label/>Username:
-      <input
-          type="text"
-          value={this.props.inputUserNameValue}
-          name='username'
-          placeholder='username'
-          onChange={this.props.handleInputUserNameChange}
-      /><br/>
-
-      <label/>Email:
+        <label/>Username:
         <input
           type="text"
-          value={this.props.inputEmailValue}
+          value={this.state.inputUserNameValue}
+          name='username'
+          onChange={this.handleInputUserNameChange}
+        /><br/>
+
+        <label/>Email:
+        <input
+          type="text"
+          value={this.state.inputEmailValue}
           name='email'
-          placeholder='email'
-          onChange={this.props.handleInputEmailChange}
+          onChange={this.handleInputEmailChange}
         /><br/>
 
         <label/>Password:
         <input
           type="text"
-          value={this.props.inputPasswordValue}
+          value={this.state.inputPasswordValue}
           name='password'
-          placeholder='password'
-          onChange={this.props.handleInputPasswordChange}
+          onChange={this.handleInputPasswordChange}
         /><br/>
         
         <button>Register</button>
