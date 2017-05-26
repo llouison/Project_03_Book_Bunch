@@ -5,15 +5,18 @@ const User = require('../../models/userModel');
 /* exporting the function that encrypts and decrypts the user password */
 module.exports = () => {
   passport.serializeUser((user, done) => {
+    console.log(user);
     done(null, user.username);
   });
 
   passport.deserializeUser((username, done) => {
     User.findByUserName(username)
       .then(user => {
+          console.log('user', user)
         done(null, user);
       })
       .catch(err => {
+        console.log(err);
         done(err, null);
       });
   });
