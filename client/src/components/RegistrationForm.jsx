@@ -38,8 +38,9 @@ class RegistrationForm extends Component {
   render() {
     return (
       <form
-        className="registration_form"
-        onSubmit={this.props.handleRegistrationSubmit}
+
+        className="registration-form"
+        onSubmit={this.props.handleRegistrationFormSubmit}
       >
 
         <label/>Username:
