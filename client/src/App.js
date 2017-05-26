@@ -19,7 +19,7 @@ import './App.css';
 // This is a functional component that protects private routes
 /*const PrivateRoute = ({ component, ...rest }) => (
   <Route {...rest} render={props => (
-    props.isLoggedIn ? (
+    rest.isLoggedIn ? (
       React.createElement(component, props)
     ) : (
       <Redirect to="/login" />
@@ -119,13 +119,12 @@ class App extends Component {
     })
     .then((responseJson) => {
       console.log(responseJson);
+      // this.setState((prevState) => {
+      // return {
+      //   user: responseJson.user, 
+      // }
+      // })
     })
-    //setting the state//
-  //   this.setState((prevState) => {
-  //     return {
-  //       user: responseJson.user, //from api
-  //     }
-  // });
   }
 
   render() {
