@@ -6,6 +6,7 @@ import RegistrationForm from './components/RegistrationForm';
 import UserDash from './components/UserDash';
 import UserBook from './components/UserBook';
 import Footer from './components/partials/Footer';
+import SearchBookForm from './components/SearchBookForm';
 
 import {
   BrowserRouter as Router,
@@ -114,6 +115,8 @@ class App extends Component {
               return <Login handleLoginSubmit={this.handleLoginSubmit} />
             }} />
             <Route path="/register" component={RegistrationForm} />
+            <Route path='/search' component={SearchBookForm} />
+            
             <Footer />
             <Link to="/user">User</Link>
           </main>
