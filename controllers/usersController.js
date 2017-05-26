@@ -1,4 +1,5 @@
-// importing the user model
+// importing bcrypt node moduls and the user model
+const bcrypt = require('bcryptjs');
 const User = require('../models/userModel');
 
 // creating the controller object
@@ -35,13 +36,18 @@ userController.show = (req, res) => {
 
 // defining the action once the create new book promise is complete
 userController.create = (req, res) => {
+    const salt = bcrypt.genSaltSync();
+    const hash = bcrypt.hashSync(req.body.password, salt);
     User.create({
         username: req.body.username, 
         email: req.body.email, 
-        password: req.body.password, 
+        password: hash, 
     })
     .then(user => {
-        res.json({ message: 'ok', data: { user }});
+        req.login(user, err => {
+            if (err) return next(err);
+            res.json({ message: 'ok', data: { user }});
+        });
     })
     .catch(err => {
         console.log(err);
