@@ -33,12 +33,16 @@ class App extends Component {
     super(props);
     this.state = {
       books: [], 
+      usersBooks: '',
+      //id: 1, 
       user: null, 
       userId: null,
       isLoggedIn: false,
     }
     this.handleRegistrationSubmit = this.handleRegistrationSubmit.bind(this);
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
+    this.getBooks = this.getBooks.bind(this);
+    this.getUsersBooks = this.getUsersBooks.bind(this);
   }
 
   getBooks(){
@@ -47,6 +51,26 @@ class App extends Component {
     return response.json()
   })
   .then((responseJson) => {
+    console.log('Books');
+    //setting the state//
+    this.setState((prevState) => {
+
+          return {
+            books: responseJson, //from api
+          }
+         });
+      // console.log(responseJson.data.books)
+  });
+}
+
+  getUsers(){
+  fetch('/api/users')
+  .then((response) => {
+    return response.json()
+  })
+  .then((responseJson) => {
+    console.log(responseJson);
+    //setting the state//
     this.setState((prevState) => {
       return {
         books: responseJson,
@@ -56,8 +80,27 @@ class App extends Component {
   });
 }
 
+
+getUsersBooks(){
+  
+   fetch(`/api/users/${this.state.id}`)
+    .then((response) => {
+      return response.json()
+    })
+    .then((responseJson) => {
+      console.log('UsersBooks');
+      this.setState((prevState) => {
+       console.log(responseJson.data)
+        return {
+          usersBooks: responseJson.data,
+        }
+      });
+    });
+  }
+
   componentDidMount(){
     this.getBooks();
+    this.getUsersBooks();
   }
 
   handleRegistrationSubmit(event){
