@@ -5,9 +5,9 @@ const usersRoutes = express.Router();
 const passport = require('../services/auth/passport');
 
 usersRoutes.get('/', (req, res) => {
-    console.log(req);
-    console.log('getting user', req.body.username)
-    res.json({ user: req.username });
+    //console.log(req.session);
+    console.log('getting user', req.user);
+    res.json({ user: req.user });
 });
 
 //display all the books on user's page

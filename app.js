@@ -25,7 +25,7 @@ app.use('/static', express.static(path.join(__dirname, 'public')));
 app.use(cors());
 /* setting up logger to log activity when the server is running */
 app.use(logger('dev'));
-app.use(cookieParser());
+
 /* setting up body parser to parse the request object*/
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -37,6 +37,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(cookieParser());
 
 /* ###### setting routes ###### */
 /* index route*/
@@ -51,6 +52,10 @@ const authRoutes = require('./routes/auth');
 app.use('/api/books', booksRoutes);
 app.use('/api/users', usersRoutes);
 app.use('/auth', authRoutes);
+app.use('/successlogin', (req, res) => {
+    console.log(req.user);
+    res.send({user: req.user, auth: true});
+});
 
 /* handling 404*/
 app.get('*', function(req,res) {

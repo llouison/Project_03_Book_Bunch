@@ -15,8 +15,14 @@ function test(req, res, next) {
 router.get('/login', (req, res) => {
     res.json({message: 'login failed'})
 });
+
 router.get('/register', (req, res) => {
   res.json(res);
+});
+
+router.get('/logout', (req, res) => {
+  req.logout();
+  res.redirect('/');
 });
 
 router.post('/register', test, controller.create);
@@ -26,12 +32,5 @@ router.post('/login', test, passport.authenticate('local', {
     failureRedirect: '/auth/login',
     failureFlash: false,
   }));
-
-
-
-router.get('/logout', (req, res) => {
-  req.logout();
-  res.redirect('/');
-});
 
 module.exports = router;
