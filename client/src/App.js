@@ -32,18 +32,26 @@ class App extends Component {
     super(props);
     this.state = {
       books: [], 
-<<<<<<< HEAD
-      usersBooks: '',
+ <<<<<<< HEAD
+ <<<<<<< HEAD
+
+     usersBooks: '',
       //id: 1, 
       user: null, 
       userId: null,
       isLoggedIn: true,
 =======
+=======
+>>>>>>> a876adc2909623db36ef56894bb18137e003a46e
       usersBooks: [],
       user: '', 
       userId: '',
       isLoggedIn: false,
+<<<<<<< HEAD
 >>>>>>> df8343860a9825980bd71436a00aa9b53b436c6d
+=======
+>>>>>>> a876adc2909623db36ef56894bb18137e003a46e
+
     }
     /* binding all methods in the App class that both reference this and will also be called from the DOM*/
     this.handleRegistrationSubmit = this.handleRegistrationSubmit.bind(this);
@@ -90,10 +98,13 @@ class App extends Component {
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   componentDidMount(){
     this.getBooks();
     // this.getUsersBooks();
 =======
+=======
+>>>>>>> a876adc2909623db36ef56894bb18137e003a46e
   addUserBook(){
   }
 
@@ -101,7 +112,11 @@ class App extends Component {
   }
 
   deleteUserBook(){
+<<<<<<< HEAD
 >>>>>>> df8343860a9825980bd71436a00aa9b53b436c6d
+=======
+
+>>>>>>> a876adc2909623db36ef56894bb18137e003a46e
   }
 
   handleRegistrationSubmit(event){
@@ -122,14 +137,7 @@ class App extends Component {
         return response.json()
       })
       .then((responseJson) => {
-        console.log(responseJson);
-        this.setState((prevState) => {
-          return {
-            user: responseJson.data.user.username, 
-            userId: responseJson.data.user.id,
-            isLoggedIn: true,
-          }
-        })
+        this.updateState(responseJson.data.user.username, responseJson.data.user.id);
       })
   }
 
@@ -174,6 +182,16 @@ class App extends Component {
           user: null, 
           userId: null,
           isLoggedIn: false,
+           }
+      })
+  }
+  handleDeleteBook(){
+    fetch(`/api/users/${this.state.usersBooks}`, {
+      method: 'DELETE',
+    })
+    .then ((response) => {
+      if (response.status === 200){
+        this.getUsersBooks();
         }
       })
   }
@@ -187,6 +205,7 @@ class App extends Component {
           <PrivateRoute 
             exact path="/user" 
             user={this.state.user} 
+            usersBooks={this.state.usersBooks}
             isLoggedIn 
             component={UserDash} 
           />
