@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
 import UserBook from './UserBook.jsx';
-=======
 import Header from './partials/Header';
->>>>>>> a876adc2909623db36ef56894bb18137e003a46e
 
 class UserDash extends Component {
   render() {
@@ -25,11 +22,16 @@ class UserDash extends Component {
         </div>
         <p>To Read</p>
         <ul className="usersBooks-list">
-        {this.props.usersBooks.map((book) => {
+        {/*{this.props.usersBooks.map((book) => {
           return (
-            <UserBook key={isbn} book={book} />
-          )
-        })}
+            <UserBook 
+              user={this.props.user} 
+              key={book.isbn}
+              isbn={book.isbn}
+              title={book.title}
+            />
+            )
+        })}*/}
       </ul>
       </div>
     );
