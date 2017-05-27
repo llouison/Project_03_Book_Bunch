@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Header from './components/partials/Header';
 import Index from './components/Index';
 import Login from './components/Login';
 import RegistrationForm from './components/RegistrationForm';
+import Logout from './components/Logout';
 import UserDash from './components/UserDash';
 import UserBook from './components/UserBook';
 import Footer from './components/partials/Footer';
@@ -11,7 +11,6 @@ import SearchBookForm from './components/SearchBookForm';
 import {
   BrowserRouter as Router,
   Route,
-  // Link,
   Redirect
 } from 'react-router-dom'
 
@@ -33,16 +32,23 @@ class App extends Component {
     super(props);
     this.state = {
       books: [], 
-      usersBooks: '',
+      usersBooks: [],
       //id: 1, 
       user: null, 
       userId: null,
       isLoggedIn: false,
     }
+    /* binding all methods in the App class that both reference this and will also be called from the DOM*/
     this.handleRegistrationSubmit = this.handleRegistrationSubmit.bind(this);
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
+    this.handleLogoutSubmit = this.handleLogoutSubmit.bind(this);
+
     this.getBooks = this.getBooks.bind(this);
     this.getUsersBooks = this.getUsersBooks.bind(this);
+  }
+
+  componentDidMount(){
+    this.getBooks();
   }
 
   getBooks(){
@@ -51,60 +57,35 @@ class App extends Component {
     return response.json()
   })
   .then((responseJson) => {
-    console.log('Books');
-    //setting the state//
     this.setState((prevState) => {
-
-          return {
-            books: responseJson, //from api
-          }
-         });
-      // console.log(responseJson.data.books)
-  });
-}
-
-  getUsers(){
-  fetch('/api/users')
-  .then((response) => {
-    return response.json()
-  })
-  .then((responseJson) => {
-    console.log(responseJson);
-    //setting the state//
-    this.setState((prevState) => {
-      return {
-        books: responseJson,
-      }
+    return {
+      books: responseJson.data.books,
+    }
     });
     // console.log(responseJson.data.books)
+    // console.log('in state', this.state.books)
   });
 }
 
-
 getUsersBooks(){
-  
    fetch(`/api/users/${this.state.id}`)
     .then((response) => {
       return response.json()
     })
     .then((responseJson) => {
-      console.log('UsersBooks');
       this.setState((prevState) => {
-       console.log(responseJson.data)
-        return {
-          usersBooks: responseJson.data,
-        }
-      });
+      return {
+        usersBooks: responseJson.data.books,
+      }
     });
+    console.log('in state', responseJson.data)
+  });
   }
 
-  componentDidMount(){
-    this.getBooks();
-    this.getUsersBooks();
-  }
 
   handleRegistrationSubmit(event){
     event.preventDefault();
+    console.log('registering new user');
     fetch('/auth/register', {
       method: 'POST',
       headers: {
@@ -121,6 +102,13 @@ getUsersBooks(){
       })
       .then((responseJson) => {
         console.log(responseJson);
+        this.setState((prevState) => {
+          return {
+            user: responseJson.data.user.username, 
+            userId: responseJson.data.user.id,
+            isLoggedIn: true,
+          }
+        })
       })
   }
 
@@ -140,16 +128,29 @@ getUsersBooks(){
       return response.json()
     })
     .then((responseJson) => {
-      console.log(responseJson.user.id);
-      this.setState((prevState) => {
+      this.setState(prevState => {
+      return {
+        user: responseJson.user.username,
+        userId: responseJson.user.id,
+        isLoggedIn: true,
+      }
+    });
+    });
+    console.log(this.state);
+    // this.getUsersBooks();
+  }
+
+  handleLogoutSubmit(event){
+    event.preventDefault();
+    fetch('auth/logout')
+    this.setState((prevState) => {
         return {
-          user: responseJson.user.username, 
-          userId: responseJson.user.id,
-          isLoggedIn: true,
+          user: null, 
+          userId: null,
+          isLoggedIn: false,
         }
       })
-    })
-    console.log(this.state);
+  
   }
 
   render() {
@@ -157,8 +158,6 @@ getUsersBooks(){
        <Router>
         <div className="app">
           <main>
-          <Header />
-            <p>hello {this.state.isLoggedIn}</p>
           <Route exact path="/" component={Index} />
           <PrivateRoute 
             exact path="/user" 
@@ -166,7 +165,7 @@ getUsersBooks(){
             isLoggedIn 
             component={UserDash} 
           />
-          {console.log(this.state.user)}
+          {/*console.log(this.state.user)*/}
           <PrivateRoute path="/user/:isbn" user={this.state.books} isLoggedIn={this.state.isLoggedIn} component={UserBook} />
           {/*<Route exact path="/user:id" render={() => {
               return (this.state.isLoggedIn)
@@ -184,9 +183,19 @@ getUsersBooks(){
                   ? <Redirect push to='/user' /> 
                   : <Login handleLoginSubmit={this.handleLoginSubmit}
             />) } />
-            <Route path="/register" render={() => {
-              return <RegistrationForm handleRegistrationSubmit={this.handleRegistrationSubmit} />
-            }} />
+            <Route 
+                path='/register' 
+                render={() => ( this.state.isLoggedIn 
+                  ? <Redirect push to='/user' /> 
+                  : <RegistrationForm handleRegistrationSubmit={this.handleRegistrationSubmit}
+            />) } />
+            <Route 
+                path='/logout' 
+                render={() => ( this.state.isLoggedIn 
+                  ? <Logout handleLogoutSubmit={this.handleLogoutSubmit}/>
+                  : <Redirect push to='/'/> 
+                )} 
+            />
             <Route path='/search' component={SearchBookForm} />
 
             <Footer />
