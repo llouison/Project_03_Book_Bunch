@@ -157,6 +157,16 @@ class App extends Component {
         }
       })
   }
+  handleDeleteBook(){
+    fetch(`/api/users/${this.state.usersBooks}`, {
+      method: 'DELETE',
+    })
+    .then ((response) => {
+      if (response.status === 200){
+        this.getUsersBooks();
+      }
+    })
+  }
 
   render() {
     return (
@@ -166,7 +176,8 @@ class App extends Component {
           <Route exact path="/" component={Index} />
           <PrivateRoute 
             exact path="/user" 
-            user={this.state.user} 
+            user={this.state.user}
+            usersBooks={this.state.usersBooks}
             isLoggedIn 
             component={UserDash} 
           />
