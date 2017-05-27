@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import Header from './partials/Header';
 
 class Index extends Component {
   render() {
     return (
-
     <div>
+      <Header path1='/register' link1='Register' path2='/login' link2='Login'/>
       <div className = "hero">
         <img src={require('../images/books.jpg')}alt="books on shelves" />
         <h3>About Book Bunch</h3>

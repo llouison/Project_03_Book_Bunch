@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Header from './partials/Header';
 
 /* setting the initial state of inputs and binding the methods to the component */
 class Login extends Component {
@@ -14,14 +15,14 @@ class Login extends Component {
 
     /* the handle change methods change the input value as the user types */
     handleInputUserNameChange(event) {
-        console.log('change username');
+        // console.log('change username');
         this.setState({
         inputUsernameValue: event.target.value
         });
     }
 
     handleInputPasswordChange(event) {
-        console.log('change password');
+        // console.log('change password');
         this.setState({
         inputPasswordValue: event.target.value
         });
@@ -30,28 +31,31 @@ class Login extends Component {
 
   render() {
     return (
-      <form
-        className="login_form"
-        onSubmit={this.props.handleLoginSubmit}
-      >
-        <label/>Username:
-        <input
-          type="text"
-          value={this.state.inputUserNameValue}
-          name='username'
-          onChange={this.handleInputUserNameChange}
-        /><br/>
+      <div>
+        <Header path1='/register' link1='Register' path2='/login' link2='Login'/>
+        <form
+          className="login_form"
+          onSubmit={this.props.handleLoginSubmit}
+        >
+          <label/>Username:
+          <input
+            type="text"
+            value={this.state.inputUserNameValue}
+            name='username'
+            onChange={this.handleInputUserNameChange}
+          /><br/>
 
-        <label/>Password:
-        <input
-          type="password"
-          value={this.state.inputPasswordValue}
-          name='password'
-          onChange={this.handleInputPasswordChange}
-        /><br/>
-        
-        <button>Login</button>
-      </form>
+          <label/>Password:
+          <input
+            type="password"
+            value={this.state.inputPasswordValue}
+            name='password'
+            onChange={this.handleInputPasswordChange}
+          /><br/>
+          
+          <button>Login</button>
+        </form>
+      </div>
     );
   }
 }
