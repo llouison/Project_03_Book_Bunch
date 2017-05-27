@@ -88,6 +88,7 @@ class App extends Component {
   }
 
   deleteUserBook(){
+
   }
 
   handleRegistrationSubmit(event){
