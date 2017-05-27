@@ -25,11 +25,11 @@ class UserDash extends Component {
         </div>
         <p>To Read</p>
         <ul className="usersBooks-list">
-        {this.props.usersBooks.map((book) => {
+        {/*{this.props.usersBooks.map((book) => {
           return (
             <UserBook key={isbn} book={book} />
           )
-        })}
+        })}*/}
       </ul>
       </div>
     );
