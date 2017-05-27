@@ -6,8 +6,9 @@ class Header extends Component {
     return (
       <header>
         <h1 className='logo'>Book Bunch</h1>
-        <Link to="/register">Register</Link>
-        <Link to="/login">Login</Link>
+        <Link to="/">Home</Link>
+        <Link to={this.props.path1}>{this.props.link1}</Link>
+        <Link to={this.props.path2}>{this.props.link2}</Link>
       </header>
     );
   }
