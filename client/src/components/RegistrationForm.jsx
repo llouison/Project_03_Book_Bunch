@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Header from './partials/Header';
 
 class RegistrationForm extends Component {
     constructor(props) {
@@ -37,38 +38,40 @@ class RegistrationForm extends Component {
 
   render() {
     return (
-      <form
+      <div>
+        <Header path1='/register' link1='Register' path2='/login' link2='Login'/>
+        <form
+          className="registration-form"
+          onSubmit={this.props.handleRegistrationSubmit}
+        >
 
-        className="registration-form"
-        onSubmit={this.props.handleRegistrationFormSubmit}
-      >
+          <label/>Username:
+          <input
+            type="text"
+            value={this.state.inputUserNameValue}
+            name='username'
+            onChange={this.handleInputUserNameChange}
+          /><br/>
 
-        <label/>Username:
-        <input
-          type="text"
-          value={this.state.inputUserNameValue}
-          name='username'
-          onChange={this.handleInputUserNameChange}
-        /><br/>
+          <label/>Email:
+          <input
+            type="text"
+            value={this.state.inputEmailValue}
+            name='email'
+            onChange={this.handleInputEmailChange}
+          /><br/>
 
-        <label/>Email:
-        <input
-          type="text"
-          value={this.state.inputEmailValue}
-          name='email'
-          onChange={this.handleInputEmailChange}
-        /><br/>
-
-        <label/>Password:
-        <input
-          type="text"
-          value={this.state.inputPasswordValue}
-          name='password'
-          onChange={this.handleInputPasswordChange}
-        /><br/>
-        
-        <button>Register</button>
-      </form>
+          <label/>Password:
+          <input
+            type="password"
+            value={this.state.inputPasswordValue}
+            name='password'
+            onChange={this.handleInputPasswordChange}
+          /><br/>
+          
+          <button>Register</button>
+        </form>
+      </div>
     );
   }
 }
