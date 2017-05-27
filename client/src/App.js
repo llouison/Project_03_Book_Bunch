@@ -20,7 +20,7 @@ import './App.css';
 const PrivateRoute = ({ component, ...rest }) => (
   <Route {...rest} render={props => (
     rest.isLoggedIn ? (
-      React.createElement(component, props)
+      React.createElement(component, Object.assign(rest, props))
     ) : (
       <Redirect to="/login" />
     )
@@ -181,8 +181,7 @@ class App extends Component {
             isLoggedIn 
             component={UserDash} 
           />
-          {/*console.log(this.state.user)*/}
-          <PrivateRoute path="/user/:isbn" user={this.state.books} isLoggedIn={this.state.isLoggedIn} component={UserBook} />
+          <PrivateRoute path="/user/:isbn" user={this.state.user} isLoggedIn={this.state.isLoggedIn} component={UserBook} />
           {/*<Route exact path="/user:id" render={() => {
               return (this.state.isLoggedIn)
               ? <UserDash user={this.state.user} isLoggedIn={this.state.isLoggedIn} />
@@ -190,8 +189,8 @@ class App extends Component {
             }} />
             <Route exact path="/user/:id" component={UserDash} />
             <Route path="/user/:id/:isbn" component={UserBook} />
-            <Route path="/login" render={() => {
-              return <Login handleLoginSubmit={this.handleLoginSubmit} />
+            <Route path="/user/:isbn" render={() => {
+              return <UserBook handleLoginSubmit={this.handleLoginSubmit} />
             }} />*/}
             <Route 
                 path='/login' 
