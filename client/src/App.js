@@ -108,14 +108,7 @@ class App extends Component {
         return response.json()
       })
       .then((responseJson) => {
-        console.log(responseJson);
-        this.setState((prevState) => {
-          return {
-            user: responseJson.data.user.username, 
-            userId: responseJson.data.user.id,
-            isLoggedIn: true,
-          }
-        })
+        this.updateState(responseJson.data.user.username, responseJson.data.user.id);
       })
   }
 
