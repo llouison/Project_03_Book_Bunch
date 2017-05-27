@@ -31,7 +31,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      books: [], 
+      // books: [], 
       usersBooks: [],
       user: '', 
       userId: '',
@@ -119,7 +119,6 @@ class App extends Component {
       }
     })
     this.getUsersBooks();
-    console.log(this.state);
   }
 
   getUsersBooks(){
@@ -133,13 +132,15 @@ class App extends Component {
     });
   }
 
-  updateUsersBooks(books){
+   updateUsersBooks(books){
+	 console.log(books);
      this.setState((prevState) => {
       return {
         usersBooks: books,
       }
-    })
-    console.log('updated books', this.state.usersBooks)
+    }, () => {
+	  console.log('updated books', this.state.usersBooks) 
+	})
   }
 
   addUserBook(){
@@ -180,7 +181,7 @@ class App extends Component {
           <PrivateRoute 
             exact path="/user" 
             user={this.state.user}
-            usersBooks={this.state.usersBooks}
+            // usersBooks={this.state.usersBooks}
             isLoggedIn 
             component={UserDash} 
           />
