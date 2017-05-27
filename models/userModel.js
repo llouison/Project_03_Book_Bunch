@@ -22,8 +22,7 @@ User.findIndividBook = (id,isbn) => {
 
 // creating the create new user method
 User.create = user => {
-    console.log('===== MODEL =====');
-    console.log(user);
+    console.log('creating in model', user);
     return db.one(
         `
         INSERT INTO users

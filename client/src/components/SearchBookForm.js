@@ -121,7 +121,7 @@ class SearchBookForm extends Component {
             return(
               <SearchResult 
               volumeInfo={value.volumeInfo}
-              key={index}
+              key={value.volumeInfo.industryIdentifiers[0].identifier}
               />
             )
         })}
