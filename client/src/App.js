@@ -33,15 +33,16 @@ class App extends Component {
     this.state = {
       books: [], 
       usersBooks: [],
-      //id: 1, 
-      user: null, 
-      userId: null,
+      user: '', 
+      userId: '',
       isLoggedIn: false,
     }
     /* binding all methods in the App class that both reference this and will also be called from the DOM*/
     this.handleRegistrationSubmit = this.handleRegistrationSubmit.bind(this);
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     this.handleLogoutSubmit = this.handleLogoutSubmit.bind(this);
+
+    this.updateState = this.updateState.bind(this);
 
     this.getBooks = this.getBooks.bind(this);
     this.getUsersBooks = this.getUsersBooks.bind(this);
@@ -52,36 +53,42 @@ class App extends Component {
   }
 
   getBooks(){
-  fetch('/api/books')
-  .then((response) => {
-    return response.json()
-  })
-  .then((responseJson) => {
-    this.setState((prevState) => {
-    return {
-      books: responseJson.data.books,
-    }
+    fetch('/api/books')
+      .then((response) => {
+        return response.json()
+      })
+      .then((responseJson) => {
+        this.setState((prevState) => {
+        return {
+          books: responseJson.data.books,
+        }
+      });
     });
-    // console.log(responseJson.data.books)
-    // console.log('in state', this.state.books)
-  });
-}
-
-getUsersBooks(){
-   fetch(`/api/users/${this.state.id}`)
-    .then((response) => {
-      return response.json()
-    })
-    .then((responseJson) => {
-      this.setState((prevState) => {
-      return {
-        usersBooks: responseJson.data.books,
-      }
-    });
-    console.log('in state', responseJson.data)
-  });
   }
 
+  getUsersBooks(){
+    fetch(`/api/users/${this.state.userId}`)
+      .then((response) => {
+        return response.json()
+      })
+      .then((responseJson) => {
+        this.setState((prevState) => {
+        return {
+          usersBooks: responseJson.data.books,
+        }
+      });
+      console.log('in state', responseJson.data)
+    });
+  }
+
+  addUserBook(){
+  }
+
+  updateUserBook(){
+  }
+
+  deleteUserBook(){
+  }
 
   handleRegistrationSubmit(event){
     event.preventDefault();
@@ -128,16 +135,21 @@ getUsersBooks(){
       return response.json()
     })
     .then((responseJson) => {
-      this.setState(prevState => {
-      return {
-        user: responseJson.user.username,
-        userId: responseJson.user.id,
-        isLoggedIn: true,
-      }
-    });
+      this.updateState(responseJson.user.username, responseJson.user.id);
     });
     console.log(this.state);
-    // this.getUsersBooks();
+  }
+
+  updateState(username, id){
+    this.setState((prevState) => {
+      return {
+        user: username,
+        userId: id,
+        isLoggedIn: true,
+      }
+    })
+    this.getUsersBooks();
+    console.log(this.state);
   }
 
   handleLogoutSubmit(event){
@@ -150,7 +162,6 @@ getUsersBooks(){
           isLoggedIn: false,
         }
       })
-  
   }
 
   render() {
