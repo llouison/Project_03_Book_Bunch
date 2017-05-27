@@ -4,6 +4,7 @@ import Header from './partials/Header';
 
 class UserDash extends Component {
   render() {
+    console.log('in userdash', this.props);
     return (
       <div>
         <Header path1='/search' link1='Search' path2='/logout' link2='Logout'/>
