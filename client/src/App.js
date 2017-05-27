@@ -31,7 +31,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      books: [], 
+      // books: [], 
       usersBooks: [],
       user: '', 
       userId: '',
@@ -44,53 +44,28 @@ class App extends Component {
 
     this.updateState = this.updateState.bind(this);
 
-    this.getBooks = this.getBooks.bind(this);
+    // this.getBooks = this.getBooks.bind(this);
+    this.updateUsersBooks = this.updateUsersBooks.bind(this);
     this.getUsersBooks = this.getUsersBooks.bind(this);
   }
 
   componentDidMount(){
-    this.getBooks();
+    // this.getBooks();
   }
 
-  getBooks(){
-    fetch('/api/books')
-      .then((response) => {
-        return response.json()
-      })
-      .then((responseJson) => {
-        this.setState((prevState) => {
-        return {
-          books: responseJson.data.books,
-        }
-      });
-    });
-  }
-
-  getUsersBooks(){
-    fetch(`/api/users/${this.state.userId}`)
-      .then((response) => {
-        return response.json()
-      })
-      .then((responseJson) => {
-        this.setState((prevState) => {
-        return {
-          usersBooks: responseJson.data.books,
-        }
-      });
-      console.log('in state', responseJson.data)
-    });
-  }
-
-  addUserBook(){
-  }
-
-  updateUserBook(){
-      
-  }
-
-  deleteUserBook(){
-
-  }
+  // getBooks(){
+  //   fetch('/api/books')
+  //     .then((response) => {
+  //       return response.json()
+  //     })
+  //     .then((responseJson) => {
+  //       this.setState((prevState) => {
+  //       return {
+  //         books: responseJson.data.books,
+  //       }
+  //     });
+  //   });
+  // }
 
   handleRegistrationSubmit(event){
     event.preventDefault();
@@ -144,7 +119,45 @@ class App extends Component {
       }
     })
     this.getUsersBooks();
-    console.log(this.state);
+  }
+
+  getUsersBooks(){
+    fetch(`/api/users/${this.state.userId}`)
+      .then((response) => {
+        return response.json()
+      })
+      .then((responseJson) => {
+        this.updateUsersBooks(responseJson.data.usersBooks);
+      console.log('in state', responseJson.data.usersBooks)
+    });
+  }
+
+   updateUsersBooks(books){
+	 console.log(books);
+     this.setState((prevState) => {
+      return {
+        usersBooks: books,
+      }
+    }, () => {
+	  console.log('updated books', this.state.usersBooks) 
+	})
+  }
+
+  addUserBook(){
+  }
+
+  updateUserBook(){
+  }
+
+  handleDeleteBook(){
+    fetch(`/api/users/${this.state.usersBooks}`, {
+      method: 'DELETE',
+    })
+    .then ((response) => {
+      if (response.status === 200){
+        this.getUsersBooks();
+      }
+    })
   }
 
   handleLogoutSubmit(event){
@@ -158,16 +171,6 @@ class App extends Component {
         }
       })
   }
-  handleDeleteBook(){
-    fetch(`/api/users/${this.state.usersBooks}`, {
-      method: 'DELETE',
-    })
-    .then ((response) => {
-      if (response.status === 200){
-        this.getUsersBooks();
-      }
-    })
-  }
 
   render() {
     return (
@@ -178,11 +181,11 @@ class App extends Component {
           <PrivateRoute 
             exact path="/user" 
             user={this.state.user}
-            usersBooks={this.state.usersBooks}
+            // usersBooks={this.state.usersBooks}
             isLoggedIn 
             component={UserDash} 
           />
-          <PrivateRoute path="/user/:isbn" user={this.state.user} isLoggedIn={this.state.isLoggedIn} component={UserBook} />
+          <PrivateRoute exact path="/user/:isbn" user={this.state.user} isLoggedIn component={UserBook} />
           {/*<Route exact path="/user:id" render={() => {
               return (this.state.isLoggedIn)
               ? <UserDash user={this.state.user} isLoggedIn={this.state.isLoggedIn} />
