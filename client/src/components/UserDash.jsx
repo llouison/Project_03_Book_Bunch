@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import UserBook from './UserBook.jsx';
 
 class UserDash extends Component {
   render() {
@@ -18,6 +19,13 @@ class UserDash extends Component {
           <div className='book'></div>
         </div>
         <p>To Read</p>
+        <ul className="usersBooks-list">
+        {this.props.usersBooks.map((book) => {
+          return (
+            <UserBook key={isbn} book={book} />
+          )
+        })}
+      </ul>
       </div>
     );
   }
