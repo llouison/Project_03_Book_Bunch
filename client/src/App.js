@@ -32,25 +32,17 @@ class App extends Component {
     super(props);
     this.state = {
       books: [], 
- <<<<<<< HEAD
- <<<<<<< HEAD
+ 
 
      usersBooks: '',
       //id: 1, 
       user: null, 
       userId: null,
-      isLoggedIn: true,
-=======
-=======
->>>>>>> a876adc2909623db36ef56894bb18137e003a46e
+      
       usersBooks: [],
       user: '', 
       userId: '',
       isLoggedIn: false,
-<<<<<<< HEAD
->>>>>>> df8343860a9825980bd71436a00aa9b53b436c6d
-=======
->>>>>>> a876adc2909623db36ef56894bb18137e003a46e
 
     }
     /* binding all methods in the App class that both reference this and will also be called from the DOM*/
@@ -97,27 +89,20 @@ class App extends Component {
     });
   }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
   componentDidMount(){
     this.getBooks();
     // this.getUsersBooks();
-=======
-=======
->>>>>>> a876adc2909623db36ef56894bb18137e003a46e
-  addUserBook(){
-  }
 
-  updateUserBook(){
-  }
+  // addUserBook(){
+  // }
 
-  deleteUserBook(){
-<<<<<<< HEAD
->>>>>>> df8343860a9825980bd71436a00aa9b53b436c6d
-=======
+  // updateUserBook(){
+  // }
 
->>>>>>> a876adc2909623db36ef56894bb18137e003a46e
-  }
+  // deleteUserBook(){
+
+  // }
 
   handleRegistrationSubmit(event){
     event.preventDefault();
@@ -196,7 +181,7 @@ class App extends Component {
       })
   }
 
-  render() {
+  render(){
     return (
        <Router>
         <div className="app">
@@ -248,6 +233,6 @@ class App extends Component {
       </Router>
     );
   }
-}
+
 
 export default App;
