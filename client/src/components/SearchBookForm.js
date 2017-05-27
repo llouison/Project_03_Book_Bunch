@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SearchResult from './SearchResult';
+import Header from './partials/Header';
 
 class SearchBookForm extends Component {
   /**
@@ -80,6 +81,7 @@ class SearchBookForm extends Component {
   render() {
     return (
       <div>
+      <Header path1='/user' link1='My Collection' path2='/logout' link2='Logout'/>
       <form
         className="search-book-form"
         onSubmit={this.handleFormSubmit}
