@@ -38,9 +38,8 @@ class RegistrationForm extends Component {
   render() {
     return (
       <form
-
         className="registration-form"
-        onSubmit={this.props.handleRegistrationFormSubmit}
+        onSubmit={this.props.handleRegistrationSubmit}
       >
 
         <label/>Username:
@@ -61,7 +60,7 @@ class RegistrationForm extends Component {
 
         <label/>Password:
         <input
-          type="text"
+          type="password"
           value={this.state.inputPasswordValue}
           name='password'
           onChange={this.handleInputPasswordChange}
