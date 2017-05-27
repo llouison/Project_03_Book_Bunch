@@ -37,7 +37,7 @@ class App extends Component {
       //id: 1, 
       user: null, 
       userId: null,
-      isLoggedIn: false,
+      isLoggedIn: true,
     }
     this.handleRegistrationSubmit = this.handleRegistrationSubmit.bind(this);
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
@@ -100,7 +100,7 @@ getUsersBooks(){
 
   componentDidMount(){
     this.getBooks();
-    this.getUsersBooks();
+    // this.getUsersBooks();
   }
 
   handleRegistrationSubmit(event){
