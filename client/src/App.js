@@ -34,7 +34,7 @@ class App extends Component {
     this.state = {
       books: [], 
       usersBooks: '',
-      //id: 1, 
+      id: 4, 
       user: null, 
       userId: null,
       isLoggedIn: false,
@@ -51,7 +51,7 @@ class App extends Component {
     return response.json()
   })
   .then((responseJson) => {
-    console.log('Books');
+    console.log(responseJson);
     //setting the state//
     this.setState((prevState) => {
 
@@ -81,14 +81,13 @@ class App extends Component {
 }
 
 
-getUsersBooks(){
-  
+getUsersBooks(){ 
    fetch(`/api/users/${this.state.id}`)
     .then((response) => {
       return response.json()
     })
     .then((responseJson) => {
-      console.log('UsersBooks');
+      console.log(responseJson);
       this.setState((prevState) => {
        console.log(responseJson.data)
         return {
@@ -151,6 +150,16 @@ getUsersBooks(){
     })
     console.log(this.state);
   }
+  handleDeleteBook(){
+    fetch(`/api/users/${this.state.usersBooks}`, {
+      method: 'DELETE',
+    })
+    .then ((response) => {
+      if (response.status === 200){
+        this.getUsersBooks();
+      }
+    })
+  }
 
   render() {
     return (
@@ -162,7 +171,8 @@ getUsersBooks(){
           <Route exact path="/" component={Index} />
           <PrivateRoute 
             exact path="/user" 
-            user={this.state.user} 
+            user={this.state.user}
+            usersBooks={this.state.usersBooks}
             isLoggedIn 
             component={UserDash} 
           />
