@@ -32,18 +32,10 @@ class App extends Component {
     super(props);
     this.state = {
       books: [], 
- 
-
-     usersBooks: '',
-      //id: 1, 
-      user: null, 
-      userId: null,
-      
       usersBooks: [],
       user: '', 
       userId: '',
       isLoggedIn: false,
-
     }
     /* binding all methods in the App class that both reference this and will also be called from the DOM*/
     this.handleRegistrationSubmit = this.handleRegistrationSubmit.bind(this);
@@ -89,20 +81,15 @@ class App extends Component {
     });
   }
 
+  addUserBook(){
+  }
 
-  componentDidMount(){
-    this.getBooks();
-    // this.getUsersBooks();
+  updateUserBook(){
+  }
 
-  // addUserBook(){
-  // }
+  deleteUserBook(){
 
-  // updateUserBook(){
-  // }
-
-  // deleteUserBook(){
-
-  // }
+  }
 
   handleRegistrationSubmit(event){
     event.preventDefault();
@@ -167,7 +154,7 @@ class App extends Component {
           user: null, 
           userId: null,
           isLoggedIn: false,
-           }
+        }
       })
   }
   handleDeleteBook(){
@@ -177,11 +164,11 @@ class App extends Component {
     .then ((response) => {
       if (response.status === 200){
         this.getUsersBooks();
-        }
-      })
+      }
+    })
   }
 
-  render(){
+  render() {
     return (
        <Router>
         <div className="app">
@@ -189,7 +176,7 @@ class App extends Component {
           <Route exact path="/" component={Index} />
           <PrivateRoute 
             exact path="/user" 
-            user={this.state.user} 
+            user={this.state.user}
             usersBooks={this.state.usersBooks}
             isLoggedIn 
             component={UserDash} 
@@ -232,6 +219,6 @@ class App extends Component {
       </Router>
     );
   }
-
+}
 
 export default App;
