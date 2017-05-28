@@ -2,10 +2,24 @@ import React, { Component } from 'react';
 import Header from './partials/Header';
 
 class Index extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      user: this.props.user,
+    }
+    this.displayHeader = this.displayHeader.bind(this);
+  }
+  displayHeader(){
+    console.log(this.props);
+    if(this.props.user === undefined){
+      return <Header path1='/' link1='Home' path2='/register' link2='Register' path3='/login' link3='Login'/>
+    } else return <Header path1='/user' link1='My Collection' path2='/search' link2='Search' path3='/logout' link3='Logout'/>
+  }
+
   render() {
     return (
     <div>
-      <Header path1='/register' link1='Register' path2='/login' link2='Login'/>
+      {this.displayHeader()}
       <div className = "hero">
         <img src={require('../images/books.jpg')}alt="books on shelves" />
         <h3>About Book Bunch</h3>
