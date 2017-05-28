@@ -45,8 +45,8 @@ class UserBook extends Component {
                 usersBook: book,
                 review: book.review,
                 status: book.status,
-                date_started: book.date_started,
-                date_finished: book.date_finished,
+                date_started: book.date_started.slice(0,10),
+                date_finished: book.date_finished.slice(0,10),
             }
         })
     }
