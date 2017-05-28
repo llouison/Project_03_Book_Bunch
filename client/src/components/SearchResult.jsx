@@ -5,8 +5,8 @@ class SearchResult extends Component {
     super(props);
     this.state = {
       title: this.props.volumeInfo.title, 
-      author: this.props.volumeInfo.authors, 
-      genre: this.props.volumeInfo.categories, 
+      author: this.props.volumeInfo.authors[0], 
+      genre: this.props.volumeInfo.categories[0], 
       isbn: this.props.volumeInfo.industryIdentifiers[0].identifier, 
       description: this.props.volumeInfo.description, 
       rating: this.props.volumeInfo.averageRating, 
@@ -57,6 +57,7 @@ class SearchResult extends Component {
   // // }
   // }
 
+//this follwoing function books to a users books database.  This function is activated when the add button is clicked.
   addUserBook(event){
     event.preventDefault();
     fetch('http://localhost:3001/api/books',{
@@ -72,7 +73,12 @@ class SearchResult extends Component {
       })
   
    })
-   console.log(this.state.title); 
+   console.log(this.state.genre);
+  }
+
+  addToUsersBooks(event){
+      event.preventDefault();
+      fetch('http://localhost:3001/api/')
   }
 
   render() {
