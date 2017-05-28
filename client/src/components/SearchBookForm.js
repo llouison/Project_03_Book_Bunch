@@ -123,7 +123,7 @@ class SearchBookForm extends Component {
             return(
               <SearchResult 
               volumeInfo={value.volumeInfo}
-              key={value.volumeInfo.industryIdentifiers[0].identifier}
+              key={index}
               />
             )
         })}
