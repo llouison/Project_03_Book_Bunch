@@ -32,7 +32,7 @@ class UserDash extends Component {
               <h2>Reading</h2>
               <Book 
                 user={this.props.user} 
-                key={book.isbn}
+                key={book.id}
                 book={book}
               />
             </div>
@@ -44,7 +44,7 @@ class UserDash extends Component {
               <h2>Read</h2>
               <Book 
                 user={this.props.user} 
-                key={book.isbn}
+                key={book.id}
                 book={book}
               />
             </div>
@@ -56,7 +56,7 @@ class UserDash extends Component {
               <h2>To Read</h2>
               <Book 
                 user={this.props.user} 
-                key={book.isbn}
+                key={book.id}
                 book={book}
               />
             </div>
