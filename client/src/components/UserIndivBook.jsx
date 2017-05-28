@@ -11,7 +11,6 @@ class UserBook extends Component {
         }
         this.getIndivBook = this.getIndivBook.bind(this);
         this.updateUsersBook = this.updateUsersBook.bind(this);
-        this.renderBookInfo = this.renderBookInfo.bind(this);
     }
 
     componentDidMount(){
@@ -19,15 +18,12 @@ class UserBook extends Component {
     }
 
     getIndivBook(isbn){
-        console.log(this.state);
         fetch(`/api/users/${this.state.userId}/${this.props.match.params.isbn}`)
         .then((response) => {
-            // console.log(response);
             return response.json()
         })
         .then((responseJson) => {
-            console.log(responseJson.data.usersBook.title);
-            this.updateUsersBook(responseJson.data.usersBook)
+            this.updateUsersBook(responseJson.data.usersBook[0])
         }); 
     }
 
@@ -37,16 +33,6 @@ class UserBook extends Component {
                 usersBook: book,
             }
         })
-        console.log('bookstate', this.state);
-        // this.renderBookInfo();
-    }
-
-    renderBookInfo(){
-        return (
-            <div>
-                <p>hi</p>
-            </div>
-        )
     }
 
   render() {
@@ -54,16 +40,16 @@ class UserBook extends Component {
       <div>
         <Header path1='/' link1='Home' path2='/search' link2='Search' path3='/logout' link3='Logout'/>
         <img src={this.state.usersBook.image_url} alt={this.state.usersBook.title}/>
-        <p>Title: {console.log('render', this.state.usersBook)}</p>
-        <p>Author: {console.log('author', this.state.usersBook.usersBook)}</p>
-        <p>Genre: </p>
-        <p>Rating: </p>
-        <p>ISBN: {this.props.match.params.isbn}.</p>
-        <p>Description: </p>
-        <p>Review: </p>
-        <p>Status: </p>
-        <p>Date Started: </p>
-        <p>Date Finished: </p>
+        <p>Title: {this.state.usersBook.title}</p>
+        <p>Author: {this.state.usersBook.author}</p>
+        <p>Genre: {this.state.usersBook.genre}</p>
+        <p>Rating: {this.state.usersBook.rating}</p>
+        <p>ISBN: {this.props.match.params.isbn}</p>
+        <p>Description: {this.state.usersBook.description}</p>
+        <p>Review: {this.state.usersBook.review}</p>
+        <p>Status: {this.state.usersBook.status}</p>
+        <p>Date Started: {this.state.usersBook.date_started}</p>
+        <p>Date Finished: {this.state.usersBook.date_finished}</p>
       </div>
     );
   }
