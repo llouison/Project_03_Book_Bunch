@@ -26,7 +26,7 @@ class UserDash extends Component {
         <p>Welcome back, {this.props.user}</p>
         <p>There are {this.props.usersBooks.length} books in your collection</p>
         {this.props.usersBooks.map((book, index) => {
-          if (book.status === 'Reading'){
+          if (book.status === 'To Read'){
           return (
             <div className='shelf'>
               <h2>Reading</h2>
@@ -38,7 +38,7 @@ class UserDash extends Component {
             </div>
             )
           }
-          if (book.status === 'Read'){
+          if (book.status === 'Reading'){
           return (
             <div className='shelf'>
               <h2>Read</h2>
@@ -50,7 +50,7 @@ class UserDash extends Component {
             </div>
             )
           }
-          if (book.status === 'To Read'){
+          if (book.status === 'Read'){
           return (
             <div className='shelf'>
               <h2>To Read</h2>
