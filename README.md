@@ -90,6 +90,23 @@ INSERT INTO books (title, author, genre, isbn, description, rating, image_url)
         RETURNING *
 ```
 
+```
+userController.destroy = (req, res) => {
+  console.log('in controller to destroy');
+  User.findBookEntryId(req.params.id, req.params.isbn)
+    .then(entryId => {
+        User.destroy(entryId[0].id, req.params.isbn)
+        .then(() => {
+            res.json({message: 'book entry deleted'});
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(400).json(err);
+        });
+    })
+};
+```
+
 ## Links and Resources
 
 - https://developers.google.com/books/
