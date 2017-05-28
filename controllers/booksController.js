@@ -38,7 +38,7 @@ booksController.show = (req, res) => {
 booksController.create = (req, res) => {
     Book.findByIsbn(req.params.isbn)
     .then(book => {
-        if (book.isbn === undefined) {
+        if (book.isbn === null) {
             Book.create({
                 title: req.body.title, 
                 author: req.body.author,
