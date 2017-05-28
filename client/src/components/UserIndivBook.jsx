@@ -37,8 +37,8 @@ class UserBook extends Component {
             return response.json()
         })
         .then((responseJson) => {
-            console.log(responseJson.data.usersBook[0]);
-            this.updateUsersBook(responseJson.data.usersBook[0])
+             console.log(responseJson.data.usersBook[0]);
+             this.updateUsersBook(responseJson.data.usersBook[0])
         }); 
     }
 
@@ -137,7 +137,19 @@ class UserBook extends Component {
     handleUserUpdate(event){
         event.preventDefault();
         console.log('update it!');
-    }
+
+    //         fetch(`/api/users/${this.state.userId}/${this.props.match.params.isbn}`, {
+    //   method: 'PUT',
+
+    // })
+    // .then((response) => {
+    //   if (response.status === 200) {
+    //     console.log('updated');
+    //   }
+    // })
+    // .then(this.props.history.push('/user'));
+   
+     }
 
     handleEntryDelete(entryId) {
         console.log('delete', this.state.entryId, );
