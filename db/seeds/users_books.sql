@@ -10,7 +10,7 @@ INSERT INTO users_books (user_ref_id, book_ref_id, status, review, date_started,
 (
   2,
   3,
-  'To read',
+  'To Read',
   '',
   '2017-11-01',
   '2017-12-02'
