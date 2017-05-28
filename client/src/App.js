@@ -157,22 +157,54 @@ class App extends Component {
   }
 
   render() {
-    {console.log(this.state.usersBooks)}
     return (
-      
        <Router>
         <div className="app">
           <main>
-          <Route exact path="/" component={Index} />
-          <PrivateRoute 
-            exact path="/user" 
-            user={this.state.user}
-            usersBooks={this.state.usersBooks}
-            isLoggedIn 
-            component={UserDash} 
-          />
-          <PrivateRoute exact path="/user/:isbn" user={this.state.user} isLoggedIn component={UserIndivBook} />
-          {/*<Route exact path="/user:id" render={() => {
+            <Route exact path="/" 
+              component={Index} 
+              user={this.state.user} 
+              isLoggedIn={this.state.isLoggedIn}/>
+            <PrivateRoute 
+              exact path="/user" 
+              user={this.state.user}
+              usersBooks={this.state.usersBooks}
+              isLoggedIn 
+              component={UserDash} 
+            />
+            <PrivateRoute exact path="/user/:isbn" 
+              user={this.state.user} 
+              userId={this.state.userId} 
+              isLoggedIn 
+              component={UserIndivBook} 
+            />
+            <Route 
+                path='/login' 
+                render={() => ( this.state.isLoggedIn 
+                  ? <Redirect push to='/user' /> 
+                  : <Login handleLoginSubmit={this.handleLoginSubmit} /> 
+                )} 
+            />
+            <Route 
+                path='/register' 
+                render={() => ( this.state.isLoggedIn 
+                  ? <Redirect push to='/user' /> 
+                  : <RegistrationForm handleRegistrationSubmit={this.handleRegistrationSubmit} /> 
+                )} 
+            />
+            <Route 
+                path='/logout' 
+                render={() => ( this.state.isLoggedIn 
+                  ? <Logout handleLogoutSubmit={this.handleLogoutSubmit}/>
+                  : <Redirect push to='/'/> 
+                )} 
+            />
+            <Route path='/search' 
+              component={SearchBookForm} 
+              userId={this.state.userId} 
+            />
+            <Footer />
+            {/*<Route exact path="/user:id" render={() => {
               return (this.state.isLoggedIn)
               ? <UserDash user={this.state.user} isLoggedIn={this.state.isLoggedIn} />
               : <Redirect to="/login" />
@@ -182,28 +214,6 @@ class App extends Component {
             <Route path="/user/:isbn" render={() => {
               return <UserBook handleLoginSubmit={this.handleLoginSubmit} />
             }} />*/}
-            <Route 
-                path='/login' 
-                render={() => ( this.state.isLoggedIn 
-                  ? <Redirect push to='/user' /> 
-                  : <Login handleLoginSubmit={this.handleLoginSubmit}
-            />) } />
-            <Route 
-                path='/register' 
-                render={() => ( this.state.isLoggedIn 
-                  ? <Redirect push to='/user' /> 
-                  : <RegistrationForm handleRegistrationSubmit={this.handleRegistrationSubmit}
-            />) } />
-            <Route 
-                path='/logout' 
-                render={() => ( this.state.isLoggedIn 
-                  ? <Logout handleLogoutSubmit={this.handleLogoutSubmit}/>
-                  : <Redirect push to='/'/> 
-                )} 
-            />
-            <Route path='/search' component={SearchBookForm} userId={this.state.userId} />
-
-            <Footer />
           </main>
         </div>
       </Router>
