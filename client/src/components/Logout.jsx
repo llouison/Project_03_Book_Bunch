@@ -6,7 +6,7 @@ class Login extends Component {
   render() {
     return (
       <div>
-        <Header path1='/register' link1='Register' path2='/login' link2='Login'/>
+        <Header path1='/' link1='Home' path2='/user' link2='My Collection' path3='/search' link3='Search' />
         <form
           className="logout_form"
           onSubmit={this.props.handleLogoutSubmit}
