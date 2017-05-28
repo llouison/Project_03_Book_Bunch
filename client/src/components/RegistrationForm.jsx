@@ -16,21 +16,18 @@ class RegistrationForm extends Component {
 
     /* the handle change methods change the input value as the user types */
     handleInputUserNameChange(event) {
-        console.log('change');
         this.setState({
         inputUsernameValue: event.target.value
         });
     }
 
      handleInputEmailChange(event) {
-        console.log('change');
         this.setState({
         inputEmailValue: event.target.value
         });
     }
 
     handleInputPasswordChange(event) {
-        console.log('change');
         this.setState({
         inputPasswordValue: event.target.value
         });
@@ -39,7 +36,7 @@ class RegistrationForm extends Component {
   render() {
     return (
       <div>
-        <Header path1='/register' link1='Register' path2='/login' link2='Login'/>
+        <Header path1='/' link1='Home' path2='/register' link2='Register' path3='/login' link3='Login'/>
         <form
           className="registration-form"
           onSubmit={this.props.handleRegistrationSubmit}
