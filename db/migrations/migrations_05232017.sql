@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS books (
   author VARCHAR(255),
   genre VARCHAR(255),
   isbn INTEGER ,
-  description VARCHAR(1024),
+  description VARCHAR(2000),
   rating DOUBLE PRECISION,
   image_url VARCHAR(1024)
 );
