@@ -106,6 +106,9 @@ userController.destroy = (req, res) => {
     })
 };
 ```
+```
+date_started: book.date_started.slice(0,10)
+```
 
 ## Links and Resources
 
