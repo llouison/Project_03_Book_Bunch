@@ -4,7 +4,7 @@ import Login from './components/Login';
 import RegistrationForm from './components/RegistrationForm';
 import Logout from './components/Logout';
 import UserDash from './components/UserDash';
-import UserBook from './components/UserBook';
+import UserIndivBook from './components/UserIndivBook';
 import Footer from './components/partials/Footer';
 import SearchBookForm from './components/SearchBookForm';
 
@@ -18,20 +18,22 @@ import './App.css';
 
 // This is a functional component that protects private routes
 const PrivateRoute = ({ component, ...rest }) => (
-  <Route {...rest} render={props => (
+  <Route {...rest} render={props => {
+	console.log(props);
+	console.log(rest);
+	return (
     rest.isLoggedIn ? (
       React.createElement(component, Object.assign(rest, props))
     ) : (
       <Redirect to="/login" />
     )
-  )}/>
+  )}}/>
 )
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // books: [], 
       usersBooks: [],
       user: '', 
       userId: '',
@@ -44,28 +46,12 @@ class App extends Component {
 
     this.updateState = this.updateState.bind(this);
 
-    // this.getBooks = this.getBooks.bind(this);
     this.updateUsersBooks = this.updateUsersBooks.bind(this);
     this.getUsersBooks = this.getUsersBooks.bind(this);
   }
 
   componentDidMount(){
-    // this.getBooks();
   }
-
-  // getBooks(){
-  //   fetch('/api/books')
-  //     .then((response) => {
-  //       return response.json()
-  //     })
-  //     .then((responseJson) => {
-  //       this.setState((prevState) => {
-  //       return {
-  //         books: responseJson.data.books,
-  //       }
-  //     });
-  //   });
-  // }
 
   handleRegistrationSubmit(event){
     event.preventDefault();
@@ -81,17 +67,16 @@ class App extends Component {
         password: event.target.password.value,
       })
     })
-      .then((response) => {
-        return response.json()
-      })
-      .then((responseJson) => {
-        this.updateState(responseJson.data.user.username, responseJson.data.user.id);
-      })
+    .then((response) => {
+      return response.json()
+    })
+    .then((responseJson) => {
+      this.updateState(responseJson.data.user.username, responseJson.data.user.id);
+    })
   }
 
   handleLoginSubmit(event){
     event.preventDefault();
-    // console.log(this.state);
     fetch('/auth/login', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
@@ -107,7 +92,6 @@ class App extends Component {
     .then((responseJson) => {
       this.updateState(responseJson.user.username, responseJson.user.id);
     });
-    console.log(this.state);
   }
 
   updateState(username, id){
@@ -128,19 +112,19 @@ class App extends Component {
       })
       .then((responseJson) => {
         this.updateUsersBooks(responseJson.data.usersBooks);
-      console.log('in state', responseJson.data.usersBooks)
+        // console.log('in state', responseJson.data.usersBooks)
     });
   }
 
    updateUsersBooks(books){
-	 console.log(books);
+	//  console.log(books);
      this.setState((prevState) => {
       return {
         usersBooks: books,
       }
     }, () => {
-	  console.log('updated books', this.state.usersBooks) 
-	})
+	    console.log('updated books', this.state.usersBooks) 
+	  })
   }
 
   addUserBook(){
@@ -164,16 +148,18 @@ class App extends Component {
     event.preventDefault();
     fetch('auth/logout')
     this.setState((prevState) => {
-        return {
-          user: null, 
-          userId: null,
-          isLoggedIn: false,
-        }
-      })
+      return {
+        user: null, 
+        userId: null,
+        isLoggedIn: false,
+      }
+    })
   }
 
   render() {
+    {console.log(this.state.usersBooks)}
     return (
+      
        <Router>
         <div className="app">
           <main>
@@ -181,11 +167,11 @@ class App extends Component {
           <PrivateRoute 
             exact path="/user" 
             user={this.state.user}
-            // usersBooks={this.state.usersBooks}
+            usersBooks={this.state.usersBooks}
             isLoggedIn 
             component={UserDash} 
           />
-          <PrivateRoute exact path="/user/:isbn" user={this.state.user} isLoggedIn component={UserBook} />
+          <PrivateRoute exact path="/user/:isbn" user={this.state.user} isLoggedIn component={UserIndivBook} />
           {/*<Route exact path="/user:id" render={() => {
               return (this.state.isLoggedIn)
               ? <UserDash user={this.state.user} isLoggedIn={this.state.isLoggedIn} />
@@ -215,7 +201,7 @@ class App extends Component {
                   : <Redirect push to='/'/> 
                 )} 
             />
-            <Route path='/search' component={SearchBookForm} />
+            <Route path='/search' component={SearchBookForm} userId={this.state.userId} />
 
             <Footer />
           </main>
