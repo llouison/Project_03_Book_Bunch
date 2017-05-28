@@ -46,7 +46,7 @@ class SearchBookForm extends Component {
   handleFormSubmit(event) {
     event.preventDefault();
     
-    fetch(`https://www.googleapis.com/books/v1/volumes?q=inauthor:${event.target.author.value}+isbn:${event.target.isbn.value}`)
+    fetch(`https://www.googleapis.com/books/v1/volumes?q=inauthor:${event.target.author.value}+isbn:${event.target.isbn.value}&key=AIzaSyBSbTuoPrwQ0PvCFj0uhq2MtGh3MEaoW0Y`)
         .then((response) => {
         
         return response.json()
@@ -116,7 +116,7 @@ class SearchBookForm extends Component {
           placeholder='Genre'
           onChange={this.props.handleGenreInput}
         /><br/>
-        <input type="submit" value="Search for your book!" />
+        <button>Search for your book!" </button>
       </form>
       <ul>
         {this.state.results.map((value, index) =>{
