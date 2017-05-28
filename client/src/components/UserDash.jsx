@@ -12,7 +12,7 @@ class UserDash extends Component {
   emptyList(){
     return(
       <div>
-        <Header path1='/search' link1='Search' path2='/logout' link2='Logout'/>
+        <Header path1='/' link1='Home' path2='/search' link2='Search' path3='/logout' link3='Logout'/>
         <p>Welcome {this.props.user}</p>
         <p>There are no books in your collection</p>
       </div>
@@ -22,7 +22,7 @@ class UserDash extends Component {
   renderBooks(){
      return(
       <div>
-        <Header path1='/search' link1='Search' path2='/logout' link2='Logout'/>
+        <Header path1='/' link1='Home' path2='/search' link2='Search' path3='/logout' link3='Logout'/>
         <p>Welcome back, {this.props.user}</p>
         <p>There are {this.props.usersBooks.length} books in your collection</p>
         {this.props.usersBooks.map((book, index) => {
@@ -68,7 +68,7 @@ class UserDash extends Component {
   }
   
   render() {
-    console.log('user dash', this.props.usersBooks.length)
+    // console.log('user dash', this.props.usersBooks.length)
     if (this.props.usersBooks.length === 0) {
       return this.emptyList();
     } else {
