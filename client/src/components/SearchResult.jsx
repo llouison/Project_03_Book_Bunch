@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 
 class SearchResult extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     title: {this.props.volumeInfo.title}, 
-  //     author: {this.props.volumeInfo.authors}, 
-  //     genre: {this.props.volumeInfo.categories}, 
-  //     isbn: {this.props.volumeInfo.industryIdentifiers[0].identifier}, 
-  //     description: {this.props.volumeInfo.description}, 
-  //     rating: {this.props.volumeInfo.averageRating}, 
-  //     image_url: {this.props.volumeInfo.imageLinks.thumbnail},
-  //   }
-  //   this.addUserBook = this.addUserBook.bind(this);
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: this.props.volumeInfo.title, 
+      author: this.props.volumeInfo.authors, 
+      genre: this.props.volumeInfo.categories, 
+      isbn: this.props.volumeInfo.industryIdentifiers[0].identifier, 
+      description: this.props.volumeInfo.description, 
+      rating: this.props.volumeInfo.averageRating, 
+      image_url: this.props.volumeInfo.imageLinks.thumbnail,
+    }
+    this.addUserBook = this.addUserBook.bind(this);
+  }
 
   // let bookInfo = {
   //     title: {this.props.volumeInfo.title}, 
@@ -57,6 +57,24 @@ class SearchResult extends Component {
   // // }
   // }
 
+  addUserBook(event){
+    event.preventDefault();
+    fetch('http://localhost:3001/api/books',{
+      method:'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        title: this.state.title,
+        author: this.state.author,
+        genre: this.state.genre,
+        isbn: this.state.isbn,
+        description: this.state.description,
+        rating: this.state.rating,
+      })
+  
+   })
+   console.log(this.state.title); 
+  }
+
   render() {
     return(
       <li className='book_result'>
@@ -71,7 +89,10 @@ class SearchResult extends Component {
         className="add_book_form"
         onSubmit={this.addUserBook}
         >
-          <button>Add It</button>
+          <button className='add-book'
+                  onSubmit={this.addUserBook}
+          >
+          Add It Here</button>
         </form>
       </li>
     );
