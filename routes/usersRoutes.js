@@ -23,8 +23,11 @@ usersRoutes.put('/:id/:isbn', usersController.update);
 //delete a book from users page
 usersRoutes.delete('/:id/:isbn', usersController.destroy);
 
-//create individual book on user's page
+//create new user
 usersRoutes.post('/', usersController.create);
+
+//create new book entry on user's booklist
+usersRoutes.post('/:id/isbn', usersController.createEntry);
 
 
 module.exports = usersRoutes;

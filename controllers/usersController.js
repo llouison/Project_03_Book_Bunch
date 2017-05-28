@@ -56,6 +56,20 @@ userController.create = (req, res) => {
     });
 };
 
+// defining the action once the create new book promise is complete
+userController.createEntry = (req, res) => {
+    User.createEntry({
+        entry: req.body.entry,
+    })
+    .then(entry => {
+      res.json({message: 'ok', data: { entry }});
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(400).json({message: '400', err});
+    });
+};
+
 // defining the action once the update book entry promise is complete
 userController.update = (req, res) => {
   User.update({

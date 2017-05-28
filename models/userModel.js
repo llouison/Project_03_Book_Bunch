@@ -26,7 +26,6 @@ User.findBookEntryId = (id, isbn) => {
 
 // creating the create new user method
 User.create = user => {
-    console.log('creating in model', user);
     return db.one(
         `
         INSERT INTO users
@@ -34,6 +33,17 @@ User.create = user => {
         VALUES ($1, $2, $3) RETURNING *
         `,
         [user.username, user.email, user.password]
+    );
+};
+
+// creating the add entry method
+User.createEntry = (entry) => {
+    console.log('creating entry in model', user);
+    return db.one(
+        `
+        INSERT INTO users_books (user_ref_id, book_ref_id) VALUES ($1, $2) RETURNING *
+        `,
+        [entry.userId, entry.bookId]
     );
 };
 
