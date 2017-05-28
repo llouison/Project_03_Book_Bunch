@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class UserBook extends Component {
   constructor(props) {
@@ -10,9 +11,7 @@ class UserBook extends Component {
   render() {
     return (
       <div>
-        <a href={this.state.path}>
-          <img src={this.props.book.image_url} alt={this.props.book.title}/> 
-        </a>
+        <Link to={this.state.path}><img src={this.props.book.image_url} alt={this.props.book.title}/></Link>
         <p>title: {this.props.book.title}</p>
       </div>
     );
