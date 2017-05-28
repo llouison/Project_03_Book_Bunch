@@ -11,6 +11,7 @@ class UserBook extends Component {
         }
         this.getIndivBook = this.getIndivBook.bind(this);
         this.updateUsersBook = this.updateUsersBook.bind(this);
+        this.renderBookInfo = this.renderBookInfo.bind(this);
     }
 
     componentDidMount(){
@@ -25,7 +26,7 @@ class UserBook extends Component {
             return response.json()
         })
         .then((responseJson) => {
-            console.log(responseJson.data.usersBook);
+            console.log(responseJson.data.usersBook.title);
             this.updateUsersBook(responseJson.data.usersBook)
         }); 
     }
@@ -37,6 +38,15 @@ class UserBook extends Component {
             }
         })
         console.log('bookstate', this.state);
+        // this.renderBookInfo();
+    }
+
+    renderBookInfo(){
+        return (
+            <div>
+                <p>hi</p>
+            </div>
+        )
     }
 
   render() {
@@ -44,8 +54,8 @@ class UserBook extends Component {
       <div>
         <Header path1='/' link1='Home' path2='/search' link2='Search' path3='/logout' link3='Logout'/>
         <img src={this.state.usersBook.image_url} alt={this.state.usersBook.title}/>
-        <p>Title: {this.state.usersBook.title}</p>
-        <p>Author: {this.state.usersBook.author}</p>
+        <p>Title: {console.log('render', this.state.usersBook)}</p>
+        <p>Author: {console.log('author', this.state.usersBook.usersBook)}</p>
         <p>Genre: </p>
         <p>Rating: </p>
         <p>ISBN: {this.props.match.params.isbn}.</p>
