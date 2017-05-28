@@ -74,14 +74,18 @@ userController.update = (req, res) => {
 };
 
 userController.destroy = (req, res) => {
-  User.destroy(req.params.id)
-    .then(() => {
-      res.json({message: 'book entry deleted'});
+  console.log('in controller to destroy');
+  User.findBookEntryId(req.params.id, req.params.isbn)
+    .then(entryId => {
+        User.destroy(entryId[0].id, req.params.isbn)
+        .then(() => {
+            res.json({message: 'book entry deleted'});
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(400).json(err);
+        });
     })
-    .catch(err => {
-      console.log(err);
-      res.status(400).json(err);
-    });
 };
 
 // exporting the user controller
