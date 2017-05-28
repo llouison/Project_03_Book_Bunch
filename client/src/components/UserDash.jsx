@@ -25,14 +25,13 @@ class UserDash extends Component {
         <Header path1='/' link1='Home' path2='/search' link2='Search' path3='/logout' link3='Logout'/>
         <p>Welcome back, {this.props.user}</p>
         <p>There are {this.props.usersBooks.length} books in your collection</p>
-        {this.props.usersBooks.map((book, index) => {
+        {this.props.usersBooks.map((book) => {
           if (book.status === 'To Read'){
           return (
-            <div className='shelf'>
+            <div className='shelf' key={book.isbn}>
               <h2>Reading</h2>
               <Book 
                 user={this.props.user} 
-                key={book.id}
                 book={book}
               />
             </div>
@@ -40,11 +39,10 @@ class UserDash extends Component {
           }
           if (book.status === 'Reading'){
           return (
-            <div className='shelf'>
+            <div className='shelf' key={book.isbn}>
               <h2>Read</h2>
               <Book 
                 user={this.props.user} 
-                key={book.id}
                 book={book}
               />
             </div>
@@ -52,11 +50,10 @@ class UserDash extends Component {
           }
           if (book.status === 'Read'){
           return (
-            <div className='shelf'>
+            <div className='shelf' key={book.isbn}>
               <h2>To Read</h2>
               <Book 
                 user={this.props.user} 
-                key={book.id}
                 book={book}
               />
             </div>
