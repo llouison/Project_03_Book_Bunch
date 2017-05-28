@@ -81,7 +81,7 @@ class SearchBookForm extends Component {
   render() {
     return (
       <div>
-      <Header path1='/user' link1='My Collection' path2='/logout' link2='Logout'/>
+      <Header path1='/' link1='Home' path2='/user' link2='My Collection' path3='/logout' link3='Logout'/>
       <form
         className="search-book-form"
         onSubmit={this.handleFormSubmit}
