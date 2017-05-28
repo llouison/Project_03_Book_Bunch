@@ -10,7 +10,7 @@ class Index extends Component {
     this.displayHeader = this.displayHeader.bind(this);
   }
   displayHeader(){
-    console.log(this.props);
+    console.log('index',this.state);
     if(this.props.user === undefined){
       return <Header path1='/' link1='Home' path2='/register' link2='Register' path3='/login' link3='Login'/>
     } else return <Header path1='/user' link1='My Collection' path2='/search' link2='Search' path3='/logout' link3='Logout'/>
