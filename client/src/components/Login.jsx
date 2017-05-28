@@ -32,7 +32,7 @@ class Login extends Component {
   render() {
     return (
       <div>
-        <Header path1='/register' link1='Register' path2='/login' link2='Login'/>
+        <Header path1='/' link1='Home' path2='/register' link2='Register' path3='/login' link3='Login'/>
         <form
           className="login_form"
           onSubmit={this.props.handleLoginSubmit}
