@@ -24,7 +24,7 @@ class UserBook extends Component {
         this.handleDateStartedChange = this.handleDateStartedChange.bind(this);
         this.handleDateFinishedChange = this.handleDateFinishedChange.bind(this);
         this.handleUserUpdate = this.handleUserUpdate.bind(this);
-        this.handleEntryDelete - this.handleEntryDelete.bind(this);
+        this.handleEntryDelete = this.handleEntryDelete.bind(this);
     }
 
     componentDidMount(){
@@ -37,6 +37,7 @@ class UserBook extends Component {
             return response.json()
         })
         .then((responseJson) => {
+            console.log(responseJson.data.usersBook[0]);
             this.updateUsersBook(responseJson.data.usersBook[0])
         }); 
     }
@@ -92,7 +93,7 @@ class UserBook extends Component {
                     <label/>Status:<select name='status' value={this.state.status} onChange={this.handleStatusChange}>
                         <option value="Reading">Reading</option>
                         <option value="Read">Read</option>
-                        <option selected value="To Read">To Read</option>
+                        <option value="To Read">To Read</option>
                     </select><br/>
                     <label/>Date Started:<input
                         type="date"
@@ -100,18 +101,15 @@ class UserBook extends Component {
                         name='date_started'
                         onChange={this.handleDateStartedChange}
                     /><br/>
-                    <label/>Date Finished:<input
+                    <label>Date Finished:<input
                         type="date"
                         value={this.state.date_finished}
                         name='date_finished'
                         onChange={this.handleDateFinishedChange}
-                    /><br/>
+                    /></label><br/>
                     <button>Update</button>
                 </form>
-                <button 
-                    onClick={this.handleEntryDelete(this.state.entryId)}
-                    >Delete
-                </button>
+                <button onClick={() => { this.handleEntryDelete(5) }}>Delete</button>
             </div>
         )
     }
@@ -142,14 +140,19 @@ class UserBook extends Component {
     }
 
     handleEntryDelete(entryId) {
+        console.log('delete', this.state.entryId, );
         fetch(`/api/users/${this.state.userId}/${this.props.match.params.isbn}`, {
-        method: 'DELETE',})
+        method: 'DELETE',
+        body:  JSON.stringify({ 
+            id: this.state.entryId,
+        }),
+        })
         .then((response) => {
             if (response.status === 200) {
                 console.log('deleted');
             }
         })
-        // .then(this.props.history.push('/user'));
+        .then(this.props.history.push('/user'));
     }
 
 
