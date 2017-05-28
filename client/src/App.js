@@ -7,6 +7,7 @@ import UserDash from './components/UserDash';
 import UserIndivBook from './components/UserIndivBook';
 import Footer from './components/partials/Footer';
 import SearchBookForm from './components/SearchBookForm';
+// import NotFound from './components/NotFound';
 
 import {
   BrowserRouter as Router,
@@ -204,7 +205,8 @@ class App extends Component {
               userId={this.state.userId} 
             />
             <Footer />
-            {/*<Route exact path="/user:id" render={() => {
+            {/*<Route path="*" component={NotFound} />
+            <Route exact path="/user:id" render={() => {
               return (this.state.isLoggedIn)
               ? <UserDash user={this.state.user} isLoggedIn={this.state.isLoggedIn} />
               : <Redirect to="/login" />
