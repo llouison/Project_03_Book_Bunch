@@ -134,17 +134,6 @@ class App extends Component {
   updateUserBook(){
   }
 
-  handleDeleteBook(){
-    fetch(`/api/users/${this.state.usersBooks}`, {
-      method: 'DELETE',
-    })
-    .then ((response) => {
-      if (response.status === 200){
-        this.getUsersBooks();
-      }
-    })
-  }
-
   handleLogoutSubmit(event){
     event.preventDefault();
     fetch('auth/logout')
@@ -176,6 +165,7 @@ class App extends Component {
             <PrivateRoute exact path="/user/:isbn" 
               user={this.state.user} 
               userId={this.state.userId} 
+              getUsersBooks={this.getUsersBooks}
               isLoggedIn 
               component={UserIndivBook} 
             />
