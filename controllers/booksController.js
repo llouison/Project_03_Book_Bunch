@@ -36,9 +36,9 @@ booksController.show = (req, res) => {
 
 // defining the action once the create new book promise is complete
 booksController.create = (req, res) => {
-    Book.findByIsbn(req.params.isbn)
+    Book.findByIsbn(req.body.isbn)
     .then(book => {
-        if (book.isbn === null) {
+        if (book === null) {
             Book.create({
                 title: req.body.title, 
                 author: req.body.author,
@@ -48,8 +48,8 @@ booksController.create = (req, res) => {
                 rating: req.body.rating, 
                 image_url: req.body.image_url,
             })
-            .then(book => {
-                res.json({ message: 'ok', data: { book }});
+            .then(newBook => {
+                res.json({ message: 'ok', data: { newBook }});
             })
         } else {
             res.json({

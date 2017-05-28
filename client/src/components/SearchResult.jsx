@@ -7,7 +7,7 @@ class SearchResult extends Component {
       title: this.props.volumeInfo.title, 
       author: this.props.volumeInfo.authors[0], 
       genre: this.props.volumeInfo.categories[0], 
-      isbn: this.props.volumeInfo.industryIdentifiers[0].identifier, 
+      isbn: parseInt(this.props.volumeInfo.industryIdentifiers[1].identifier.slice(0,9)), 
       description: this.props.volumeInfo.description, 
       rating: this.props.volumeInfo.averageRating, 
       image_url: this.props.volumeInfo.imageLinks.thumbnail,
@@ -60,7 +60,7 @@ class SearchResult extends Component {
 //this follwoing function books to a users books database.  This function is activated when the add button is clicked.
   addUserBook(event){
     event.preventDefault();
-    fetch('http://localhost:3001/api/books',{
+    fetch(`/api/books`,{
       method:'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -71,9 +71,8 @@ class SearchResult extends Component {
         description: this.state.description,
         rating: this.state.rating,
       })
-  
    })
-   console.log(this.state.genre);
+   console.log(this.state);
   }
 
   addToUsersBooks(event){
@@ -91,15 +90,7 @@ class SearchResult extends Component {
         <p>ISBN: {this.props.volumeInfo.industryIdentifiers[0].identifier}</p>
         <p>Description: {this.props.volumeInfo.description}</p>
         <p>Rating: {this.props.volumeInfo.averageRating}</p>
-        <form
-        className="add_book_form"
-        onSubmit={this.addUserBook}
-        >
-          <button className='add-book'
-                  onSubmit={this.addUserBook}
-          >
-          Add It Here</button>
-        </form>
+        <button onClick={this.addUserBook}>Add It Here</button>
       </li>
     );
   }

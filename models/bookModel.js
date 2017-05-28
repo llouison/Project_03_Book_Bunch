@@ -16,11 +16,12 @@ Book.findByIsbn = isbn => {
 
 /* creating the create new book method. The SQL query creates a new book only if it doesn't already exist in the dual table which is a dummy table created to compare values */
 Book.create = book => {
+    console.log('creating book');
     return db.one(
         `
         INSERT INTO books
-        (title, author, genre, isbn, description, rating, image_url)
-        VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *
+        (title, author, genre, isbn, description, image_url)
+        VALUES ($1, $2, $3, $4, $5, $6) RETURNING *
         `,
         [book.title, book.author, book.genre, book.isbn, book.description, book.rating, book.image_url]
     );
