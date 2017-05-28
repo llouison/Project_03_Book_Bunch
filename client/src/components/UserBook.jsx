@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 
 class UserBook extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      path: `/user/${this.props.book.isbn}`,
+    }
+  }
   render() {
     return (
       <div>
-        <p>User: {this.props.user}</p>
-         <p>title: {this.props.title}.</p>
-        <p>ISBN: {this.props.match.params.isbn}.</p>
+        <a href={this.state.path}>
+          <img src={this.props.book.image_url} alt={this.props.book.title}/> 
+        </a>
+        <p>title: {this.props.book.title}.</p>
       </div>
     );
   }
