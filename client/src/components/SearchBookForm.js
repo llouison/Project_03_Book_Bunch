@@ -42,6 +42,7 @@ class SearchBookForm extends Component {
    handleGenreInput(event){
      this.setState({inputGenreValue: event.target.value})
    }
+   
 
   handleFormSubmit(event) {
     event.preventDefault();
