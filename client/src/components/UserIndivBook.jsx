@@ -7,6 +7,7 @@ class UserBook extends Component {
         this.state = {
         user: this.props.user,
         userId: this.props.userId,
+        entryId: null,
         review: '',
         usersBook: [],
         status: '',
@@ -23,6 +24,7 @@ class UserBook extends Component {
         this.handleDateStartedChange = this.handleDateStartedChange.bind(this);
         this.handleDateFinishedChange = this.handleDateFinishedChange.bind(this);
         this.handleUserUpdate = this.handleUserUpdate.bind(this);
+        this.handleEntryDelete - this.handleEntryDelete.bind(this);
     }
 
     componentDidMount(){
@@ -43,6 +45,7 @@ class UserBook extends Component {
         this.setState((prevState) => {
             return {
                 usersBook: book,
+                entryId: book.id,
                 review: book.review,
                 status: book.status,
                 date_started: book.date_started.slice(0,10),
@@ -105,7 +108,10 @@ class UserBook extends Component {
                     /><br/>
                     <button>Update</button>
                 </form>
-                <button>Delete</button>
+                <button 
+                    onClick={this.handleEntryDelete(this.state.entryId)}
+                    >Delete
+                </button>
             </div>
         )
     }
@@ -133,6 +139,17 @@ class UserBook extends Component {
     handleUserUpdate(event){
         event.preventDefault();
         console.log('update it!');
+    }
+
+    handleEntryDelete(entryId) {
+        fetch(`/api/users/${this.state.userId}/${this.props.match.params.isbn}`, {
+        method: 'DELETE',})
+        .then((response) => {
+            if (response.status === 200) {
+                console.log('deleted');
+            }
+        })
+        // .then(this.props.history.push('/user'));
     }
 
 
