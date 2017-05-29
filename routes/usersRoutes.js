@@ -30,5 +30,4 @@ usersRoutes.post('/', usersController.create);
 usersRoutes.post('/:id', usersController.createEntry);
 
 // exporting to app.js
-// exporting to app.js
 module.exports = usersRoutes;
