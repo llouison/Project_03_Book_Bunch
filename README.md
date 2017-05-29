@@ -89,6 +89,68 @@ Users_Books table.
 - Link to amazon to purchase books
 - Ability to scan isbn barcode on mobile
 - Google Chrome extension for easy access to our app from anywhere the user may be surfing in the internet.
+## User Stories
+1. I want to be able to have a virtual bookshelf that I can easiy access online.
+    
+    -BookBunch is an app that is just that!  It is a virtual bookshelf where I search for books and add them to my virtual bookshelf. The app is robust and lets me search thousands of books.  The app is also minimalist in its design so I will not have trouble or difficulty navigating the pages and functionality.  
+
+2. I want to be able to have this app personalized towards me.  
+    -The BookBunch app has an authentication feature that let's me login and save my session.
+    -The app has a virtual book shelf that lets you see what you have read, reading, and will read
+    -The app also has a feature where you can add you own reviews to books to make it more personalized.  You can also look back on your reviews years down the line to see how you were feeling and going through at that moment in your life!
+
+3.  I want the signup process to be very easy to navigate.
+    -the app allows me to register on the homepage.
+    -There are only three input fields: one for username, email, and password.
+    -Once the regsiter button is clicked I will no longer have to ever worry about registering.
+
+4. I don't want to sign in for each use.
+    -The app remebers the user and the session associated with it.
+    -If you clsoe the app and restart, the app will remember your credentials.
+
+5. I want to be able to add books which I am not ready to read right away.
+    -The app lets me add books I am interested in into a virtual queue system.
+    -The book gets added to the queue and then I can have it on that 'to read' shelf in my virtual bookshelf.  
+    -The page where I can see this is styled nice and thoughtfully organized.
+
+6. I want to be able to see all the relevant information about the book, such as author, isbn     number, genre, etc.
+    -The app has a page with the information for individual books once I click on a book icon.
+    -At this page you can see all the relevant inforation about the book.
+    -There is also an image so I can see what the book looks like.
+
+7.  I want to be able to express my feelings about the book I just read.
+    -Once I go to the individual bookpage, I will be able to write a review.
+    -The write a review form will be on the right side of the screen.
+    -Once I write a review and click submit,it will forever be linked to that book and me.
+
+8.  I want to be able to change a review.
+    -The reviews associated with each book also have an update button.
+    -Once this button is clicked, I can edit and make changes within the box.
+    -Once I hit the submit button, the review blurb will be updated to what I want.
+    -There is no limit to how many times I can update my review.
+
+9. I want to able to delete a review entirely.
+    -The review box also comes with a delete button.
+    -Once I click this button, the review will be destroyed.
+
+10.  I want to be able to  end my session from anywhere in the app.
+    -there is aways a 'logout' button on teh top right corner of the app for this purpose.
+    -You can also naviaget back to home or you colllections oage.
+
+11.  I want to be able to see all my books in a format that isn't a list.
+    -I can see my collections in the 'myCollection' page
+    -The layout is not in a list.  
+    -It is tiered into three sections: 'read', 'reading', and 'to read'
+    -I can also click on any of the individual book icons in this page to naviaget to the individual book information page.
+
+
+12. As a user of BookBunch, I want to be able to search for books based on the author.
+    
+    -The BookBunch app has a search feature where I can input the the author and get a list based on the results.
+    -BookBunch uses the google Books API in order to search and render the books being searched.
+    -On the search page, I can input the author in the field and when I click the 'search for books' button, the page populates with a list of ten items.  These ten items are the top ten searches from the googleBOoks API.
+    -The listed books have the title, author, genre, ISBN number, description, and a rating that accompanies every listed book item.
+    -At the bottom of each item is a a 'add it' button that i can click.  This adds the book to my collection that I have on the web app.
 
 ## Coding Wins
 ```
