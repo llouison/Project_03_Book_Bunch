@@ -38,7 +38,7 @@ User.create = user => {
 
 // creating the add entry method
 User.createEntry = (entry) => {
-    console.log('creating entry in model', user);
+    console.log('creating entry in model', entry.userId);
     return db.one(
         `
         INSERT INTO users_books (user_ref_id, book_ref_id) VALUES ($1, $2) RETURNING *

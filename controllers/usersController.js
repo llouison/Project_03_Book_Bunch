@@ -58,9 +58,8 @@ userController.create = (req, res) => {
 
 // defining the action once the create new book promise is complete
 userController.createEntry = (req, res) => {
-    User.createEntry({
-        entry: req.body.entry,
-    })
+    console.log(req.body)
+    User.createEntry(req.body)
     .then(entry => {
       res.json({message: 'ok', data: { entry }});
     })
