@@ -66,7 +66,8 @@
               <span class="nt">"rating"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.5"</span>
               <span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://books.google.com/books/content?id=N6DeDQAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"</span><span class="w">
             </span><span class="p">}</span><span class="w">
-          </span><span class="p">}</span><span class="w">  
+          </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 </div>
 
@@ -98,8 +99,7 @@
 
 
 
-<h4 id="apiusersid"><code class="highlighter-rouge">api/users/:id/:isbn</code></h4>
-
+<h4 id="apiusersidisbn"><code class="highlighter-rouge">api/users/:id/:isbn</code></h4>
 
 <div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
@@ -129,50 +129,78 @@
 
 <h3 id="other-endpoints">Other Endpoints</h3>
 
-<h4 id="post-to-apiquotes">POST to <code class="highlighter-rouge">api/quotes</code></h4>
+<h4 id="post-to-apibooks">POST to <code class="highlighter-rouge">api/books</code></h4>
 
-<p>Adds a quote to the database. Request body must include <snip>content</snip>, <snip>author</snip>, and <snip>genre_id</snip> properties.</p>
+<p>Add a book to the database.</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">fetch</span><span class="p">(</span><span class="s1">'https://ada-api.herokuapp.com/api/quotes'</span><span class="p">,</span> <span class="p">{</span>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code>
+  <span class="nx">fetch</span><span class="p">(</span><span class="s1">'https://bookbunch.herokuapp.com/api/books'</span><span class="p">,</span><span class="p">{</span>
   <span class="na">method</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
   <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
     <span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">,</span>
   <span class="p">},</span>
   <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
-    <span class="na">content</span><span class="p">:</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">content</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span>
-    <span class="na">author</span><span class="p">:</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">author</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span>
-    <span class="na">genre_id</span><span class="p">:</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">genre_id</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span>
+    <span class="na">title</span><span class="p">:</span> <span class="nx">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">title</span><span class="p">,</span>
+    <span class="na">author</span><span class="p">:</span> <span class="nx">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">author</span><span class="p">,</span>
+    <span class="na">genre</span><span class="p">:</span> <span class="nx">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">genre</span><span class="p">,</span>
+    <span class="na">description</span><span class="p">:</span> <span class="nx">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">`${this.state.description.slice(0,1020)}...`</span><span class="p">,</span>
+    <span class="na">rating</span><span class="p">:</span> <span class="nx">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">rating</span><span class="p">,</span>
+    <span class="na">image_url</span><span class="p">:</span> <span class="nx">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">image_url</span><span class="p">,</span>
   <span class="p">}),</span>
 <span class="p">})</span>
 </code></pre>
 </div>
 
-<h4 id="put-to-apiquotesid">PUT to <code class="highlighter-rouge">api/quotes/:id</code></h4>
+<h4 id="post-to-apiusersid">POST to <code class="highlighter-rouge">/api/users/:id</code></h4>
 
-<p>Modify a quote’s information in the database.</p>
+<p>Add a book to the user's dash.</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// where ID is the quote's ID</span>
-<span class="nx">fetch</span><span class="p">(</span><span class="err">`</span><span class="nx">https</span><span class="err">:</span><span class="c1">//ada-api.herokuapp.com/api/quotes/${id}`, {</span>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// where ID is the user's ID</span>
+  <span class="nx">fetch</span><span class="p">(</span><span class="err">`</span><span class="nx">https</span><span class="err">:</span><span class="s1">//bookbunch.herokuapp.com/api/users/${this.state.userId}<span class="err">`</span><span class="p">,{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+    <span class="na">userId</span><span class="p">:</span> <span class="nx">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">userId</span><span class="p">,</span>
+    <span class="na">bookId</span><span class="p">:</span> <span class="nx">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">bookId</span><span class="p">,</span>
+  <span class="p">}),</span>
+<span class="p">})</span>
+</code></pre>
+</div>
+
+<h4 id="put-to-apiusersbooksisbn">PUT to <code class="highlighter-rouge">api/users/:id/:isbn</code></h4>
+
+<p>Modify a book page information on the user's dash.</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// where ID is the user's ID and ISBN is the books ISBN number</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="err">`</span><span class="nx">https</span><span class="err">:</span><span class="c1">/bookbunch.herokuapp.com//api/users/${this.state.userId}/${this.props.match.params.isbn}</span><span class="err">`</span><span class="p">,{</span>
   <span class="nl">method</span><span class="p">:</span> <span class="s1">'PUT'</span><span class="p">,</span>
   <span class="nx">headers</span><span class="err">:</span> <span class="p">{</span>
     <span class="s1">'Content-Type'</span><span class="err">:</span> <span class="s1">'application/json'</span><span class="p">,</span>
   <span class="p">},</span>
   <span class="nx">body</span><span class="err">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
-    <span class="na">content</span><span class="p">:</span> <span class="s1">'quote content here'</span><span class="p">,</span>
-    <span class="na">author</span><span class="p">:</span> <span class="s1">'quote author here'</span><span class="p">,</span>
-    <span class="na">genre_id</span><span class="p">:</span> <span class="mi">3</span> <span class="c1">// the genre ID must be a number</span>
+    <span class="nx">book</span><span class="err">:</span> <span class="p">{</span>
+        <span class="na">status</span><span class="p">:</span> <span class="s1">event.target.status.value</span><span class="p">,</span>
+        <span class="na">review</span><span class="p">:</span> <span class="s1">event.target.review.value</span><span class="p">,</span>
+        <span class="na">date_started</span><span class="p">:</span> <span class="s1">event.target.date_started.value</span><span class="p">,</span>
+        <span class="na">date_finished</span><span class="p">:</span> <span class="s1">event.target.date_finished.value</span><span class="p">,</span>
+    <span class="p">},</span>
   <span class="p">}),</span>
 <span class="p">})</span>
 </code></pre>
 </div>
 
-<h4 id="delete-to-apiquotesid">DELETE to <code class="highlighter-rouge">api/quotes/:id</code></h4>
+<h4 id="delete-to-apiusersbooksisbn">DELETE to <code class="highlighter-rouge">api/users/:id/:isbn</code></h4>
 
-<p>Remove a quote from the database.</p>
+<p>Remove a book from the user's database.</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// where ID is the quote's ID</span>
-<span class="nx">fetch</span><span class="p">(</span><span class="err">`</span><span class="nx">https</span><span class="err">:</span><span class="c1">//ada-api.herokuapp.com/api/quotes/${id}`, {</span>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// where ID is the user's ID and ISBN is the books ISBN number</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="err">`</span><span class="nx">https</span><span class="err">:</span><span class="c1">/bookbunch.herokuapp.com//api/users/${this.state.userId}/${this.props.match.params.isbn}</span><span class="err">`</span><span class="p">,{</span>
   <span class="nl">method</span><span class="p">:</span> <span class="s1">'DELETE'</span><span class="p">,</span>
+  <!--<span class="nx">body</span><span class="err">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+  <span class="na">id</span><span class="p">:</span> <span class="s1">this.state.entryId</span><span class="p">,</span>
+  <span class="p">})</span><span class="p">,</span>-->
 <span class="p">})</span>
 </code></pre>
 </div>
