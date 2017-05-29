@@ -23,11 +23,10 @@ class Index extends Component {
     <div>
       {this.displayHeader()}
       <div className = "hero">
-        {/*<img src={require('../images/books.jpg')}alt="books on shelves" />*/}
         <h2>About Book Bunch</h2>
         <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget</p>
       </div>
-      <Link to='/register'>Start My Collection</Link>
+      <Link to='/register'><button>Start My Collection</button></Link>
       <Footer />
     </div>
     );
