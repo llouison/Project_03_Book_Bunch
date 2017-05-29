@@ -39,8 +39,9 @@ class SearchResult extends Component {
      return response.json();
    })
    .then((responseJson) => {
+     console.log(responseJson)
      this.setState({
-       bookId: responseJson.data.book.id,
+       bookId: responseJson.data.newBook.id,
      })
      this.addUsersBook();
    })
