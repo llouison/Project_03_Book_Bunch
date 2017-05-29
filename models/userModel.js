@@ -58,7 +58,7 @@ User.update = (users_book, id) => {
         date_finished = $4
         WHERE id = $5
         `,
-        [users_book.status, users_book.review, users_book.date_started, users_book.date_finished]
+        [users_book.status, users_book.review, users_book.date_started, users_book.date_finished, id]
     );
 };
 
