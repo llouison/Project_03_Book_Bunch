@@ -20,8 +20,8 @@ import './App.css';
 // This is a functional component that protects private routes
 const PrivateRoute = ({ component, ...rest }) => (
   <Route {...rest} render={props => {
-	console.log(props);
-	console.log(rest);
+	// console.log(props);
+	// console.log(rest);
 	return (
     rest.isLoggedIn ? (
       React.createElement(component, Object.assign(rest, props))
@@ -35,7 +35,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      usersBooks: [],
       user: '', 
       userId: '',
       isLoggedIn: false,
@@ -46,9 +45,6 @@ class App extends Component {
     this.handleLogoutSubmit = this.handleLogoutSubmit.bind(this);
 
     this.updateState = this.updateState.bind(this);
-
-    this.updateUsersBooks = this.updateUsersBooks.bind(this);
-    this.getUsersBooks = this.getUsersBooks.bind(this);
   }
 
   componentDidMount(){
@@ -103,39 +99,8 @@ class App extends Component {
         isLoggedIn: true,
       }
     })
-    this.getUsersBooks();
   }
 
-  getUsersBooks(){
-    fetch(`/api/users/${this.state.userId}`)
-      .then((response) => {
-        return response.json()
-      })
-      .then((responseJson) => {
-        this.updateUsersBooks(responseJson.data.usersBooks);
-        // console.log('in state', responseJson.data.usersBooks)
-    });
-  }
-
-   updateUsersBooks(books){
-	//  console.log(books);
-     this.setState((prevState) => {
-      return {
-        usersBooks: books,
-      }
-    }, () => {
-	    console.log('updated books', this.state.usersBooks) 
-	  })
-  }
-
-  addUserBook(event){
-      event.preventDefault();
-      
-      
-    }
-
-  updateUserBook(){
-  }
 
   handleLogoutSubmit(event){
     event.preventDefault();
@@ -161,14 +126,13 @@ class App extends Component {
             <PrivateRoute 
               exact path="/user" 
               user={this.state.user}
-              usersBooks={this.state.usersBooks}
+              userId={this.state.userId}
               isLoggedIn 
               component={UserDash} 
             />
             <PrivateRoute exact path="/user/:isbn" 
               user={this.state.user} 
               userId={this.state.userId} 
-              getUsersBooks={this.getUsersBooks}
               isLoggedIn 
               component={UserIndivBook} 
             />
