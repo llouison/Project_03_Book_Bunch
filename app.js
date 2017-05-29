@@ -41,9 +41,9 @@ app.use(cookieParser());
 /* setting up static file redirect*/
 app.use(express.static(path.join(__dirname, 'build')));
 /* index route*/
-app.get('/api', function(req, res) {
-    res.sendFile(__dirname + '/public/index.html');
-});
+// app.get('/api', function(req, res) {
+//     res.sendFile(__dirname + '/public/index.html');
+// });
 
 /* importing routes and assigning urls for books api and users api*/
 const booksRoutes = require('./routes/booksRoutes');
