@@ -45,17 +45,19 @@ class SearchBookForm extends Component {
   handleSearchSubmit(event) {
     event.preventDefault();
 <<<<<<< HEAD
+<<<<<<< HEAD
     
+=======
+>>>>>>> f7a0425c13e3428f9c318c00cb1408487ed5e323
     fetch(`https://www.googleapis.com/books/v1/volumes?q=inauthor:${event.target.author.value}+isbn:${event.target.isbn.value}`)
-        .then((response) => {
-        
+      .then((response) => {
         return response.json()
       })
       .then((responseJson) => {
         console.log(responseJson);
         this.setState({results: responseJson.items})
       })
-    }
+  }
 
   
     // console.log('author', this.authorInput)
@@ -76,6 +78,7 @@ class SearchBookForm extends Component {
       //     }
       //   })
       // } 
+<<<<<<< HEAD
 =======
     fetch(`https://www.googleapis.com/books/v1/volumes?q=inauthor:${event.target.author.value}+isbn:${event.target.isbn.value}&key=AIzaSyBSbTuoPrwQ0PvCFj0uhq2MtGh3MEaoW0Y`)
     .then((response) => {
@@ -87,11 +90,14 @@ class SearchBookForm extends Component {
     })
   }
 >>>>>>> 61ee3434c23d4a5b9fef5ba462e63b9d9e44deaa
+=======
+>>>>>>> f7a0425c13e3428f9c318c00cb1408487ed5e323
   
 
   render() {
     return (
       <div>
+<<<<<<< HEAD
 <<<<<<< HEAD
       <Header path1='/' link1='Home' path2='/user' link2='My Collection' path3='/logout' link3='Logout'/>
       <form
@@ -133,6 +139,8 @@ class SearchBookForm extends Component {
       <ul>
       {console.log(this.state.results)}
 =======
+=======
+>>>>>>> f7a0425c13e3428f9c318c00cb1408487ed5e323
         <Header path1='/' link1='Home' path2='/user' link2='My Collection' path3='/logout' link3='Logout'/>
         <form
           className='search-book-form'
@@ -166,7 +174,10 @@ class SearchBookForm extends Component {
           <button>Search for your book!</button>
         </form>
         <ul>
+<<<<<<< HEAD
 >>>>>>> 61ee3434c23d4a5b9fef5ba462e63b9d9e44deaa
+=======
+>>>>>>> f7a0425c13e3428f9c318c00cb1408487ed5e323
         {this.state.results.map((value, index) =>{
           return(
             <SearchResult 
