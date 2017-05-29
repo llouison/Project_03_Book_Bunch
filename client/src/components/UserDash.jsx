@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Book from './Book.jsx';
 import Header from './partials/Header';
+import Footer from './partials/Footer';
 
 class UserDash extends Component {
  constructor(props) {
@@ -42,6 +43,7 @@ class UserDash extends Component {
         <Header path1='/' link1='Home' path2='/search' link2='Search' path3='/logout' link3='Logout'/>
         <p>Welcome {this.props.user}</p>
         <p>There are no books in your collection</p>
+        <Footer />
       </div>
     )
   }
@@ -91,7 +93,7 @@ class UserDash extends Component {
             )
           }})}
         </div>
-        
+        <Footer />
       </div>
     )
   }

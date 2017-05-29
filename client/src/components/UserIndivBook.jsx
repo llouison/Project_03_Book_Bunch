@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from './partials/Header';
+import Footer from './partials/Footer';
 
 class UserBook extends Component {
     constructor(props){
@@ -186,6 +187,7 @@ class UserBook extends Component {
             <p>ISBN: {this.props.match.params.isbn}</p>
             <p>Description: {this.state.usersBook.description}</p>
             {this.displayUserInfo()}
+            <Footer />
         </div>
         );
     }

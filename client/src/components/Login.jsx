@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from './partials/Header';
+import Footer from './partials/Footer';
 
 /* setting the initial state of inputs and binding the methods to the component */
 class Login extends Component {
@@ -55,6 +56,7 @@ class Login extends Component {
           
           <button>Login</button>
         </form>
+        <Footer />
       </div>
     );
   }

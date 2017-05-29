@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from './partials/Header';
 import SearchResult from './SearchResult';
+import Footer from './partials/Footer';
 
 
 class SearchBookForm extends Component {
@@ -57,48 +58,49 @@ class SearchBookForm extends Component {
   render() {
     return (
       <div>
-      <Header path1='/' link1='Home' path2='/user' link2='My Collection' path3='/logout' link3='Logout'/>
-      <form
-        className='search-book-form'
-        onSubmit={this.handleSearchSubmit}
-      >
-        <label>Title:<input
-          type='text'
-          value={this.state.inputTitleValue}
-          name='title'
-          onChange={this.handleTitleInput}
-        /></label><br/>
-        <label>Author:<input
-          type='text'
-          value={this.state.inputAuthorValue}
-          name='author'
-          onChange={this.handleAuthorInput}
-        /></label><br/>
-        <label>ISBN:<input
-          type='number'
-          value={this.state.inputIsbnValue}
-          name='isbn'
-          onChange={this.handleIsbnInput}
-        /></label><br/>
-        <label>Genre:<input
-          type='text'
-          value={this.state.inputGenreValue}
-          name='genre'
-          placeholder='Genre'
-          onChange={this.props.handleGenreInput}
-        /></label><br/>
-        <button>Search for your book!</button>
-      </form>
-      <ul>
-      {this.state.results.map((value, index) =>{
-        return(
-          <SearchResult 
-            volumeInfo={value.volumeInfo}
-            userId={this.props.userId}
-            key={index}
-          />)
-      })}
-      </ul>
+        <Header path1='/' link1='Home' path2='/user' link2='My Collection' path3='/logout' link3='Logout'/>
+        <form
+          className='search-book-form'
+          onSubmit={this.handleSearchSubmit}
+        >
+          <label>Title:<input
+            type='text'
+            value={this.state.inputTitleValue}
+            name='title'
+            onChange={this.handleTitleInput}
+          /></label><br/>
+          <label>Author:<input
+            type='text'
+            value={this.state.inputAuthorValue}
+            name='author'
+            onChange={this.handleAuthorInput}
+          /></label><br/>
+          <label>ISBN:<input
+            type='number'
+            value={this.state.inputIsbnValue}
+            name='isbn'
+            onChange={this.handleIsbnInput}
+          /></label><br/>
+          <label>Genre:<input
+            type='text'
+            value={this.state.inputGenreValue}
+            name='genre'
+            placeholder='Genre'
+            onChange={this.props.handleGenreInput}
+          /></label><br/>
+          <button>Search for your book!</button>
+        </form>
+        <ul>
+        {this.state.results.map((value, index) =>{
+          return(
+            <SearchResult 
+              volumeInfo={value.volumeInfo}
+              userId={this.props.userId}
+              key={index}
+            />)
+        })}
+        </ul>
+        <Footer />
       </div>
     );
   }

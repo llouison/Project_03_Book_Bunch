@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from './partials/Header';
+import Footer from './partials/Footer';
 
 class Login extends Component {
   render() {
@@ -13,6 +14,7 @@ class Login extends Component {
         >
           <button>Logout</button>
         </form>
+        <Footer />
       </div>
     );
   }

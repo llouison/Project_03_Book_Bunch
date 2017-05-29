@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from './partials/Header';
+import Footer from './partials/Footer';
 
 class RegistrationForm extends Component {
     constructor(props) {
@@ -68,6 +69,7 @@ class RegistrationForm extends Component {
           
           <button>Register</button>
         </form>
+        <Footer />
       </div>
     );
   }
