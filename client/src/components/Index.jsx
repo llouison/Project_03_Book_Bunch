@@ -11,8 +11,11 @@ class Index extends Component {
     }
     this.displayHeader = this.displayHeader.bind(this);
   }
+
+  componentDidMount(){
+    console.log('index',this.props.user);
+  }
   displayHeader(){
-    console.log('index',this.state);
     if(this.props.user === undefined){
       return <Header path1='/' link1='Home' path2='/register' link2='Register' path3='/login' link3='Login'/>
     } else return <Header path1='/user' link1='My Collection' path2='/search' link2='Search' path3='/logout' link3='Logout'/>
@@ -20,11 +23,14 @@ class Index extends Component {
 
   render() {
     return (
-    <div>
-      {this.displayHeader()}
-      <div className = "hero">
+    <div className='center'>
+      {/*{this.displayHeader()}*/}
+      <div className='hero'>
+        <Header className='index_header' path1='/' link1='Home' path2='/register' link2='Register' path3='/login' link3='Login'/>
+      </div>
+      <div className='description'>
         <h2>About Book Bunch</h2>
-        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget</p>
+        <p>Despite what everyone thinks, reading is still very much in. It just might not be in the same format as befrore. </p>
       </div>
       <Link to='/register'><button>Start My Collection</button></Link>
       <Footer />
