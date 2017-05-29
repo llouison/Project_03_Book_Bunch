@@ -73,7 +73,7 @@ class SearchResult extends Component {
         <p>Title:{this.props.volumeInfo.title}</p>
         <p>Author: {this.props.volumeInfo.authors}</p>
         <p>Genre: {this.props.volumeInfo.categories}</p>
-        <p>ISBN: {this.props.volumeInfo.industryIdentifiers[0].identifier}</p>
+        <p>ISBN: {this.props.volumeInfo.industryIdentifiers[1].identifier}</p>
         <p>Description: {this.props.volumeInfo.description}</p>
         <p>Rating: {this.props.volumeInfo.averageRating}</p>
         <button onClick={this.addBook}>Add It Here</button>

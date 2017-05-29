@@ -44,15 +44,35 @@ class SearchBookForm extends Component {
 
   handleSearchSubmit(event) {
     event.preventDefault();
-    fetch(`https://www.googleapis.com/books/v1/volumes?q=inauthor:${event.target.author.value}+isbn:${event.target.isbn.value}&key=AIzaSyBSbTuoPrwQ0PvCFj0uhq2MtGh3MEaoW0Y`)
-    .then((response) => {
-      return response.json()
-    })
-    .then((responseJson) => {
-      console.log(responseJson);
-      this.setState({results:responseJson.items})
-    })
+    fetch(`https://www.googleapis.com/books/v1/volumes?q=inauthor:${event.target.author.value}+isbn:${event.target.isbn.value}`)
+      .then((response) => {
+        return response.json()
+      })
+      .then((responseJson) => {
+        console.log(responseJson);
+        this.setState({results: responseJson.items})
+      })
   }
+
+  
+    // console.log('author', this.authorInput)
+  //   fetch(`https://www.googleapis.com/books/v1/volumes?q=inauthor:${event.target.author.value}&key=AIzaSyBSbTuoPrwQ0PvCFj0uhq2MtGh3MEaoW0Y`), { //Does the api we make go here or the NYTimes api?
+      
+  //   .then((response) => {
+  //     return response.json()
+  //   })
+
+  // }
+    
+      //   this.setState((prevState) => {
+      //     return {
+      //       quotes: prevState.quotes.concat(newQuote),
+      //       inputContentValue: '',
+      //       inputAuthorValue: '',
+      //       inputGenreValue: '',
+      //     }
+      //   })
+      // } 
   
 
   render() {

@@ -57,7 +57,7 @@ booksController.create = (req, res) => {
                 data: { book },
             });
         }
-    })
+    )
     .catch(err => {
         console.log(err);
         res.status(400).json({message: '400, err'});
