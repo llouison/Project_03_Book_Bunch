@@ -52,41 +52,46 @@ class UserDash extends Component {
         <Header path1='/' link1='Home' path2='/search' link2='Search' path3='/logout' link3='Logout'/>
         <p>Welcome back, {this.props.user}</p>
         <p>There are {this.state.usersBooks.length} books in your collection</p>
-        {this.state.usersBooks.map((book) => {
-          if (book.status === "To Read"){
-          return (
-            <div className='shelf' key={book.isbn}>
-              <h2>To Read</h2>
+        <div className='shelf'>
+          <h2>To Read</h2>
+          {this.state.usersBooks.map((book) => {
+            if (book.status === "To Read"){
+            return (
               <Book 
+                key={book.isbn}
                 user={this.props.user} 
                 book={book}
               />
-            </div>
             )
-          }
-          else if (book.status === "Reading"){
-          return (
-            <div className='shelf' key={book.isbn}>
-              <h2>Reading</h2>
+          }})}
+        </div>
+        <div className='shelf'>
+          <h2>Reading</h2>
+          {this.state.usersBooks.map((book) => {
+            if (book.status === "Reading"){
+            return (
               <Book 
+                key={book.isbn}
                 user={this.props.user} 
                 book={book}
               />
-            </div>
             )
-          }
-          else if (book.status === "Read"){
-          return (
-            <div className='shelf' key={book.isbn}>
-              <h2>Read</h2>
+          }})}
+        </div>
+         <div className='shelf'>
+          <h2>Read</h2>
+          {this.state.usersBooks.map((book) => {
+            if (book.status === "Read"){
+            return (
               <Book 
+                key={book.isbn}
                 user={this.props.user} 
                 book={book}
               />
-            </div>
             )
-          }
-        })}
+          }})}
+        </div>
+        
       </div>
     )
   }
