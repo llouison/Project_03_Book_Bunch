@@ -27,17 +27,11 @@ Book Bunch is a virtual bookshelf CRUD app where users can:
 
 In the command line from the root folder run -npm install
 
-1. Then run npm install express --save
-2. npm install body-parser
-3. npm install morgan
-4. npm install method-override
-5. npm install morgan
-6. npm install pg-promise
-7. npm install cookie-parser
-8. npm install passport-local
-
-In the command line from the 'client' folder 
-1. npm install react-router-dom
+1. Run `npm install` in the root folder and the client folder
+2. in the root folder, create `.env` file and add `SECRET_KEY`. Set the secret key to anything you want
+3. run `psql -f migrations_05232017.sql` in the migrations folder in db of the root folder
+4. run `npm run dev` in the root folder
+5. in another terminal tab run `npm start` in the client folder
 
 
 ## Wireframes
