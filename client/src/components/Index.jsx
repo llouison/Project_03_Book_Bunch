@@ -23,16 +23,19 @@ class Index extends Component {
 
   render() {
     return (
-    <div className='center'>
+    <div className='page'>
       {/*{this.displayHeader()}*/}
       <div className='hero'>
         <Header className='index_header' path1='/' link1='Home' path2='/register' link2='Register' path3='/login' link3='Login'/>
       </div>
       <div className='description'>
-        <h2>About Book Bunch</h2>
+        <div className='about'>
+        <h2 className='feature'>About Book Bunch</h2>
+        <hr/>
         <p>Despite what everyone thinks, reading is still very much in. It just might not be in the same format as befrore. </p>
+        </div>
+        <Link to='/register'><button>Start My Collection</button></Link>
       </div>
-      <Link to='/register'><button>Start My Collection</button></Link>
       <Footer />
     </div>
     );

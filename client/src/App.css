@@ -1,24 +1,24 @@
 * {
 margin: 0;
 padding: 0;
-font-size: 100%;
 font: inherit;
 vertical-align: baseline;
 box-sizing: border-box;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-display: block;
-}
+
 body {
 font-size: 18px;
 line-height: 1.4em;
 font-family: 'slabo', sans-serif;
 color: #333;
 }
-.center{
+.page{
+  width: 100vw;
+  height: 100vh;
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 .hero {
   width: 100vw;
@@ -27,9 +27,24 @@ color: #333;
   filter: grayscale(70%);
 }
 .description{
-  width: 70vw;
+  margin: 20px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+  align-items: center;
 }
+.about {
+  width: 700px;
+}
+.about p {
+  margin: 10px 0 30px;
+}
+.feature {
+  font-size: 20px;
+  font-weight: bold;
+}
+
 ol, ul {
 list-style: none;
 }
@@ -57,30 +72,45 @@ header, footer {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  /*margin-top: 15px;*/
+  padding: 10px;
+}
+
+footer a {
+  text-decoration: none;
+  color: #046e8f;
 }
 
 .logo {
   font-size: 2em;
   font-weight: 700;
+  align-self: flex-end;
+  flex-grow: 2;
+  text-align: left;
 }
 
 /* forms */
+.form_container {
+  display: flex;
+  justify-content: center;
+}
 form {
   text-align: right;
+  display: flex;
+  flex-direction: column;
 }
-.index_form {
- text-align: center;
+form button {
+  align-self: center;
 }
 input {
   border: 1 px solid gray;
   margin: 10px;
 }
 button {
-  background: #ED9B40;
-  padding: 0px 10px;
+  color: white;
+  background: #046e8f;
+  padding: 5px 10px;
   border-radius: 5px;
-  border: 1px solid #ED9B40;
+  border: 1px solid #046e8f;
 }
 /* user dash */
 
@@ -155,46 +185,10 @@ button {
       height: 100px;
     }
 
-/* quotes */
-
-.my-quote {
-  max-width: 70vw;
-  margin: 50px;
-  padding: 50px;
-  border: 1px solid grey;
-  background-color: white;
+/*###### Mobile Media Query ######*/
+@media screen and (max-width: 600px) {
+.about {
+  width: 300px;
 }
 
-.my-quote h3 {
-  font-family: 'lora', serif;
-  font-size: 3em;
-  padding: 15px 0;
-  line-height: 1.4em;
-}
-
-.my-quote span {
-  text-transform: uppercase;
-  display: inline-block;
-  padding: 5px 10px;
-  background-color: #61BFAD;
-}
-
-.author {
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-.genre {
-  font-family: 'inconsolata', monospace;
-
-}
-
-
-
-.featured {
-  background-color: #F9F7E8;
-}
-
-.fa-star {
-  cursor: pointer;
 }

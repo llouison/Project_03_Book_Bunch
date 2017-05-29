@@ -36,10 +36,11 @@ class RegistrationForm extends Component {
 
   render() {
     return (
-      <div>
+      <div className='page'>
         <Header path1='/' link1='Home' path2='/register' link2='Register' path3='/login' link3='Login'/>
+        <div className='form_container'>
         <form
-          className="registration-form"
+          className="registration_form"
           onSubmit={this.props.handleRegistrationSubmit}
         >
 
@@ -69,6 +70,7 @@ class RegistrationForm extends Component {
           
           <button>Register</button>
         </form>
+        </div>
         <Footer />
       </div>
     );
