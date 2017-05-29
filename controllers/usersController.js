@@ -72,19 +72,22 @@ userController.createEntry = (req, res) => {
 
 // defining the action once the update book entry promise is complete
 userController.update = (req, res) => {
-  User.update({
-    users_book: req.body.book,
-  }, req.params.id)
-    .then(users_book => {
-      res.json({
-        message: 'ok',
-        data: { users_book },
-      });
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(400).json(err);
-    });
+    console.log(req.body);
+  User.findBookEntryId(req.params.id, req.params.isbn)
+  .then(entryId => {
+      console.log(entryId[0].id);
+    User.update(req.body.book, entryId[0].id)
+    // .then(users_book => {
+    //   res.json({
+    //     message: 'ok',
+    //     data: { users_book },
+    //   });
+    // })
+    // .catch(err => {
+    //   console.log(err);
+    //   res.status(400).json(err);
+    // });
+  })
 };
 
 userController.destroy = (req, res) => {

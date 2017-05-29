@@ -80,7 +80,7 @@ class UserBook extends Component {
             <div>
                 <form
                     onSubmit={(event) => {
-                        this.props.handleUserUpdate(event);
+                        this.handleUserUpdate(event);
                         this.setState({isBeingEdited: false});
                     }}
                 >
@@ -137,18 +137,24 @@ class UserBook extends Component {
     handleUserUpdate(event){
         event.preventDefault();
         console.log('update it!');
-
-    //         fetch(`/api/users/${this.state.userId}/${this.props.match.params.isbn}`, {
-    //   method: 'PUT',
-
-    // })
-    // .then((response) => {
-    //   if (response.status === 200) {
-    //     console.log('updated');
-    //   }
-    // })
+        fetch(`/api/users/${this.state.userId}/${this.props.match.params.isbn}`, {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json',},
+            body: JSON.stringify({
+                book: {
+                    status: event.target.status.value,
+                    review: event.target.review.value,
+                    date_started: event.target.date_started.value,
+                    date_finished: event.target.date_finished.value,
+                },
+            }),
+        })
+        .then((response) => {
+            if (response.status === 200) {
+                console.log('updated');
+            }
+        })
     // .then(this.props.history.push('/user'));
-   
      }
 
     handleEntryDelete(entryId) {
