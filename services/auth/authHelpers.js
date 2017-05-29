@@ -14,7 +14,7 @@ function loginRequired(req, res, next) {
   return next();
 }
 
-// eporting the functions
+// eporting the functions to local.js
 module.exports = {
   comparePass,
   loginRequired,

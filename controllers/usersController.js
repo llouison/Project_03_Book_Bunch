@@ -58,9 +58,8 @@ userController.create = (req, res) => {
 
 // defining the action once the create new book promise is complete
 userController.createEntry = (req, res) => {
-    User.createEntry({
-        entry: req.body.entry,
-    })
+    console.log(req.body)
+    User.createEntry(req.body)
     .then(entry => {
       res.json({message: 'ok', data: { entry }});
     })
@@ -72,9 +71,9 @@ userController.createEntry = (req, res) => {
 
 // defining the action once the update book entry promise is complete
 userController.update = (req, res) => {
-  User.update({
-    users_book: req.body.book,
-  }, req.params.id)
+  User.findBookEntryId(req.params.id, req.params.isbn)
+  .then(entryId => {
+    User.update(req.body.book, entryId[0].id)
     .then(users_book => {
       res.json({
         message: 'ok',
@@ -85,10 +84,11 @@ userController.update = (req, res) => {
       console.log(err);
       res.status(400).json(err);
     });
+  })
 };
 
+// defining the action once the delete book entry promise is complete
 userController.destroy = (req, res) => {
-  console.log('in controller to destroy');
   User.findBookEntryId(req.params.id, req.params.isbn)
     .then(entryId => {
         User.destroy(entryId[0].id, req.params.isbn)
@@ -102,5 +102,5 @@ userController.destroy = (req, res) => {
     })
 };
 
-// exporting the user controller
+// exporting the user controller to userRoutes
 module.exports = userController;

@@ -27,8 +27,11 @@ usersRoutes.delete('/:id/:isbn', usersController.destroy);
 usersRoutes.post('/', usersController.create);
 
 //create new book entry on user's booklist
-usersRoutes.post('/:id/isbn', usersController.createEntry);
+usersRoutes.post('/:id', usersController.createEntry);
 
+<<<<<<< HEAD
 
-
+=======
+// exporting to app.js
+>>>>>>> 61ee3434c23d4a5b9fef5ba462e63b9d9e44deaa
 module.exports = usersRoutes;

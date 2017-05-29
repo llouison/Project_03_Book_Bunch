@@ -36,9 +36,13 @@ booksController.show = (req, res) => {
 
 // defining the action once the create new book promise is complete
 booksController.create = (req, res) => {
-    Book.findByIsbn(req.params.isbn)
+    Book.findByIsbn(req.body.isbn)
     .then(book => {
+<<<<<<< HEAD
         // if (book.isbn = null) {
+=======
+        if (book === null) {
+>>>>>>> 61ee3434c23d4a5b9fef5ba462e63b9d9e44deaa
             Book.create({
                 title: req.body.title, 
                 author: req.body.author,
@@ -64,5 +68,5 @@ booksController.create = (req, res) => {
     });
 };   
 
-// exporting the book controller
+// exporting the book controller to booksRoutes
 module.exports = booksController;

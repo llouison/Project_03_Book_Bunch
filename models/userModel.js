@@ -20,6 +20,7 @@ User.findIndividBook = (id,isbn) => {
     return db.query('SELECT users.username, users_books.id, books.title, books.author, books.genre, books.isbn, books.description, books.rating, books.image_url, users_books.status, users_books.review, users_books.date_started, users_books.date_finished FROM users JOIN users_books ON users.id = users_books.user_ref_id JOIN books ON users_books.book_ref_id = books.id WHERE users.id = $1 and books.isbn = $2', [id, isbn]);
 };
 
+// this method finds and returns the id number of a specific users_book entry
 User.findBookEntryId = (id, isbn) => {
     return db.query('SELECT users_books.id FROM users JOIN users_books ON users.id = users_books.user_ref_id JOIN books ON users_books.book_ref_id = books.id WHERE users.id = $1 and books.isbn = $2', [id, isbn]);
 };
@@ -38,7 +39,7 @@ User.create = user => {
 
 // creating the add entry method
 User.createEntry = (entry) => {
-    console.log('creating entry in model', user);
+    console.log('creating entry in model', entry.userId);
     return db.one(
         `
         INSERT INTO users_books (user_ref_id, book_ref_id) VALUES ($1, $2) RETURNING *
@@ -58,7 +59,7 @@ User.update = (users_book, id) => {
         date_finished = $4
         WHERE id = $5
         `,
-        [users_book.status, users_book.review, users_book.date_started, users_book.date_finished]
+        [users_book.status, users_book.review, users_book.date_started, users_book.date_finished, id]
     );
 };
 
@@ -74,5 +75,5 @@ User.destroy = entryId => {
     );
 };
 
-// exporting the user model
+// exporting the user model to usersController and passport.js
 module.exports = User;

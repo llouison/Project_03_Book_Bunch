@@ -1,20 +1,22 @@
+// importing react
 import React, { Component } from 'react';
+// importing all components
 import Index from './components/Index';
 import Login from './components/Login';
 import RegistrationForm from './components/RegistrationForm';
 import Logout from './components/Logout';
 import UserDash from './components/UserDash';
 import UserIndivBook from './components/UserIndivBook';
-import Footer from './components/partials/Footer';
 import SearchBookForm from './components/SearchBookForm';
-// import NotFound from './components/NotFound';
 
+// importing react router
 import {
   BrowserRouter as Router,
   Route,
   Redirect
 } from 'react-router-dom'
 
+// importing stylesheet
 import './App.css';
 
 // This is a functional component that protects private routes
@@ -26,34 +28,28 @@ const PrivateRoute = ({ component, ...rest }) => (
     rest.isLoggedIn ? (
       React.createElement(component, Object.assign(rest, props))
     ) : (
-      <Redirect to="/login" />
+      <Redirect to='/login' />
     )
   )}}/>
 )
 
+// creating the App class
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      usersBooks: [],
       user: '', 
       userId: '',
       isLoggedIn: false,
     }
-    /* binding all methods in the App class that both reference this and will also be called from the DOM*/
+    /* binding all methods in the App class that both reference 'this' and will also be called from the DOM*/
     this.handleRegistrationSubmit = this.handleRegistrationSubmit.bind(this);
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     this.handleLogoutSubmit = this.handleLogoutSubmit.bind(this);
-
     this.updateState = this.updateState.bind(this);
-
-    this.updateUsersBooks = this.updateUsersBooks.bind(this);
-    this.getUsersBooks = this.getUsersBooks.bind(this);
   }
 
-  componentDidMount(){
-  }
-
+  /* this method posts the entered values in the registration form to the users table to create a new user then calls the updateState method to set user info in state to the new user */
   handleRegistrationSubmit(event){
     event.preventDefault();
     console.log('registering new user');
@@ -76,12 +72,13 @@ class App extends Component {
     })
   }
 
+   /* this method posts the entered values in the login form to the users table to verify that the user exists and the password is correct then calls the updateState method to set user info in state to that user */
   handleLoginSubmit(event){
     event.preventDefault();
     fetch('/auth/login', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      credentials: "same-origin",
+      credentials: 'same-origin',
       body: JSON.stringify({
         username: event.target.username.value,
         password: event.target.password.value,
@@ -95,6 +92,7 @@ class App extends Component {
     });
   }
 
+  /* this method sets user info in state to either a new user from registration or a known user from login */
   updateState(username, id){
     this.setState((prevState) => {
       return {
@@ -103,40 +101,9 @@ class App extends Component {
         isLoggedIn: true,
       }
     })
-    this.getUsersBooks();
   }
 
-  getUsersBooks(){
-    fetch(`/api/users/${this.state.userId}`)
-      .then((response) => {
-        return response.json()
-      })
-      .then((responseJson) => {
-        this.updateUsersBooks(responseJson.data.usersBooks);
-        // console.log('in state', responseJson.data.usersBooks)
-    });
-  }
-
-   updateUsersBooks(books){
-	//  console.log(books);
-     this.setState((prevState) => {
-      return {
-        usersBooks: books,
-      }
-    }, () => {
-	    console.log('updated books', this.state.usersBooks) 
-	  })
-  }
-
-  addUserBook(event){
-      event.preventDefault();
-      
-      
-    }
-
-  updateUserBook(){
-  }
-
+  /* this method logs a user out of the current session and changes the app state back to initial state*/
   handleLogoutSubmit(event){
     event.preventDefault();
     fetch('auth/logout')
@@ -149,28 +116,33 @@ class App extends Component {
     })
   }
 
+  /* Private routes are routed using the privateRoute functions component so that they always know the value of user and isloggedin boolean in state. Some routes use ternary conditional statements to handle redirects*/ 
   render() {
     return (
        <Router>
-        <div className="app">
+        <div className='app'>
           <main>
-            <Route exact path="/" 
+            <Route exact path='/' 
               component={Index} 
               user={this.state.user} 
               isLoggedIn={this.state.isLoggedIn}/>
             <PrivateRoute 
-              exact path="/user" 
+              exact path='/user' 
               user={this.state.user}
-              usersBooks={this.state.usersBooks}
+              userId={this.state.userId}
               isLoggedIn 
               component={UserDash} 
             />
-            <PrivateRoute exact path="/user/:isbn" 
+            <PrivateRoute exact path='/user/:isbn' 
               user={this.state.user} 
               userId={this.state.userId} 
-              getUsersBooks={this.getUsersBooks}
               isLoggedIn 
               component={UserIndivBook} 
+            />
+            <PrivateRoute exact path='/search' 
+              userId={this.state.userId}
+              isLoggedIn 
+              component={SearchBookForm} 
             />
             <Route 
                 path='/login' 
@@ -189,26 +161,10 @@ class App extends Component {
             <Route 
                 path='/logout' 
                 render={() => ( this.state.isLoggedIn 
-                  ? <Logout handleLogoutSubmit={this.handleLogoutSubmit}/>
+                  ? <Logout handleLogoutSubmit={this.handleLogoutSubmit} user={this.state.user}/>
                   : <Redirect push to='/'/> 
                 )} 
             />
-            <Route path='/search' 
-              component={SearchBookForm} 
-              userId={this.state.userId} 
-            />
-            <Footer />
-            {/*<Route path="*" component={NotFound} />
-            <Route exact path="/user:id" render={() => {
-              return (this.state.isLoggedIn)
-              ? <UserDash user={this.state.user} isLoggedIn={this.state.isLoggedIn} />
-              : <Redirect to="/login" />
-            }} />
-            <Route exact path="/user/:id" component={UserDash} />
-            <Route path="/user/:id/:isbn" component={UserBook} />
-            <Route path="/user/:isbn" render={() => {
-              return <UserBook handleLoginSubmit={this.handleLoginSubmit} />
-            }} />*/}
           </main>
         </div>
       </Router>
