@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS books (
   author VARCHAR(255),
   genre VARCHAR(255),
   isbn INTEGER ,
-  description VARCHAR(2000),
+  description VARCHAR(1024),
   rating DOUBLE PRECISION,
   image_url VARCHAR(1024)
 );
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS users_books (
   book_ref_id INTEGER REFERENCES books(id), 
   status  VARCHAR(255) DEFAULT 'To Read',  
   review VARCHAR(1024) DEFAULT '', 
-  date_started DATE DEFAULT '1917-01-01',
-  date_finished DATE DEFAULT '1917-01-01'
+  date_started DATE DEFAULT '2017-01-01',
+  date_finished DATE DEFAULT '2017-01-01'
 );
 
