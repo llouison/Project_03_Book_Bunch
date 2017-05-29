@@ -158,7 +158,7 @@ class App extends Component {
             <Route 
                 path='/logout' 
                 render={() => ( this.state.isLoggedIn 
-                  ? <Logout handleLogoutSubmit={this.handleLogoutSubmit}/>
+                  ? <Logout handleLogoutSubmit={this.handleLogoutSubmit} user={this.state.user}/>
                   : <Redirect push to='/'/> 
                 )} 
             />
