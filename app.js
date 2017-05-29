@@ -19,8 +19,6 @@ app.listen(PORT, function() {
     console.log(`listening on port ${PORT}`);
 });
 
-/* setting up static file redirect*/
-app.use('/static', express.static(path.join(__dirname, 'public')));
 /* setting up cors*/
 app.use(cors());
 /* setting up logger to log activity when the server is running */
@@ -40,6 +38,8 @@ app.use(passport.session());
 app.use(cookieParser());
 
 /* ###### setting routes ###### */
+/* setting up static file redirect*/
+app.use(express.static(path.join(__dirname, 'build')));
 /* index route*/
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/public/index.html');
@@ -52,9 +52,12 @@ const authRoutes = require('./routes/auth');
 app.use('/api/books', booksRoutes);
 app.use('/api/users', usersRoutes);
 app.use('/auth', authRoutes);
-app.use('/successlogin', (req, res) => {
-    console.log(req.user);
-    res.send({user: req.user, auth: true});
+
+app.get('/api/books', booksRoutes);
+app.get('/api/users', usersRoutes);
+app.get('/auth', authRoutes);
+app.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 /* handling 404*/
