@@ -6,7 +6,7 @@ class SearchResult extends Component {
     this.state = {
       title: this.props.volumeInfo.title, 
       author: this.props.volumeInfo.authors[0], 
-      genre: this.props.volumeInfo.categories[0], 
+      genre: this.props.volumeInfo.categories, 
       isbn: parseInt(this.props.volumeInfo.industryIdentifiers[1].identifier), 
       description: this.props.volumeInfo.description, 
       rating: this.props.volumeInfo.averageRating, 
