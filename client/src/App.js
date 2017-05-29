@@ -20,13 +20,13 @@ import './App.css';
 // This is a functional component that protects private routes
 const PrivateRoute = ({ component, ...rest }) => (
   <Route {...rest} render={props => {
-	// console.log(props);
-	// console.log(rest);
+	console.log(props);
+	console.log(rest);
 	return (
     rest.isLoggedIn ? (
       React.createElement(component, Object.assign(rest, props))
     ) : (
-      <Redirect to="/login" />
+      <Redirect to='/login' />
     )
   )}}/>
 )
@@ -77,7 +77,7 @@ class App extends Component {
     fetch('/auth/login', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      credentials: "same-origin",
+      credentials: 'same-origin',
       body: JSON.stringify({
         username: event.target.username.value,
         password: event.target.password.value,
@@ -117,24 +117,29 @@ class App extends Component {
   render() {
     return (
        <Router>
-        <div className="app">
+        <div className='app'>
           <main>
-            <Route exact path="/" 
+            <Route exact path='/' 
               component={Index} 
               user={this.state.user} 
               isLoggedIn={this.state.isLoggedIn}/>
             <PrivateRoute 
-              exact path="/user" 
+              exact path='/user' 
               user={this.state.user}
               userId={this.state.userId}
               isLoggedIn 
               component={UserDash} 
             />
-            <PrivateRoute exact path="/user/:isbn" 
+            <PrivateRoute exact path='/user/:isbn' 
               user={this.state.user} 
               userId={this.state.userId} 
               isLoggedIn 
               component={UserIndivBook} 
+            />
+            <PrivateRoute exact path='/search' 
+              userId={this.state.userId}
+              isLoggedIn 
+              component={SearchBookForm} 
             />
             <Route 
                 path='/login' 
@@ -157,20 +162,16 @@ class App extends Component {
                   : <Redirect push to='/'/> 
                 )} 
             />
-            <Route path='/search' 
-              component={SearchBookForm} 
-              userId={this.state.userId} 
-            />
             <Footer />
-            {/*<Route path="*" component={NotFound} />
-            <Route exact path="/user:id" render={() => {
+            {/*<Route path='*' component={NotFound} />
+            <Route exact path='/user:id' render={() => {
               return (this.state.isLoggedIn)
               ? <UserDash user={this.state.user} isLoggedIn={this.state.isLoggedIn} />
-              : <Redirect to="/login" />
+              : <Redirect to='/login' />
             }} />
-            <Route exact path="/user/:id" component={UserDash} />
-            <Route path="/user/:id/:isbn" component={UserBook} />
-            <Route path="/user/:isbn" render={() => {
+            <Route exact path='/user/:id' component={UserDash} />
+            <Route path='/user/:id/:isbn' component={UserBook} />
+            <Route path='/user/:isbn' render={() => {
               return <UserBook handleLoginSubmit={this.handleLoginSubmit} />
             }} />*/}
           </main>
