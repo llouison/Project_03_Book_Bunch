@@ -38,15 +38,7 @@ booksController.show = (req, res) => {
 booksController.create = (req, res) => {
     Book.findByIsbn(req.body.isbn)
     .then(book => {
-<<<<<<< HEAD
-<<<<<<< HEAD
-        // if (book.isbn = null) {
-=======
         if (book === null) {
->>>>>>> 61ee3434c23d4a5b9fef5ba462e63b9d9e44deaa
-=======
-        if (book === null) {
->>>>>>> f7a0425c13e3428f9c318c00cb1408487ed5e323
             Book.create({
                 title: req.body.title, 
                 author: req.body.author,

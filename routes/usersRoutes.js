@@ -29,13 +29,6 @@ usersRoutes.post('/', usersController.create);
 //create new book entry on user's booklist
 usersRoutes.post('/:id', usersController.createEntry);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
 // exporting to app.js
->>>>>>> 61ee3434c23d4a5b9fef5ba462e63b9d9e44deaa
-=======
 // exporting to app.js
->>>>>>> f7a0425c13e3428f9c318c00cb1408487ed5e323
 module.exports = usersRoutes;
