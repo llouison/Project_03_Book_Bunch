@@ -84,11 +84,11 @@ class SearchBookForm extends Component {
       <div>
       <Header path1='/' link1='Home' path2='/user' link2='My Collection' path3='/logout' link3='Logout'/>
       <form
-        className="search-book-form"
+        className='search-book-form'
         onSubmit={this.handleFormSubmit}
       >
         <input
-          type="text"
+          type='text'
           value={this.state.inputTitleValue}
           name='title'
           placeholder='Title'
@@ -96,7 +96,7 @@ class SearchBookForm extends Component {
         /><br/>
         <input
          
-          type="text"
+          type='text'
           value={this.state.inputAuthorValue}
           name='author'
           placeholder='Author'
@@ -104,26 +104,27 @@ class SearchBookForm extends Component {
           onChange={this.handleAuthorInput}
         /><br/>
         <input
-          type="number"
+          type='number'
           value={this.state.inputIsbnValue}
           name='isbn'
           placeholder='ISBN number'
           onChange={this.handleIsbnInput}
         /><br/>
         <input
-          type="text"
+          type='text'
           value={this.state.inputGenreValue}
           name='genre'
           placeholder='Genre'
           onChange={this.props.handleGenreInput}
         /><br/>
-        <button>Search for your book!" </button>
+        <button>Search for your book!</button>
       </form>
       <ul>
         {this.state.results.map((value, index) =>{
             return(
               <SearchResult 
               volumeInfo={value.volumeInfo}
+              userId={this.props.userId}
               key={index}
               />
             )
