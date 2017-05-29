@@ -10,18 +10,35 @@ Contrary to popular belief, Millennials read more than older generations do—an
 
 Book Bunch is a virtual bookshelf CRUD app where users can: 
 - View books on a user profile archived in the database
-- Add books to the databse(by searching the google books api)
+- Add books to the database(by searching the google books api)
 - Edit books in the database, update the status of the book (read, reading, to-read), and add a review of the book
 - And delete books from the database
 
 ## Technologies To Be Used
-- Express backend
-- Postgres/Pg-Promise
-- React
+- Express (backend)
+- Postgres/Pg-Promise (working with database)
+- React (frontend)
 - Bcrypt/sessions (for user authentication)
-- Git/Github.com
-- CSS3
-- Heroku web hosting
+- Git/Github.com ()
+- CSS3 (styling)
+- Heroku (web hosting)
+
+## Installation of dependencies
+
+In the command line from the root folder run -npm install
+
+1. Then run npm install express --save
+2. npm install body-parser
+3. npm install morgan
+4. npm install method-override
+5. npm install morgan
+6. npm install pg-promise
+7. npm install cookie-parser
+8. npm install passport-local
+
+In the command line from the 'client' folder 
+1. npm install react-router-dom
+
 
 ## Wireframes
 
@@ -122,3 +139,5 @@ date_started: book.date_started.slice(0,10)
 - http://www.androidauthority.com/best-ebook-ereader-apps-for-android-170696/
 
 - https://git.generalassemb.ly/nyc-wdi-ada/ada-with-jointables
+
+
