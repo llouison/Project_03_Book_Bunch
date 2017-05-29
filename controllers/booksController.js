@@ -48,8 +48,8 @@ booksController.create = (req, res) => {
                 rating: req.body.rating, 
                 image_url: req.body.image_url,
             })
-            .then(newBook => {
-                res.json({ message: 'ok', data: { newBook }});
+            .then(book => {
+                res.json({ message: 'ok', data: { book }});
             })
         } else {
             res.json({
