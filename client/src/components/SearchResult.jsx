@@ -7,7 +7,7 @@ class SearchResult extends Component {
       title: this.props.volumeInfo.title, 
       author: this.props.volumeInfo.authors[0], 
       genre: this.props.volumeInfo.categories[0], 
-      isbn: parseInt(this.props.volumeInfo.industryIdentifiers[1].identifier.slice(0,9)), 
+      isbn: parseInt(this.props.volumeInfo.industryIdentifiers[1].identifier), 
       description: this.props.volumeInfo.description, 
       rating: this.props.volumeInfo.averageRating, 
       image_url: this.props.volumeInfo.imageLinks.thumbnail,
