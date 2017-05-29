@@ -41,7 +41,7 @@ app.use(cookieParser());
 /* setting up static file redirect*/
 app.use(express.static(path.join(__dirname, 'build')));
 /* index route*/
-app.get('/', function(req, res) {
+app.get('/api', function(req, res) {
     res.sendFile(__dirname + '/public/index.html');
 });
 
