@@ -4,11 +4,12 @@
   <meta charset='UTF-8' />
   <meta name='viewport' content='width=device-width, initial-scale=1.0' />
   <meta http-equiv='X-UA-Compatible' content='ie=edge' />
-  <title>Book Bunch</title>
+  <title>Book Bunch API</title>
+   <link rel='stylesheet' type='text/css' href='static/styles/style.css'>
 </head>
 <body>
   <h1>Book Bunch API</h1>
-  <p>Hello World! Book Bunch is a full-stack single-paged virtual book shelf CRUD app. It was created by <a href='#'>Ahsan Abassi,</a> <a href='#'>Lisa Louison,</a> and <a href='#'>Aliaksei Babkou</a> as a part of the Web Development Immersive course at General Assembly NYC. This is a REST-ful API that serves the list of books added to the Book Bunch database.</p>
+  <p>Hello World! Book Bunch is a full-stack single-paged virtual book shelf CRUD app. It was created by <a href='#'>Ahsan Abassi,</a> <a href='#'>Lisa Louison,</a> and <a href='#'>Aliaksei Babkou</a> as a part of the Web Development Immersive course at General Assembly NYC. This is a REST-ful API that serves the list of books added to the Book Bunch database and users' booklists.</p>
 
   <p>No keys are needed to access this API.</p>
 
@@ -32,7 +33,7 @@
             </span><span class="nt">"isbn"</span><span class="p">:</span><span class="w"> </span><span class="s2">9780545010221</span><span class="w">
             <span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harry Potter is preparing to leave the Dursleys and Privet Drive for the last time. But the future that awaits him is full of danger, not only for him, but for anyone close to him – and Harry has already lost so much. Only by destroying Voldemort's remaining Horcruxes can Harry free himself and overcome the Dark Lord's forces of evil. In this dramatic conclusion to the Harry Potter series, Harry must leave his most loyal friends behind, and in a final perilous journey find the strength and the will to face his terrifying destiny: a deadly confrontation that is his alone to fight. These adult editions with glorious jacket art by Andrew Davidson are now available in hardback for the first time."</span>
             <span class="nt">"rating"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.5"</span>
-            <span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2"><a href='#'>"https://books.google.com/books/content?id=N6DeDQAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"</a></span><span class="w">
+            <span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://books.google.com/books/content?id=N6DeDQAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
@@ -42,14 +43,14 @@
             </span><span class="nt">"isbn"</span><span class="p">:</span><span class="w"> </span><span class="s2">9780545010221</span><span class="w">
             <span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harry Potter is preparing to leave the Dursleys and Privet Drive for the last time. But the future that awaits him is full of danger, not only for him, but for anyone close to him – and Harry has already lost so much. Only by destroying Voldemort's remaining Horcruxes can Harry free himself and overcome the Dark Lord's forces of evil. In this dramatic conclusion to the Harry Potter series, Harry must leave his most loyal friends behind, and in a final perilous journey find the strength and the will to face his terrifying destiny: a deadly confrontation that is his alone to fight. These adult editions with glorious jacket art by Andrew Davidson are now available in hardback for the first time."</span>
             <span class="nt">"rating"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.5"</span>
-            <span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span><a href='#'>"https://books.google.com/books/content?id=N6DeDQAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"</a><span class="w">
+            <span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span>"https://books.google.com/books/content?id=N6DeDQAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"<span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="err">/*</span><span class="w"> </span><span class="err">additional</span><span class="w"> </span><span class="err">books</span><span class="w"> </span><span class="err">*/</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="p">}<span class="w">
 </span></code></pre>
 </div>
-<!-- finished here --> 
+
 <h4 id="apibooksisbn"><code class="highlighter-rouge">api/books/:isbn</code></h4>
 
 <div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
@@ -63,13 +64,11 @@
               </span><span class="nt">"isbn"</span><span class="p">:</span><span class="w"> </span><span class="s2">9780545010221</span><span class="w">
               <span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harry Potter is preparing to leave the Dursleys and Privet Drive for the last time. But the future that awaits him is full of danger, not only for him, but for anyone close to him – and Harry has already lost so much. Only by destroying Voldemort's remaining Horcruxes can Harry free himself and overcome the Dark Lord's forces of evil. In this dramatic conclusion to the Harry Potter series, Harry must leave his most loyal friends behind, and in a final perilous journey find the strength and the will to face his terrifying destiny: a deadly confrontation that is his alone to fight. These adult editions with glorious jacket art by Andrew Davidson are now available in hardback for the first time."</span>
               <span class="nt">"rating"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.5"</span>
-              <span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2"><a href='#'>"https://books.google.com/books/content?id=N6DeDQAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"</a></span><span class="w">
+              <span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://books.google.com/books/content?id=N6DeDQAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"</span><span class="w">
             </span><span class="p">}</span><span class="w">
           </span><span class="p">}</span><span class="w">  
 </span></code></pre>
 </div>
-
-
 
 <h4 id="apiusersid"><code class="highlighter-rouge">api/users/:id</code></h4>
 
@@ -85,7 +84,7 @@
                     </span><span class="nt">"isbn"</span><span class="p">:</span><span class="w"> </span><span class="s2">9780545010221</span><span class="w">
                     <span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harry Potter is preparing to leave the Dursleys and Privet Drive for the last time. But the future that awaits him is full of danger, not only for him, but for anyone close to him – and Harry has already lost so much. Only by destroying Voldemort's remaining Horcruxes can Harry free himself and overcome the Dark Lord's forces of evil. In this dramatic conclusion to the Harry Potter series, Harry must leave his most loyal friends behind, and in a final perilous journey find the strength and the will to face his terrifying destiny: a deadly confrontation that is his alone to fight. These adult editions with glorious jacket art by Andrew Davidson are now available in hardback for the first time."</span><span class="p">,</span><span class="w">
                     <span class="nt">"rating"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.5"</span><span class="p">,</span><span class="w">
-                    <span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2"><a href='#'>"https://books.google.com/books/content?id=N6DeDQAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"</a></span><span class="p">,</span><span class="w">
+                    <span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://books.google.com/books/content?id=N6DeDQAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"</span><span class="p">,</span><span class="w">
                     </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Read"</span><span class="p">,</span><span class="w">
                     </span><span class="nt">"review"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Great Book"</span><span class="p">,</span><span class="w">
                     </span><span class="nt">"date_started"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2010-03-08T05:00:00.000Z"</span><span class="p">,</span><span class="w">
@@ -114,7 +113,7 @@
                     </span><span class="nt">"isbn"</span><span class="p">:</span><span class="w"> </span><span class="s2">9780545010221</span><span class="w">
                     <span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harry Potter is preparing to leave the Dursleys and Privet Drive for the last time. But the future that awaits him is full of danger, not only for him, but for anyone close to him – and Harry has already lost so much. Only by destroying Voldemort's remaining Horcruxes can Harry free himself and overcome the Dark Lord's forces of evil. In this dramatic conclusion to the Harry Potter series, Harry must leave his most loyal friends behind, and in a final perilous journey find the strength and the will to face his terrifying destiny: a deadly confrontation that is his alone to fight. These adult editions with glorious jacket art by Andrew Davidson are now available in hardback for the first time."</span><span class="p">,</span><span class="w">
                     <span class="nt">"rating"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.5"</span><span class="p">,</span><span class="w">
-                    <span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2"><a href='#'>"https://books.google.com/books/content?id=N6DeDQAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"</a></span><span class="p">,</span><span class="w">
+                    <span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://books.google.com/books/content?id=N6DeDQAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"</span><span class="p">,</span><span class="w">
                     </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Read"</span><span class="p">,</span><span class="w">
                     </span><span class="nt">"review"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Great Book"</span><span class="p">,</span><span class="w">
                     </span><span class="nt">"date_started"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2010-03-08T05:00:00.000Z"</span><span class="p">,</span><span class="w">
@@ -126,6 +125,7 @@
 </span></code></pre>
 </div>
 
+<!-- finished here --> 
 
 <h3 id="other-endpoints">Other Endpoints</h3>
 
