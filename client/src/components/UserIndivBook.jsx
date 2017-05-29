@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from './partials/Header';
 import Footer from './partials/Footer';
 
+/* setting the initial state of usersBooks to an empty array and binding all methods in the class */
 class UserBook extends Component {
     constructor(props){
         super(props);
@@ -28,10 +29,12 @@ class UserBook extends Component {
         this.handleEntryDelete = this.handleEntryDelete.bind(this);
     }
 
+    /* calling the getIndivBook method when the component mounts */
     componentDidMount(){
         this.getIndivBook()
     }
 
+    /* this method fetches the book associated with the user id and isbn number then calls the updateUsersBook method */
     getIndivBook(isbn){
         fetch(`/api/users/${this.state.userId}/${this.props.match.params.isbn}`)
         .then((response) => {
@@ -43,6 +46,7 @@ class UserBook extends Component {
         }); 
     }
 
+    /* this method sets the retrieved book information in the state */
     updateUsersBook(book){
         this.setState((prevState) => {
             return {
@@ -56,6 +60,7 @@ class UserBook extends Component {
         })
     }
 
+    /* the conditional statement determines what content to render depending on whether the isBeingEdited boolean is true or not in the state */
     displayUserInfo(){
         if (this.state.isBeingEdited === false) {
             return this.renderUserInfo();
@@ -64,6 +69,7 @@ class UserBook extends Component {
         }
     }
 
+    /* this method renders the user info as text while isBeingEdited is false. When the edit button is clicked, it changed the state of isBeingEdited to true */
     renderUserInfo(){
         return(
             <div>
@@ -76,6 +82,7 @@ class UserBook extends Component {
         )
     }
 
+    /* this method renders the user info as editable inputs while isBeingEdited is true and updates their value as the user types. When the update button is clicked, it call the handleUserUpdate method. If the delete utton is clicked it calls the handleEntryDelete method */
     renderEditForm(){
         return (
             <div>
@@ -110,11 +117,12 @@ class UserBook extends Component {
                     /></label><br/>
                     <button>Update</button>
                 </form>
-                <button onClick={() => { this.handleEntryDelete(5) }}>Delete</button>
+                <button onClick={() => { this.handleEntryDelete() }}>Delete</button>
             </div>
         )
     }
 
+    /* the handle methods update the state of the form elements based on the user input events*/
     handleReviewChange(event){
         console.log('change');
         this.setState({review: event.target.value});
@@ -135,6 +143,7 @@ class UserBook extends Component {
         this.setState({date_started: event.target.value});
     }
 
+    /* this method sends the updated values to the database and updates it there */
     handleUserUpdate(event){
         event.preventDefault();
         console.log('update it!');
@@ -155,10 +164,10 @@ class UserBook extends Component {
                 console.log('updated');
             }
         })
-    // .then(this.props.history.push('/user'));
      }
 
-    handleEntryDelete(entryId) {
+     /* this method send a delete request to the database using the userId and book isbn number */
+    handleEntryDelete() {
         console.log('delete', this.state.entryId, );
         fetch(`/api/users/${this.state.userId}/${this.props.match.params.isbn}`, {
         method: 'DELETE',

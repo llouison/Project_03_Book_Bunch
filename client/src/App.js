@@ -1,20 +1,22 @@
+// importing react
 import React, { Component } from 'react';
+// importing all components
 import Index from './components/Index';
 import Login from './components/Login';
 import RegistrationForm from './components/RegistrationForm';
 import Logout from './components/Logout';
 import UserDash from './components/UserDash';
 import UserIndivBook from './components/UserIndivBook';
-import Footer from './components/partials/Footer';
 import SearchBookForm from './components/SearchBookForm';
-// import NotFound from './components/NotFound';
 
+// importing react router
 import {
   BrowserRouter as Router,
   Route,
   Redirect
 } from 'react-router-dom'
 
+// importing stylesheet
 import './App.css';
 
 // This is a functional component that protects private routes
@@ -31,6 +33,7 @@ const PrivateRoute = ({ component, ...rest }) => (
   )}}/>
 )
 
+// creating the App class
 class App extends Component {
   constructor(props) {
     super(props);
@@ -39,17 +42,14 @@ class App extends Component {
       userId: '',
       isLoggedIn: false,
     }
-    /* binding all methods in the App class that both reference this and will also be called from the DOM*/
+    /* binding all methods in the App class that both reference 'this' and will also be called from the DOM*/
     this.handleRegistrationSubmit = this.handleRegistrationSubmit.bind(this);
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     this.handleLogoutSubmit = this.handleLogoutSubmit.bind(this);
-
     this.updateState = this.updateState.bind(this);
   }
 
-  componentDidMount(){
-  }
-
+  /* this method posts the entered values in the registration form to the users table to create a new user then calls the updateState method to set user info in state to the new user */
   handleRegistrationSubmit(event){
     event.preventDefault();
     console.log('registering new user');
@@ -72,6 +72,7 @@ class App extends Component {
     })
   }
 
+   /* this method posts the entered values in the login form to the users table to verify that the user exists and the password is correct then calls the updateState method to set user info in state to that user */
   handleLoginSubmit(event){
     event.preventDefault();
     fetch('/auth/login', {
@@ -91,6 +92,7 @@ class App extends Component {
     });
   }
 
+  /* this method sets user info in state to either a new user from registration or a known user from login */
   updateState(username, id){
     this.setState((prevState) => {
       return {
@@ -101,7 +103,7 @@ class App extends Component {
     })
   }
 
-
+  /* this method logs a user out of the current session and changes the app state back to initial state*/
   handleLogoutSubmit(event){
     event.preventDefault();
     fetch('auth/logout')
@@ -114,6 +116,7 @@ class App extends Component {
     })
   }
 
+  /* Private routes are routed using the privateRoute functions component so that they always know the value of user and isloggedin boolean in state. Some routes use ternary conditional statements to handle redirects*/ 
   render() {
     return (
        <Router>
@@ -162,18 +165,6 @@ class App extends Component {
                   : <Redirect push to='/'/> 
                 )} 
             />
-            <Footer />
-            {/*<Route path='*' component={NotFound} />
-            <Route exact path='/user:id' render={() => {
-              return (this.state.isLoggedIn)
-              ? <UserDash user={this.state.user} isLoggedIn={this.state.isLoggedIn} />
-              : <Redirect to='/login' />
-            }} />
-            <Route exact path='/user/:id' component={UserDash} />
-            <Route path='/user/:id/:isbn' component={UserBook} />
-            <Route path='/user/:isbn' render={() => {
-              return <UserBook handleLoginSubmit={this.handleLoginSubmit} />
-            }} />*/}
           </main>
         </div>
       </Router>

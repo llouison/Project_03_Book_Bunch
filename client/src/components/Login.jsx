@@ -16,14 +16,12 @@ class Login extends Component {
 
     /* the handle change methods change the input value as the user types */
     handleInputUserNameChange(event) {
-        // console.log('change username');
         this.setState({
         inputUsernameValue: event.target.value
         });
     }
 
     handleInputPasswordChange(event) {
-        // console.log('change password');
         this.setState({
         inputPasswordValue: event.target.value
         });
@@ -45,7 +43,6 @@ class Login extends Component {
             name='username'
             onChange={this.handleInputUserNameChange}
           /></label><br/>
-
           <label>Password:
           <input
             type="password"
@@ -53,7 +50,6 @@ class Login extends Component {
             name='password'
             onChange={this.handleInputPasswordChange}
           /></label><br/>
-          
           <button>Login</button>
         </form>
         <Footer />
