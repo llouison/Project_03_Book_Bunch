@@ -6,62 +6,23 @@ class SearchResult extends Component {
     this.state = {
       title: this.props.volumeInfo.title, 
       author: this.props.volumeInfo.authors[0], 
-      genre: this.props.volumeInfo.categories, 
-      isbn: this.props.volumeInfo.industryIdentifiers[1].identifier, 
-      description: this.props.volumeInfo.description[0], 
+      genre: this.props.volumeInfo.categories[0], 
+      isbn: parseInt(this.props.volumeInfo.industryIdentifiers[1].identifier), 
+      description: this.props.volumeInfo.description, 
       rating: this.props.volumeInfo.averageRating, 
       image_url: this.props.volumeInfo.imageLinks.thumbnail,
-
+      bookId: null,
+      userId: this.props.userId,
     }
-    this.addUserBook = this.addUserBook.bind(this);
+    this.addBook = this.addBook.bind(this);
+    this.addUsersBook = this.addUsersBook.bind(this);
   }
 
-  // let bookInfo = {
-  //     title: {this.props.volumeInfo.title}, 
-  //     author: {this.props.volumeInfo.authors}, 
-  //     genre: {this.props.volumeInfo.categories}, 
-  //     isbn: {this.props.volumeInfo.industryIdentifiers[0].identifier}, 
-  //     description: {this.props.volumeInfo.description}, 
-  //     rating: {this.props.volumeInfo.averageRating}, 
-  //     image_url: {this.props.volumeInfo.imageLinks.thumbnail},
-  // }
-  
-  // addUserBook(event){
-  //   event.preventDefault();
-  //   console.log('add it!');
-  //   fetch('/api/books', {
-  //     method: 'POST',
-  //     headers: {'Content-Type': 'application/json'},
-  //     body: JSON.stringify({ bookInfo }),
-  //   })
-  //   .then((response) => {
-  //     return response.json()
-  //   })
-  //   .then((responseJson) => {
-  //     console.log(responseJson);
-  //     if (responseJson.data.tweed.id !== undefined) {
-  //       const newTweed = {
-  //         id: responseJson.data.tweed.id,
-  //         tweed_text: responseJson.data.tweed.tweed_text,
-  //         tweed_time: responseJson.data.tweed.tweed_time,
-  //       }
-  //       this.setState((prevState) => {
-  //         return {
-  //           tweeds: prevState.tweeds.concat(newTweed),
-  //           inputTweedValue: '',
-  //         }
-  //       })
-  //     } else {
-  //       console.log('error');
-  //     }
-  //   })
-  // // }
-  // }
 
-//this follwoing function books to a users books database.  This function is activated when the add button is clicked.
-  addUserBook(event){
+// adding the selected book to the books table
+  addBook(event){
     event.preventDefault();
-    fetch('/api/books',{
+    fetch(`/api/books`,{
       method:'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -69,25 +30,41 @@ class SearchResult extends Component {
         author: this.state.author,
         genre: this.state.genre,
         isbn: this.state.isbn,
-        description: this.state.description,
+        description: `${this.state.description.slice(0,1020)}...`,
         rating: this.state.rating,
+        image_url: this.state.image_url,
       })
-  
    })
-   console.log(this.state.genre);
+   .then((response) => {
+     return response.json();
+   })
+   .then((responseJson) => {
+     console.log(responseJson)
+     this.setState({
+       bookId: responseJson.data.book.id,
+     })
+     this.addUsersBook();
+   })
   }
 
-  // addToUsersBooks(event){
-  //     event.preventDefault();
-  //     fetch('http://localhost:3001/api/', {
-  //       method: 'POST',
-  //       headers: {'Content-Type': 'application/json'},
-  //       body: JSON.stringify({
-  //         id: ''
-          
-  //       })
-  //     })
-  // }
+  // adding the user and the book to the users_books table
+  addUsersBook(){
+    console.log(this.state.userId, this.state.bookId)
+      fetch(`/api/users/${this.state.userId}`,{
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          userId: this.state.userId,
+          bookId: this.state.bookId,
+        })
+      })
+      .then((response) => {
+        return response.json();
+      })
+      .then((responseJson) => {
+        console.log(responseJson);
+      })
+  }
 
   render() {
     return(
@@ -99,12 +76,7 @@ class SearchResult extends Component {
         <p>ISBN: {this.props.volumeInfo.industryIdentifiers[1].identifier}</p>
         <p>Description: {this.props.volumeInfo.description}</p>
         <p>Rating: {this.props.volumeInfo.averageRating}</p>
-        
-          <button className='add-book'
-                  onClick={this.addUserBook}
-          >
-          Add It Here</button>
-      
+        <button onClick={this.addBook}>Add It Here</button>
       </li>
     );
   }

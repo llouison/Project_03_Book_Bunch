@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from './partials/Header';
+import Footer from './partials/Footer';
 
 /* setting the initial state of inputs and binding the methods to the component */
 class Login extends Component {
@@ -15,14 +16,12 @@ class Login extends Component {
 
     /* the handle change methods change the input value as the user types */
     handleInputUserNameChange(event) {
-        // console.log('change username');
         this.setState({
         inputUsernameValue: event.target.value
         });
     }
 
     handleInputPasswordChange(event) {
-        // console.log('change password');
         this.setState({
         inputPasswordValue: event.target.value
         });
@@ -37,24 +36,23 @@ class Login extends Component {
           className="login_form"
           onSubmit={this.props.handleLoginSubmit}
         >
-          <label/>Username:
+          <label>Username:
           <input
             type="text"
             value={this.state.inputUserNameValue}
             name='username'
             onChange={this.handleInputUserNameChange}
-          /><br/>
-
-          <label/>Password:
+          /></label><br/>
+          <label>Password:
           <input
             type="password"
             value={this.state.inputPasswordValue}
             name='password'
             onChange={this.handleInputPasswordChange}
-          /><br/>
-          
+          /></label><br/>
           <button>Login</button>
         </form>
+        <Footer />
       </div>
     );
   }

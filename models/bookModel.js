@@ -16,6 +16,7 @@ Book.findByIsbn = isbn => {
 
 /* creating the create new book method. The SQL query creates a new book only if it doesn't already exist in the dual table which is a dummy table created to compare values */
 Book.create = book => {
+    console.log('creating book', book.image_url);
     return db.one(
         `
         INSERT INTO books
@@ -26,5 +27,5 @@ Book.create = book => {
     );
 };
 
-// exporting the book model
+// exporting the book model to booksController
 module.exports = Book;
