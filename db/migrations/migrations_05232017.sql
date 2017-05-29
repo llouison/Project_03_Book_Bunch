@@ -1,5 +1,5 @@
 --connecting to our main database
-\connect book_bunch_development   
+--\connect book_bunch_development   
 
 -- making the username and email unique ensures that no two people can have the same username or email
 CREATE TABLE IF NOT EXISTS users (
