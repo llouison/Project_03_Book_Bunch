@@ -102,5 +102,5 @@ userController.destroy = (req, res) => {
     })
 };
 
-// exporting the user controller
+// exporting the user controller to userRoutes
 module.exports = userController;

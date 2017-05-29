@@ -35,4 +35,5 @@ passport.use(
   })
 );
 
+// exporting to auth.js
 module.exports = passport;

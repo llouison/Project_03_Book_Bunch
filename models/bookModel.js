@@ -27,5 +27,5 @@ Book.create = book => {
     );
 };
 
-// exporting the book model
+// exporting the book model to booksController
 module.exports = Book;

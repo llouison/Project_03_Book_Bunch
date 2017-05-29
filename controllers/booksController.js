@@ -64,5 +64,5 @@ booksController.create = (req, res) => {
     });
 };   
 
-// exporting the book controller
+// exporting the book controller to booksRoutes
 module.exports = booksController;

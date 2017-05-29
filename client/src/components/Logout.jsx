@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Header from './partials/Header';
 
-/* setting the initial state of inputs and binding the methods to the component */
 class Login extends Component {
   render() {
     return (
