@@ -177,7 +177,7 @@ class UserBook extends Component {
     render() {
         return (
         <div>
-            <Header path1='/' link1='Home' path2='/search' link2='Search' path3='/logout' link3='Logout'/>
+            <Header path1='/user' link1='My Collection' path2='/search' link2='Search' path3='/logout' link3='Logout'/>
             <img src={this.state.usersBook.image_url} alt={this.state.usersBook.title}/>
             <p>Title: {this.state.usersBook.title}</p>
             <p>Author: {this.state.usersBook.author}</p>
