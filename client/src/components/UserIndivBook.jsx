@@ -84,23 +84,23 @@ class UserBook extends Component {
                         this.setState({isBeingEdited: false});
                     }}
                 >
-                    <label/>Review:<textarea
+                    <label>Review:<textarea
                         type="text"
                         value={this.state.review}
                         name='review'
                         onChange={this.handleReviewChange}>
-                    </textarea><br/>
-                    <label/>Status:<select name='status' value={this.state.status} onChange={this.handleStatusChange}>
+                    </textarea></label><br/>
+                    <label>Status:<select name='status' value={this.state.status} onChange={this.handleStatusChange}>
                         <option value="Reading">Reading</option>
                         <option value="Read">Read</option>
                         <option value="To Read">To Read</option>
-                    </select><br/>
-                    <label/>Date Started:<input
+                    </select></label><br/>
+                    <label>Date Started:<input
                         type="date"
                         value={this.state.date_started}
                         name='date_started'
                         onChange={this.handleDateStartedChange}
-                    /><br/>
+                    /></label><br/>
                     <label>Date Finished:<input
                         type="date"
                         value={this.state.date_finished}

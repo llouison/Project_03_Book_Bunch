@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import SearchResult from './SearchResult';
 import Header from './partials/Header';
+import SearchResult from './SearchResult';
+
 
 class SearchBookForm extends Component {
-  /**
-   * When the form is submitted, we call the handleBookSubmit method passed
-   * down from App. The input boxes get their values from the props we passed
-   * down from App 
-   */
+  /* When the form is submitted, we call the handleSearchSubmit.
+   * The input boxes get their values from the updated values in state */
 
    constructor(props) {
     super(props);
@@ -18,9 +16,8 @@ class SearchBookForm extends Component {
       inputIsbnValue: '',
       inputGenreValue: '',
       results: [],
-
     }
-      this.handleFormSubmit= this.handleFormSubmit.bind(this);
+      this.handleSearchSubmit= this.handleSearchSubmit.bind(this);
       this.handleAuthorInput=this.handleAuthorInput.bind(this);
       this.handleTitleInput=this.handleTitleInput.bind(this);
       this.handleIsbnInput=this.handleIsbnInput.bind(this);
@@ -44,39 +41,17 @@ class SearchBookForm extends Component {
    }
    
 
-  handleFormSubmit(event) {
+  handleSearchSubmit(event) {
     event.preventDefault();
-    
     fetch(`https://www.googleapis.com/books/v1/volumes?q=inauthor:${event.target.author.value}+isbn:${event.target.isbn.value}&key=AIzaSyBSbTuoPrwQ0PvCFj0uhq2MtGh3MEaoW0Y`)
-        .then((response) => {
-        
-        return response.json()
-      })
-      .then((responseJson) => {
-        console.log(responseJson);
-        this.setState({results:responseJson.items})
-      })
-    }
-
-  
-    // console.log('author', this.authorInput)
-  //   fetch(`https://www.googleapis.com/books/v1/volumes?q=inauthor:${event.target.author.value}&key=AIzaSyBSbTuoPrwQ0PvCFj0uhq2MtGh3MEaoW0Y`), { //Does the api we make go here or the NYTimes api?
-      
-  //   .then((response) => {
-  //     return response.json()
-  //   })
-
-  // }
-    
-      //   this.setState((prevState) => {
-      //     return {
-      //       quotes: prevState.quotes.concat(newQuote),
-      //       inputContentValue: '',
-      //       inputAuthorValue: '',
-      //       inputGenreValue: '',
-      //     }
-      //   })
-      // } 
+    .then((response) => {
+      return response.json()
+    })
+    .then((responseJson) => {
+      console.log(responseJson);
+      this.setState({results:responseJson.items})
+    })
+  }
   
 
   render() {
@@ -85,50 +60,44 @@ class SearchBookForm extends Component {
       <Header path1='/' link1='Home' path2='/user' link2='My Collection' path3='/logout' link3='Logout'/>
       <form
         className='search-book-form'
-        onSubmit={this.handleFormSubmit}
+        onSubmit={this.handleSearchSubmit}
       >
-        <input
+        <label>Title:<input
           type='text'
           value={this.state.inputTitleValue}
           name='title'
-          placeholder='Title'
           onChange={this.handleTitleInput}
-        /><br/>
-        <input
-         
+        /></label><br/>
+        <label>Author:<input
           type='text'
           value={this.state.inputAuthorValue}
           name='author'
-          placeholder='Author'
-          // onChange={this.handleAuthor}
           onChange={this.handleAuthorInput}
-        /><br/>
-        <input
+        /></label><br/>
+        <label>ISBN:<input
           type='number'
           value={this.state.inputIsbnValue}
           name='isbn'
-          placeholder='ISBN number'
           onChange={this.handleIsbnInput}
-        /><br/>
-        <input
+        /></label><br/>
+        <label>Genre:<input
           type='text'
           value={this.state.inputGenreValue}
           name='genre'
           placeholder='Genre'
           onChange={this.props.handleGenreInput}
-        /><br/>
+        /></label><br/>
         <button>Search for your book!</button>
       </form>
       <ul>
-        {this.state.results.map((value, index) =>{
-            return(
-              <SearchResult 
-              volumeInfo={value.volumeInfo}
-              userId={this.props.userId}
-              key={index}
-              />
-            )
-        })}
+      {this.state.results.map((value, index) =>{
+        return(
+          <SearchResult 
+            volumeInfo={value.volumeInfo}
+            userId={this.props.userId}
+            key={index}
+          />)
+      })}
       </ul>
       </div>
     );
