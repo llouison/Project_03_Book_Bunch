@@ -20,8 +20,8 @@ Book.create = book => {
     return db.one(
         `
         INSERT INTO books
-        (title, author, genre, isbn, description, image_url)
-        VALUES ($1, $2, $3, $4, $5, $6) RETURNING *
+        (title, author, genre, isbn, description, rating, image_url)
+        VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *
         `,
         [book.title, book.author, book.genre, book.isbn, book.description, book.rating, book.image_url]
     );

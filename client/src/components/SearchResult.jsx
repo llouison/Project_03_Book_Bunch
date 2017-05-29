@@ -32,6 +32,7 @@ class SearchResult extends Component {
         isbn: this.state.isbn,
         description: this.state.description,
         rating: this.state.rating,
+        image_url: this.state.image_url,
       })
    })
    .then((response) => {
