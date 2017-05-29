@@ -6,11 +6,12 @@ class SearchResult extends Component {
     this.state = {
       title: this.props.volumeInfo.title, 
       author: this.props.volumeInfo.authors[0], 
-      genre: this.props.volumeInfo.categories[0], 
-      isbn: this.props.volumeInfo.industryIdentifiers[0].identifier, 
-      description: this.props.volumeInfo.description, 
+      genre: this.props.volumeInfo.categories, 
+      isbn: this.props.volumeInfo.industryIdentifiers[1].identifier, 
+      description: this.props.volumeInfo.description[0], 
       rating: this.props.volumeInfo.averageRating, 
       image_url: this.props.volumeInfo.imageLinks.thumbnail,
+
     }
     this.addUserBook = this.addUserBook.bind(this);
   }
@@ -60,7 +61,7 @@ class SearchResult extends Component {
 //this follwoing function books to a users books database.  This function is activated when the add button is clicked.
   addUserBook(event){
     event.preventDefault();
-    fetch('http://localhost:3001/api/books',{
+    fetch('/api/books',{
       method:'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -76,10 +77,17 @@ class SearchResult extends Component {
    console.log(this.state.genre);
   }
 
-  addToUsersBooks(event){
-      event.preventDefault();
-      fetch('http://localhost:3001/api/')
-  }
+  // addToUsersBooks(event){
+  //     event.preventDefault();
+  //     fetch('http://localhost:3001/api/', {
+  //       method: 'POST',
+  //       headers: {'Content-Type': 'application/json'},
+  //       body: JSON.stringify({
+  //         id: ''
+          
+  //       })
+  //     })
+  // }
 
   render() {
     return(
@@ -88,18 +96,15 @@ class SearchResult extends Component {
         <p>Title:{this.props.volumeInfo.title}</p>
         <p>Author: {this.props.volumeInfo.authors}</p>
         <p>Genre: {this.props.volumeInfo.categories}</p>
-        <p>ISBN: {this.props.volumeInfo.industryIdentifiers[0].identifier}</p>
+        <p>ISBN: {this.props.volumeInfo.industryIdentifiers[1].identifier}</p>
         <p>Description: {this.props.volumeInfo.description}</p>
         <p>Rating: {this.props.volumeInfo.averageRating}</p>
-        <form
-        className="add_book_form"
-        onSubmit={this.addUserBook}
-        >
+        
           <button className='add-book'
-                  onSubmit={this.addUserBook}
+                  onClick={this.addUserBook}
           >
           Add It Here</button>
-        </form>
+      
       </li>
     );
   }

@@ -38,7 +38,7 @@ booksController.show = (req, res) => {
 booksController.create = (req, res) => {
     Book.findByIsbn(req.params.isbn)
     .then(book => {
-        if (book.isbn === null) {
+        // if (book.isbn = null) {
             Book.create({
                 title: req.body.title, 
                 author: req.body.author,
@@ -51,13 +51,13 @@ booksController.create = (req, res) => {
             .then(book => {
                 res.json({ message: 'ok', data: { book }});
             })
-        } else {
-            res.json({
-                message: 'ok',
-                data: { book },
-            });
+        // } else {
+        //     res.json({
+        //         message: 'ok',
+        //         data: { book },
+        //     });
         }
-    })
+    )
     .catch(err => {
         console.log(err);
         res.status(400).json({message: '400, err'});

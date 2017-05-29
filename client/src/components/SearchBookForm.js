@@ -47,14 +47,14 @@ class SearchBookForm extends Component {
   handleFormSubmit(event) {
     event.preventDefault();
     
-    fetch(`https://www.googleapis.com/books/v1/volumes?q=inauthor:${event.target.author.value}+isbn:${event.target.isbn.value}&key=AIzaSyBSbTuoPrwQ0PvCFj0uhq2MtGh3MEaoW0Y`)
+    fetch(`https://www.googleapis.com/books/v1/volumes?q=inauthor:${event.target.author.value}+isbn:${event.target.isbn.value}`)
         .then((response) => {
         
         return response.json()
       })
       .then((responseJson) => {
         console.log(responseJson);
-        this.setState({results:responseJson.items})
+        this.setState({results: responseJson.items})
       })
     }
 
@@ -120,6 +120,7 @@ class SearchBookForm extends Component {
         <button>Search for your book!" </button>
       </form>
       <ul>
+      {console.log(this.state.results)}
         {this.state.results.map((value, index) =>{
             return(
               <SearchResult 
