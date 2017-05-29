@@ -42,29 +42,29 @@ class RegistrationForm extends Component {
           onSubmit={this.props.handleRegistrationSubmit}
         >
 
-          <label/>Username:
+          <label>Username:
           <input
             type="text"
             value={this.state.inputUserNameValue}
             name='username'
             onChange={this.handleInputUserNameChange}
-          /><br/>
+          /></label><br/>
 
-          <label/>Email:
+          <label>Email:
           <input
             type="text"
             value={this.state.inputEmailValue}
             name='email'
             onChange={this.handleInputEmailChange}
-          /><br/>
+          /></label><br/>
 
-          <label/>Password:
+          <label>Password:
           <input
             type="password"
             value={this.state.inputPasswordValue}
             name='password'
             onChange={this.handleInputPasswordChange}
-          /><br/>
+          /></label><br/>
           
           <button>Register</button>
         </form>
