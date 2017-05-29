@@ -24,9 +24,8 @@ Book Bunch is a virtual bookshelf CRUD app where users can:
 - Heroku web hosting
 
 ## Empathy Map
-
-## Wireframes
 ![img](./assets/empathymap.jpg)
+## Wireframes
 
 #### Landing on home page
 
