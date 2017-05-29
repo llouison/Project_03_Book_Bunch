@@ -30,7 +30,7 @@ class SearchResult extends Component {
         author: this.state.author,
         genre: this.state.genre,
         isbn: this.state.isbn,
-        description: this.state.description,
+        description: `${this.state.description.slice(0,1020)}...`,
         rating: this.state.rating,
         image_url: this.state.image_url,
       })
@@ -41,7 +41,7 @@ class SearchResult extends Component {
    .then((responseJson) => {
      console.log(responseJson)
      this.setState({
-       bookId: responseJson.data.newBook.id,
+       bookId: responseJson.data.book.id,
      })
      this.addUsersBook();
    })
