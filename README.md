@@ -118,8 +118,10 @@ date_started: book.date_started.slice(0,10)
 
 ## Next Steps
 - make the app responsiveness
+- one-click logout
 - create a notes section on individual book page
 - add embedded/popup book preview
+- add NYT best sellers API
 - Link to amazon to purchase books
 - Ability to scan isbn barcode on mobile
 - Google Chrome extension for easy access to app from anywhere on the internet
