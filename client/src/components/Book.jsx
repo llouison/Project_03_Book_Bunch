@@ -10,9 +10,8 @@ class UserBook extends Component {
   }
   render() {
     return (
-      <div>
+      <div className='book'>
         <Link to={this.state.path}><img src={this.props.book.image_url} alt={this.props.book.title}/></Link>
-        <p>title: {this.props.book.title}</p>
       </div>
     );
   }

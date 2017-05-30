@@ -58,10 +58,13 @@ class UserDash extends Component {
   /* this method renders a welcome message and displays the user's books according to status*/
   renderBooks(){
      return(
-      <div>
+      <div className='page'>
         <Header path1='/' link1='Home' path2='/search' link2='Search' path3='/logout' link3='Logout'/>
+        <div className='main_container'>
+        <div className='greeting'>
         <p>Welcome back, {this.props.user}</p>
         <p>There are {this.state.usersBooks.length} books in your collection</p>
+        </div>
         <div className='shelf'>
           <h2>To Read</h2>
           {this.state.usersBooks.map((book) => {
@@ -100,6 +103,7 @@ class UserDash extends Component {
               />
             )
           }})}
+        </div>
         </div>
         <Footer />
       </div>

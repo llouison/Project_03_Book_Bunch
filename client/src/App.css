@@ -176,76 +176,29 @@ button {
   cursor: pointer;   
 }
 /* user dash */
+.greeting {
+  align-self: flex-start;
+  margin: 0 10px 20px 12px;
+  text-align: left;
+}
 
 .shelf {
-  width: 70vw;
-  border-bottom: 13px solid #24252a;
+  width: 500px;
+  height: 200px;
+  border-bottom: 13px solid #333;
   text-align: center;
 	padding: 0 27px;
-  margin: 20px auto;
+  margin-bottom: 20px;
   background: transparent;
+  overflow: scroll;
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  box-shadow: 0px 17px 12px -10px rgba(0,0,0,0.6);
 }
 
-.shelf:after {
-	position: absolute;
-	bottom: -13px;
-	left: 34px;
-	height: 10px;
-	background: transparent;
-	content: "";
-	-webkit-transform: perspective( 150 ) rotateX( -25deg );
-	   -moz-transform: perspective( 150 ) rotateX( -25deg );
-	    -ms-transform: perspective( 150 ) rotateX( -25deg );
-	        transform: perspective( 150 ) rotateX( -25deg );
-	right: 34px;
-	box-shadow: 0 0 17px 5px rgba(0, 0, 0, 0.7);
-	z-index: -1;
-}
-
-.shelf > div {
-		border-bottom: 23px solid #303138;
-		position: relative;
-		z-index: 1;
-	}
-	
-	.shelf > div:before {
-	  content: '';
-	  width: 0px;
-	  height: 0px;
-	  border-style: solid;
-	  border-width: 0 0 23px 27px;
-	  border-color: transparent transparent #303138 transparent;
-	  position: absolute;
-	  bottom: -23px;
-	  left: -27px;
-	  z-index: 2;
-	  -webkit-transform:rotate(360deg);
-	  -moz-transform:rotate(360deg);
-	  transform:rotate(360deg);
-	}
-	
-	.shelf > div:after {
-	  content: '';
-	  width: 0px;
-	  height: 0px;
-	  border-style: solid;
-	  border-width: 23px 0 0 27px;
-	  border-color: transparent transparent transparent #303138;
-	  /*position: absolute;*/
-	  bottom: -23px;
-	  right: -27px;
-	  z-index: 2;
-	}
-	
-		.shelf > div > * {
-			position: relative;
-			z-index: 2;
-			top: 18px;
-		}
-
-    .book {
-      width: 65vw;
-      height: 100px;
+.book {
+      margin: 0 30px;
     }
 
 /*###### Mobile Media Query ######*/
