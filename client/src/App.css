@@ -49,7 +49,15 @@ color: #333;
 ol, ul {
 list-style: none;
 }
-
+.result {
+  margin: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+  align-items: center;
+  overflow: scroll;
+}
 /* body, header, footer */
 
 .App {
@@ -126,13 +134,13 @@ form button {
   flex: 2;
 }
 .search_container {
-  height: 45vh;
+  height: 25vh;
   width: 550px;
   display: flex;
   justify-content: center;
   align-self: center;
 }
-search_form {
+.search_form {
   text-align: right;
   display: flex;
   flex-direction: row;

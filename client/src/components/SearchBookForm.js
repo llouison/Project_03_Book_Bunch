@@ -87,9 +87,10 @@ class SearchBookForm extends Component {
           name='genre'
           onChange={this.props.handleGenreInput}
         /></label><br/>
-        <button>Search for your book!" </button>
+        <button>Search for your book</button>
       </form>
       </div>
+      <div className='result'>
       <ul>
         {this.state.results.map((value, index) =>{
           return(
@@ -100,6 +101,7 @@ class SearchBookForm extends Component {
             />)
         })}
         </ul>
+        </div>
         <Footer />
       </div>
     );
