@@ -19,6 +19,7 @@ color: #333;
   text-align: center;
   display: flex;
   flex-direction: column;
+  background: #fafafa;
 }
 .hero {
   width: 100vw;
@@ -38,7 +39,7 @@ color: #333;
   width: 700px;
 }
 .about p {
-  margin: 10px 0 30px;
+  margin: 10px 0 20px;
 }
 .feature {
   font-size: 20px;
@@ -66,13 +67,25 @@ main {
   justify-content: center;
   align-items: center;
 }
-
+.hero header h1 {
+  color: #fafafa;
+}
 header, footer {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   padding: 10px;
+}
+header a {
+  padding: 0 5px;
+  color: #046e8f;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+
+header a:hover {
+  text-decoration: underline;
 }
 
 footer a {
@@ -89,17 +102,28 @@ footer a {
 }
 
 /* forms */
+.main_container {
+  display: flex;
+  flex-direction: column;
+}
 .form_container {
   display: flex;
   justify-content: center;
+  height: 100vh;
+  align-self: center;
 }
 form {
   text-align: right;
   display: flex;
   flex-direction: column;
+  align-self: center;
 }
 form button {
   align-self: center;
+}
+.registration_form {
+  display: flex;
+  flex: 2;
 }
 input {
   border: 1 px solid gray;
@@ -111,6 +135,8 @@ button {
   padding: 5px 10px;
   border-radius: 5px;
   border: 1px solid #046e8f;
+  transition: all 0.4s ease;
+  cursor: pointer;   
 }
 /* user dash */
 

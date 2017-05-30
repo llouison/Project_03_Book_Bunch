@@ -38,6 +38,7 @@ class RegistrationForm extends Component {
     return (
       <div className='page'>
         <Header path1='/' link1='Home' path2='/register' link2='Register' path3='/login' link3='Login'/>
+        <div className='main_container'>
         <div className='form_container'>
         <form
           className="registration_form"
@@ -70,6 +71,7 @@ class RegistrationForm extends Component {
           
           <button>Register</button>
         </form>
+        </div>
         </div>
         <Footer />
       </div>
