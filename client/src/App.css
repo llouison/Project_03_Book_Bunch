@@ -228,6 +228,7 @@ button {
   border: 1px solid #9a9a9a;
   overflow: scroll;
   word-wrap: break-word;
+  text-align: left;
 }
 .book_info {
   display: flex;
