@@ -125,6 +125,20 @@ form button {
   display: flex;
   flex: 2;
 }
+.search_container {
+  height: 45vh;
+  width: 550px;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+search_form {
+  text-align: right;
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  flex-wrap: wrap;
+}
 input {
   border: 1 px solid gray;
   margin: 10px;

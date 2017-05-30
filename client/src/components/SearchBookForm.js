@@ -56,10 +56,11 @@ class SearchBookForm extends Component {
 
   render() {
     return (
-      <div>
+      <div className='page'>
         <Header path1='/' link1='Home' path2='/user' link2='My Collection' path3='/logout' link3='Logout'/>
+        <div className='search_container'>
         <form
-          className="search-book-form"
+          className='search_form'
           onSubmit={this.handleSearchSubmit}
         >
           <label>Title:<input
@@ -88,6 +89,7 @@ class SearchBookForm extends Component {
         /></label><br/>
         <button>Search for your book!" </button>
       </form>
+      </div>
       <ul>
         {this.state.results.map((value, index) =>{
           return(
