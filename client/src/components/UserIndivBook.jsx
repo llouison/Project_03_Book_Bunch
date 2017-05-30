@@ -72,12 +72,20 @@ class UserBook extends Component {
     /* this method renders the user info as text while isBeingEdited is false. When the edit button is clicked, it changed the state of isBeingEdited to true */
     renderUserInfo(){
         return(
-            <div>
-                <p>Review: {this.state.review}</p>
-                <p>Status: {this.state.status}</p>
-                <p>Date Started: {this.state.date_started}</p>
-                <p>Date Finished: {this.state.date_finished}</p>
+            <div className='user_info'>
+                <div className='long_info'>
+                <p><span className='reslabel'>Review:</span> </p>
+                <div className='review_container'>
+                <p>{this.state.review}</p>
+                </div>
+                </div>
+                <div className='short_info'>
+                <p><span className='reslabel'>Status:</span> {this.state.status}</p>
+                <p><span className='reslabel'>Date Started:</span><br/> {this.state.date_started}</p>
+                <p><span className='reslabel'>Date Finished:</span><br/> {this.state.date_finished}</p>
                 <button onClick={() => {this.setState({isBeingEdited: true}) }}>Edit</button>
+                <button className='secondaryBtn' onClick={() => { this.handleEntryDelete() }}>Delete</button>
+                </div>
             </div>
         )
     }
@@ -85,39 +93,47 @@ class UserBook extends Component {
     /* this method renders the user info as editable inputs while isBeingEdited is true and updates their value as the user types. When the update button is clicked, it call the handleUserUpdate method. If the delete utton is clicked it calls the handleEntryDelete method */
     renderEditForm(){
         return (
-            <div>
+            <div className='user_info'>
                 <form
+                    className='bookEdit_form'
                     onSubmit={(event) => {
                         this.handleUserUpdate(event);
                         this.setState({isBeingEdited: false});
                     }}
                 >
-                    <label>Review:<textarea
+                    <div className='long_info_container'>
+                    <div className='long_info'>
+                    <textarea
                         type="text"
+                        className='review_container'
                         value={this.state.review}
                         name='review'
+                        placeholder='what are your thoughts on this book?'
                         onChange={this.handleReviewChange}>
-                    </textarea></label><br/>
-                    <label>Status:<select name='status' value={this.state.status} onChange={this.handleStatusChange}>
+                    </textarea><br/>
+                    </div>
+                    </div>
+                    <div className='short_info'>
+                    <label><span className='reslabel'>Status: </span><select name='status' value={this.state.status} onChange={this.handleStatusChange}>
                         <option value="Reading">Reading</option>
                         <option value="Read">Read</option>
                         <option value="To Read">To Read</option>
                     </select></label><br/>
-                    <label>Date Started:<input
+                    <label><span className='reslabel'>Date Started:</span><input
                         type="date"
                         value={this.state.date_started}
                         name='date_started'
                         onChange={this.handleDateStartedChange}
                     /></label><br/>
-                    <label>Date Finished:<input
+                    <label><span className='reslabel'>Date Finished:</span><input
                         type="date"
                         value={this.state.date_finished}
                         name='date_finished'
                         onChange={this.handleDateFinishedChange}
                     /></label><br/>
                     <button>Update</button>
+                    </div>
                 </form>
-                <button onClick={() => { this.handleEntryDelete() }}>Delete</button>
             </div>
         )
     }
@@ -186,15 +202,25 @@ class UserBook extends Component {
 
     render() {
         return (
-        <div>
+        <div className='page'>
             <Header path1='/user' link1='My Collection' path2='/search' link2='Search' path3='/logout' link3='Logout'/>
+            <div className='book_info'>
+            <div className='short_info'>
             <img src={this.state.usersBook.image_url} alt={this.state.usersBook.title}/>
-            <p>Title: {this.state.usersBook.title}</p>
-            <p>Author: {this.state.usersBook.author}</p>
-            <p>Genre: {this.state.usersBook.genre}</p>
-            <p>Rating: {this.state.usersBook.rating}</p>
-            <p>ISBN: {this.props.match.params.isbn}</p>
-            <p>Description: {this.state.usersBook.description}</p>
+            <p><span className='reslabel'>Title:</span> {this.state.usersBook.title}</p>
+            <p><span className='reslabel'>Author:</span> {this.state.usersBook.author}</p>
+            <p><span className='reslabel'>Genre:</span> {this.state.usersBook.genre}</p>
+            <p><span className='reslabel'>Rating:</span> {this.state.usersBook.rating}</p>
+            <p><span className='reslabel'>ISBN:</span> {this.props.match.params.isbn}</p>
+            </div>
+            <div className='long_info'>
+            <p><span className='reslabel'>Description:</span> </p>
+            <div className='description_container'>
+            <p>{this.state.usersBook.description}</p>
+            </div>
+            </div>
+            </div>
+            <hr/>
             {this.displayUserInfo()}
             <Footer />
         </div>
