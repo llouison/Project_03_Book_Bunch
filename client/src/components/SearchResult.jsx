@@ -70,13 +70,16 @@ class SearchResult extends Component {
     return(
       <li className='book_result'>
         <img src={this.props.volumeInfo.imageLinks.thumbnail} alt={this.props.volumeInfo.title}/>
-        <p>Title:{this.props.volumeInfo.title}</p>
-        <p>Author: {this.props.volumeInfo.authors}</p>
-        <p>Genre: {this.props.volumeInfo.categories}</p>
-        <p>ISBN: {this.props.volumeInfo.industryIdentifiers[1].identifier}</p>
-        <p>Description: {this.props.volumeInfo.description}</p>
-        <p>Rating: {this.props.volumeInfo.averageRating}</p>
+        <div className='result_text'>
+        <p><span className='reslabel'>Title:</span> {this.props.volumeInfo.title}</p>
+        <p><span className='reslabel'>Author:</span> {this.props.volumeInfo.authors}</p>
+        <p><span className='reslabel'>Genre:</span> {this.props.volumeInfo.categories}</p>
+        <p><span className='reslabel'>ISBN:</span> {this.props.volumeInfo.industryIdentifiers[1].identifier}</p>
+        <p><span className='reslabel'>Description:</span> {this.props.volumeInfo.description}</p>
+        <p><span className='reslabel'>Rating:</span> {this.props.volumeInfo.averageRating}</p>
+        </div>
         <button onClick={this.addBook}>Add It Here</button>
+        <hr/>
       </li>
     );
   }

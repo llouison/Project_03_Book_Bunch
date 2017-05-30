@@ -58,6 +58,21 @@ list-style: none;
   align-items: center;
   overflow: scroll;
 }
+.book_result {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+.result_text {
+  text-align: left;
+}
+.result_text p {
+  margin: 2px 0;
+}
+.reslabel {
+  color: #046e8f;
+}
 /* body, header, footer */
 
 .App {
