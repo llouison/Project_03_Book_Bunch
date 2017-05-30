@@ -39,7 +39,7 @@ app.use(cookieParser());
 
 /* ###### setting routes ###### */
 /* setting up static file redirect*/
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, 'client/build')));
 /* index route*/
 // app.get('/api', function(req, res) {
 //     res.sendFile(__dirname + '/public/index.html');
@@ -57,7 +57,7 @@ app.get('/api/books', booksRoutes);
 app.get('/api/users', usersRoutes);
 app.get('/auth', authRoutes);
 app.get('/*', function (req, res) {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
 /* handling 404*/
