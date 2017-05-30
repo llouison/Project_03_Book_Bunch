@@ -32,7 +32,7 @@ class Index extends Component {
         <div className='about'>
         <h2 className='feature'>About Book Bunch</h2>
         <hr/>
-        <p>With work, travel, social media, and the occasional train conversation, a good book is bound to come up.</p>
+        <p>With work, travel, social media, and the occasional train conversation, a good book suggestion is bound to come up.</p>
         <p>It might feel like 'so many books, so little time' and 'where do I even put them all?'</p>
         <p>With Book Bunch, just add your book list to a shelf and get to them whenever the time is right.</p>
         </div>
