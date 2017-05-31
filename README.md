@@ -50,12 +50,12 @@ Users should be able to:
 18. Launched to Heroku
 
 ## Installation Instructions
-1. Run `npm install` in the root folder and the client folder
-2. in the root folder, create `.env` file and add `SECRET_KEY`. Set the secret key to anything you want
+1. Run `npm install` in the root folder and the client folder (each app has its own package.json and dependencies that need to be installed).
+2. In the root folder, create `.env` file and add `SECRET_KEY`. Set the secret key to anything you want.
 3. Run `createdb book_bunch_development` from the terminal in the root folder. This will create the database that the book bunch express app is set up to use.
-4. run `psql -f migrations_05232017.sql` in the migrations folder in db of the root folder
-5. run `npm run dev` in the root folder
-6. in another terminal tab run `npm start` in the client folder
+4. Run `psql -f migrations_05232017.sql` in the migrations folder in db of the root folder.
+5. Run `npm run dev` in the root folder.
+6. In another terminal tab run `npm start` in the client folder.
 
 ## Coding Wins
 We wanted to be sure the books table didn't have duplicate books, at first we used this query that first adds a book to a dual table then checks if it exists in books before adding it. Ultimately we used a conditional statement to first find if the books exists and return it, else create a new book. 
