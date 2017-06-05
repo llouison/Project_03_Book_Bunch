@@ -15,18 +15,8 @@ CREATE TABLE IF NOT EXISTS books (
   title VARCHAR(1024),
   author VARCHAR(255),
   genre VARCHAR(255),
-<<<<<<< HEAD
-<<<<<<< HEAD
-  isbn Bigint ,
-  description VARCHAR(2000),
-=======
   isbn BIGINT ,
   description VARCHAR(1024),
->>>>>>> 61ee3434c23d4a5b9fef5ba462e63b9d9e44deaa
-=======
-  isbn BIGINT ,
-  description VARCHAR(1024),
->>>>>>> f7a0425c13e3428f9c318c00cb1408487ed5e323
   rating DOUBLE PRECISION,
   image_url VARCHAR(1024)
 );
